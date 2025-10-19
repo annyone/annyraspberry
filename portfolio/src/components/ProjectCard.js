@@ -4,12 +4,12 @@ import Link from './Link';
 
 export default function ProjectCard({ project }) {
   return (
-    <article className="flex flex-col md:flex-row overflow-hidden gap-8 mb-10">
+    <article className="flex flex-col md:flex-row overflow-hidden gap-8">
       {/* Text block */}
-      <div className="w-[40%] flex flex-col">
+      <div className="w-[40%] flex flex-col gap-4">
         <Text variant="h3" className="mb-4">{project.title}</Text>
         <Text variant="p">{project.excerpt}</Text>
-  <Link to={`/projects/${project.id}`} showLinkIcon>Подробнее</Link>
+        <Link to={`/projects/${project.id}`} showLinkIcon>Подробнее</Link>
       </div>
       {/* Image block */}
       {project.thumbnail && (

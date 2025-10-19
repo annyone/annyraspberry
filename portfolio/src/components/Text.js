@@ -7,16 +7,20 @@ const variants = {
   },
   h3: {
     tag: 'h3',
-    className: 'text-3xl font-medium inline-block mb-6',
+    className: 'text-3xl font-medium inline-block mt-8 mb-4',
+  },
+  h4: {
+    tag: 'h4',
+    className: 'text-2xl font-medium mt-6 mb-4',
   },
   subtitle: {
     tag: 'p',
-    className: 'text-base mb-8 text-zinc-500 font-feature-settings-smcp',
+    className: 'text-base mb-4 text-zinc-500 font-feature-settings-smcp',
   },
   p:{
     tag: 'p',
-    className: 'text-xl/9 mb-6',
-  }
+    className: 'text-xl/9',
+  },
 };
 
 export default function Text({ children, variant = 'h3', className = '', ...props }) {
