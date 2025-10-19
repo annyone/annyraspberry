@@ -21,7 +21,7 @@ export default function Home() {
           <div className="flex items-center text-left mb-8">
             <img src={photo} alt="Аня" className="rounded-lg w-40 h-40 object-cover mr-12" />
             <div>
-                <div className="text-2xl font-normal mb-6">Привет! Я — Аня</div>
+                <div className="text-2xl font-normal mb-6">Привет! 🤚 Я — Аня</div>
                 <div className="text-2xl font-normal">
                     UI/UX дизайнер с 11-летним опытом в IT:<br />продуктовый дизайн, разработка, тестирование
                 </div>
