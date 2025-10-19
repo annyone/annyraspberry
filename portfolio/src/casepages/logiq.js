@@ -9,7 +9,7 @@ export default function LogiqCase(){
   return (
     <div className="min-h-screen">
       <Nav />
-      <main className="max-w-4xl mx-auto px-4 py-12">
+      <main className="max-w-[1600px] w-full mx-auto">
 
         <Section>
           <Text variant="h2">Редизайн основного раздела LogIQ</Text>
