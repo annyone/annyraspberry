@@ -1,0 +1,33 @@
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+// Tailwind utility classes for nav link
+const baseStyles = 'text-zinc-500 transition-transform duration-150';
+const hoverStyles = 'hover:-translate-y-0.5 hover:text-rose-500';
+const focusStyles = 'focus:-translate-y-0.5 focus:text-rose-500';
+
+// icon: React element, text: string (optional), href: string (required for external), to: string (for internal)
+const iconClass = 'h-7 w-7';
+
+export default function Link({ to, href, text, icon, children, className = '', ...props }) {
+  const classes = `${baseStyles} ${hoverStyles} ${focusStyles} ${className}`.trim();
+  // If icon only (no text/children), center icon; icon always gets same size
+  const iconEl = icon ? React.cloneElement(icon, { className: iconClass }) : null;
+  const content = <>
+    {iconEl && <span className={text || children ? 'mr-2 inline-flex' : 'inline-flex'}>{iconEl}</span>}
+    {text}
+    {children}
+  </>;
+  if (to) {
+    return (
+      <RouterLink to={to} className={classes} {...props}>
+        {content}
+      </RouterLink>
+    );
+  }
+  return (
+    <a href={href} className={classes} {...props}>
+      {content}
+    </a>
+  );
+}

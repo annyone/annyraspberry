@@ -68,3 +68,40 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+---
+
+## Portfolio site setup notes
+
+This repository includes a minimal structure for a static portfolio site built with React (Create React App).
+
+- Pages are in `src/pages/` (Home, ProjectTemplate).
+- Reusable components are in `src/components/` (Nav, ProjectCard, Button).
+- Project sample data is in `src/data/projects.js` — replace or extend this with your own project entries.
+- Add your images to `public/images/` (files are served at `/images/<name>`).
+
+To install dependencies (including router) run:
+
+```powershell
+npm install
+```
+
+To run locally:
+
+```powershell
+npm start
+```
+
+Deploy to GitHub Pages
+
+1. Create a GitHub repository and push this project.
+2. In the repository settings -> Pages, choose the branch `gh-pages` (or `main` with the `/root` folder) and the `/ (root)` folder for deployment. If you prefer, you can use the `gh-pages` npm package to publish the `build/` folder automatically.
+
+Quick publish using gh-pages package (optional):
+
+```powershell
+npm install --save-dev gh-pages; npm run build; npx gh-pages -d build
+```
+
+If you need help configuring a custom domain or exact GitHub Pages settings, tell me how you'd like to publish (branch-based or gh-pages package) and I will add the exact steps/scripts.
