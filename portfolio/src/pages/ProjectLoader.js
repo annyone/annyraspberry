@@ -2,6 +2,14 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import projects from '../data/projects';
 import ProjectTemplate from './ProjectTemplate';
+// Statically import known case pages so they are included in the main bundle
+import LogiqCase from '../casepages/logiq';
+import DartsCase from '../casepages/darts';
+
+const staticPages = {
+  logiq: LogiqCase,
+  darts: DartsCase,
+};
 
 // Contract:
 // - Input: route param `id`
@@ -18,6 +26,11 @@ export default function ProjectLoader(){
     async function load(){
       if(!project || !project.page){
         setCaseComponent(null);
+        return;
+      }
+      // If we have a statically imported page, use it immediately (avoids chunk load errors on prod)
+      if(staticPages[project.page]){
+        setCaseComponent(()=>staticPages[project.page]);
         return;
       }
       try{
