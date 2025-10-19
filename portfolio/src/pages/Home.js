@@ -3,9 +3,11 @@ import React from 'react';
 import Nav from '../components/Nav';
 import ProjectCard from '../components/ProjectCard';
 import ExperienceCard from '../components/ExperienceCard';
+import ArticleCard from '../components/ArticleCard';
 import Subtitle from '../components/Subtitle';
 import projects from '../data/projects';
 import { experiences } from '../data/experiences';
+import { articles } from '../data/articles';
 import photo from '../images/photo.jpg';
 
 export default function Home() {
@@ -43,15 +45,26 @@ export default function Home() {
           {experiences.map((experience, index) => (
             <ExperienceCard 
               key={index}
-              dates={experience.dates}
-              position={experience.position}
-              company={experience.company}
-              link={experience.link}
-              tasks={experience.tasks}
-              achievements={experience.achievements}
+              experience={experience}
             />
           ))}
         </section>
+
+        {/* Articles */}
+        <section id="articles" className="gap-6 my-20">
+          <Subtitle>статьи</Subtitle>
+          <div className="grid grid-cols-2 gap-6">
+            {articles.map((article, index) => (
+            <ArticleCard 
+              key={index}
+              article={article}
+            />
+            ))}
+          </div>
+          
+        </section>
+
+
 
       </main>
     </div>
