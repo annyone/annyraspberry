@@ -2,8 +2,8 @@ import React from 'react';
 import Text from './Text';
 
 export default function Section({ children, title, className = '', ...props }) {
-  const base = 'my-20';
-  
+  const base = 'my-20 gap-6';
+
   return (
     <section className={`${base} ${className}`} {...props}>
       {title && <Text variant="subtitle">{title}</Text>}

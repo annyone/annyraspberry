@@ -17,7 +17,7 @@ export default function Home() {
       <main className="max-w-[1600px] w-full mx-auto">
 
         {/* Hero */}
-        <Section className="flex flex-col items-left p-[120px]">
+        <Section className="flex flex-col items-left p-[140px]">
           <div className="flex items-center text-left mb-8">
             <img src={photo} alt="Аня" className="rounded-lg w-40 h-40 object-cover mr-12" />
             <div>
@@ -33,13 +33,13 @@ export default function Home() {
         </Section>
 
         {/* Cases */}
-        <Section id="cases" className="grid grid-cols-1 gap-6" title="кейсы">
+        <Section id="cases" className="grid grid-cols-1" title="кейсы">
           {projects.map(p=> <ProjectCard key={p.id} project={p} />)}
         </Section>
 
 
         {/* About */}
-        <Section id="about" className="grid grid-cols-1 gap-6" title="обо мне">
+        <Section id="about" className="grid grid-cols-1" title="обо мне">
           {experiences.map((experience, index) => (
             <ExperienceCard 
               key={index}
@@ -49,7 +49,7 @@ export default function Home() {
         </Section>
 
         {/* Articles */}
-        <Section id="articles" className="gap-6" title="статьи">
+        <Section id="articles" title="статьи">
           <div className="grid grid-cols-2 gap-6">
             {articles.map((article, index) => (
             <ArticleCard 

@@ -15,7 +15,7 @@ const variants = {
   },
   p:{
     tag: 'p',
-    className: 'text-xl mb-6',
+    className: 'text-xl/9 mb-6',
   }
 };
 
