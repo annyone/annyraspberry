@@ -1,13 +1,14 @@
 
 import React from 'react';
+import Text from './Text';
 import Link from './Link';
 
 export default function ArticleCard({ article }) {
   return (
     <article className="gap-8 mb-8 bg-zinc-50/75 p-6 rounded-xl">
       <p className="text-3xl mb-6">📰</p>
-      <h3 className="text-3xl font-medium inline-block mb-6">{article.name}</h3>
-      <p className="min-w-[120px] pt-1 mb-6">{article.description}</p>
+      <Text variant="h3">{article.name}</Text>
+      <Text variant="p">{article.description}</Text>
       <div className="flex flex-row flex-wrap gap-4 mt-4">
         {article.links && article.links.map((link, index) => (
           <Link

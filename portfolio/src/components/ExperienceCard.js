@@ -1,4 +1,6 @@
 import React from 'react';
+import Text from './Text';
+import MarkerList from './MarkerList';
 import Link from './Link';
 
 export default function ExperienceCard({ experience }) {
@@ -6,8 +8,8 @@ export default function ExperienceCard({ experience }) {
     <article className="flex flex-row gap-8 mb-8 max-w-[1200px]">
       <div className="min-w-[120px] text-zinc-500 pt-1">{experience.dates}</div>
       <div className="flex-1">
-        <div className="mb-6">
-          <h3 className="text-3xl font-medium inline-block mr-4">{experience.position}</h3>
+        <div>
+          <Text variant="h3" className="mr-4">{experience.position}</Text>
           {experience.company && (
             <>
               {experience.link ? (
@@ -21,13 +23,7 @@ export default function ExperienceCard({ experience }) {
         {experience.tasks && (
           <div className="mb-6">{experience.tasks}</div>
         )}
-        <div className="space-y-2">
-          {experience.achievements.map((achievement, index) => (
-            <div key={index} className="flex items-start gap-2">
-              <p>{achievement}</p>
-            </div>
-          ))}
-        </div>
+        <MarkerList marker={experience.marker} items={experience.achievements} className="space-y-2" />
       </div>
     </article>
   );

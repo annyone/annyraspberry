@@ -1,4 +1,5 @@
 import React from 'react';
+import Text from './Text';
 import Link from './Link';
 
 export default function ProjectCard({ project }) {
@@ -6,14 +7,16 @@ export default function ProjectCard({ project }) {
     <article className="flex flex-col md:flex-row overflow-hidden mb-8">
       {/* Text block */}
       <div className="w-[40%] flex flex-col">
-        <h3 className="text-3xl font-medium mb-4">{project.title}</h3>
-        <p className="mb-8">{project.excerpt}</p>
-        <Link to={`/projects/${project.id}`}>Подробнее</Link>
+        <Text variant="h3" className="mb-4">{project.title}</Text>
+        <Text variant="p">{project.excerpt}</Text>
+  <Link to={`/projects/${project.id}`} showLinkIcon>Подробнее</Link>
       </div>
       {/* Image block */}
       {project.thumbnail && (
         <div className="w-[60%] flex items-center justify-center p-4">
-          <img src={project.thumbnail} alt={project.title} className="rounded-2xl w-full h-80 object-cover" />
+          <div className="relative w-full aspect-[16/9]">
+            <img src={project.thumbnail} alt={project.title} className="rounded-2xl w-full h-full object-cover absolute top-0 left-0" />
+          </div>
         </div>
       )}
     </article>

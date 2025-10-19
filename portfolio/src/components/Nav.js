@@ -12,7 +12,7 @@ export default function Nav() {
         {/* Logo */}
         <Link
           to="/"
-          icon={<img src={logo} alt="logo" className="h-12 w-auto select-none mt-2" />}
+          icon={<img src={logo} alt="logo" className="select-none w-10 h-10" />}
           aria-label="Главная страница"
           className="flex items-center h-full group"
         />

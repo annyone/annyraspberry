@@ -1,7 +1,7 @@
 const projects = [
   {
     id: 'logiq',
-    title: 'Редизайн основного раздела',
+    title: 'Редизайн основного раздела LogIQ',
     excerpt: 'Переосмыслила и пересобрала интерфейс основного раздела продукта после MVP в условиях ограниченной вводной информации. Получила позитивную обратную связь об изменениях от пользователей после релиза.',
     content: 'Detailed description and notes about project one. Replace with your real content.',
     thumbnail: 'images/logiq/thumbnail.png',
@@ -11,7 +11,7 @@ const projects = [
   },
   {
     id: 'darts',
-    title: 'Система управления турнирами',
+    title: 'Система управления турнирами Дартс',
     excerpt: 'С нуля спроектировала сложную систему для проведения турниров по дартс. Участвовала во всем цикле разработки от сбора требований до дизайн-ревью готовых фичей.',
     content: 'Detailed description and notes about project two. Replace with your real content.',
     thumbnail: 'images/darts/thumbnail.png',
