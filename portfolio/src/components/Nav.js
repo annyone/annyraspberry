@@ -1,9 +1,9 @@
 
 import React from 'react';
 import Link from './Link';
-import logo from '../data/logo.png';
-import { ReactComponent as LinkedInIcon } from '../data/linkedIn.svg';
-import { ReactComponent as TelegramIcon } from '../data/telegram.svg';
+import logo from '../images/logo.png';
+import { ReactComponent as LinkedInIcon } from '../images/icons/linkedIn.svg';
+import { ReactComponent as TelegramIcon } from '../images/icons/telegram.svg';
 
 export default function Nav() {
   return (
@@ -18,13 +18,13 @@ export default function Nav() {
         />
         {/* Menu */}
         <div className="flex items-center space-x-8">
-          <Link to="/cases">Кейсы</Link>
-          <Link to="/about">Обо мне</Link>
-          <Link to="/articles">Статьи</Link>
+          <Link href="#cases">Кейсы</Link>
+          <Link href="#about">Обо мне</Link>
+          <Link href="#articles">Статьи</Link>
           <Link href="/cv.pdf" download>Скачать CV</Link>
           {/* Icons */}
           <Link
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/annyraspberry/"
             icon={<LinkedInIcon color="currentColor" />}
             target="_blank"
             rel="noopener noreferrer"
@@ -32,7 +32,7 @@ export default function Nav() {
             aria-label="LinkedIn"
           />
           <Link
-            href="https://t.me/"
+            href="https://t.me/annyraspberry"
             icon={<TelegramIcon color="currentColor" />}
             target="_blank"
             rel="noopener noreferrer"

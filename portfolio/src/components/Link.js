@@ -18,15 +18,27 @@ export default function Link({ to, href, text, icon, children, className = '', .
     {text}
     {children}
   </>;
+
+  const handleClick = (e) => {
+    if ((to || href)?.startsWith('#')) {
+      e.preventDefault();
+      const targetId = (to || href).slice(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   if (to) {
     return (
-      <RouterLink to={to} className={classes} {...props}>
+      <RouterLink to={to} className={classes} onClick={handleClick} {...props}>
         {content}
       </RouterLink>
     );
   }
   return (
-    <a href={href} className={classes} {...props}>
+    <a href={href} className={classes} onClick={handleClick} {...props}>
       {content}
     </a>
   );

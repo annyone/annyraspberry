@@ -6,7 +6,7 @@ import ExperienceCard from '../components/ExperienceCard';
 import Subtitle from '../components/Subtitle';
 import projects from '../data/projects';
 import { experiences } from '../data/experiences';
-import photo from '../data/photo.jpg';
+import photo from '../images/photo.jpg';
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <main className="max-w-[1600px] w-full mx-auto">
 
         {/* Hero */}
-        <section className="flex flex-col items-left p-[120px] mt-20">
+        <section className="flex flex-col items-left p-[120px] my-20">
           <div className="flex items-center text-left mb-8">
             <img src={photo} alt="Аня" className="rounded-lg w-40 h-40 object-cover mr-8" />
             <div>
@@ -31,14 +31,14 @@ export default function Home() {
         </section>
 
         {/* Cases */}
-        <section className="grid grid-cols-1 gap-6 mt-20">
+        <section id="cases" className="grid grid-cols-1 gap-6 my-20">
             <Subtitle>кейсы</Subtitle>
           {projects.map(p=> <ProjectCard key={p.id} project={p} />)}
         </section>
 
 
-        {/* Experience */}
-        <section className="grid grid-cols-1 gap-6 mt-20">
+        {/* About */}
+        <section id="about" className="grid grid-cols-1 gap-6 my-20">
           <Subtitle>обо мне</Subtitle>
           {experiences.map((experience, index) => (
             <ExperienceCard 
