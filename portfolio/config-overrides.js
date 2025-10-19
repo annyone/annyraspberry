@@ -1,7 +1,9 @@
 const path = require('path');
 
 module.exports = function override(config, env) {
-  // Изменяем путь вывода сборки
-  config.output.path = path.join(__dirname, '../');
+  // Настраиваем публичный путь для продакшена
+  if (env === 'production') {
+    config.output.publicPath = '/';
+  }
   return config;
 };

@@ -1,6 +1,6 @@
 {
-  "short_name": "Малинина Анна — UI/UX дизайнер",
-  "name": "Малинина Анна — UI/UX дизайнер",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
