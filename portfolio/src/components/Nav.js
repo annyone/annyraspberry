@@ -1,9 +1,11 @@
 
 import React from 'react';
 import Link from './Link';
-import logo from '../images/logo.png';
 import { ReactComponent as LinkedInIcon } from '../images/icons/linkedIn.svg';
 import { ReactComponent as TelegramIcon } from '../images/icons/telegram.svg';
+
+// Use public path for logo so it resolves correctly when site is deployed to a subpath
+const logoSrc = `${process.env.PUBLIC_URL || ''}/images/logo.png`;
 
 export default function Nav() {
   return (
@@ -12,7 +14,7 @@ export default function Nav() {
         {/* Logo */}
         <Link
           to="/"
-          icon={<img src={logo} alt="logo" className="select-none w-10 h-10" />}
+          icon={<img src={logoSrc} alt="logo" className="select-none w-10 h-10" />}
           aria-label="Главная страница"
           className="flex items-center h-full group"
         />
