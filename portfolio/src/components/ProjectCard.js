@@ -6,10 +6,10 @@ export default function ProjectCard({ project }) {
   return (
     <article className="flex flex-col xl:flex-row overflow-hidden gap-8">
       {/* Text block */}
-      <div className="w-full xl:w-[40%] flex flex-col gap-4">
+      <div className="w-full xl:w-[40%] flex flex-col">
         <Text variant="h3" className="mb-4">{project.title}</Text>
         <Text variant="p">{project.excerpt}</Text>
-        <Link to={`/${project.id}`} showLinkIcon>Подробнее</Link>
+        <Link to={`/${project.id}`} showLinkIcon className="self-start">Подробнее</Link>
       </div>
       {/* Image block */}
       {project.thumbnail && (

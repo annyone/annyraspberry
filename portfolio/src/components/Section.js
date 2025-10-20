@@ -2,12 +2,14 @@ import React from 'react';
 import Text from './Text';
 
 export default function Section({ children, title, className = '', ...props }) {
-  const base = 'my-10 gap-12';
+  const base = 'grid grid-cols-1 gap-14';
 
   return (
-    <section className={`${base} ${className}`} {...props}>
-      {title && <Text variant="subtitle">{title}</Text>}
-      {children}
+    <section className="mb-20" {...props}>
+      {title && <Text variant="subtitle" className="mb-8">{title}</Text>}
+      <div className={`${base} ${className}`}>
+        {children}
+      </div>
     </section>
   );
 }

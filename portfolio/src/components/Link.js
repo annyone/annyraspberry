@@ -13,7 +13,7 @@ export default function Link({ to, href, text, icon, children, className = '', s
   const baseClasses = preserveIconColor ? 'transition-transform duration-150' : baseStyles;
   const hoverClasses = preserveIconColor ? 'hover:-translate-y-0.5' : hoverStyles;
   const focusClasses = preserveIconColor ? 'focus:-translate-y-0.5' : focusStyles;
-  const classes = `${baseClasses} ${hoverClasses} ${focusClasses} ${className}`.trim();
+  const classes = `inline-flex items-center ${baseClasses} ${hoverClasses} ${focusClasses} ${className}`.trim();
   // If icon only (no text/children), center icon; icon always gets same size
   const iconEl = icon ? React.cloneElement(icon, { 
     className: `${iconClass} ${icon.props.className || ''}`.trim() 
