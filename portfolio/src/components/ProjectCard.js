@@ -9,7 +9,7 @@ export default function ProjectCard({ project }) {
       <div className="w-[40%] flex flex-col gap-4">
         <Text variant="h3" className="mb-4">{project.title}</Text>
         <Text variant="p">{project.excerpt}</Text>
-        <Link to={`/projects/${project.id}`} showLinkIcon>Подробнее</Link>
+        <Link to={`/${project.id}`} showLinkIcon>Подробнее</Link>
       </div>
       {/* Image block */}
       {project.thumbnail && (

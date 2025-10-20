@@ -3,9 +3,7 @@ import React from 'react';
 import Link from './Link';
 import { ReactComponent as LinkedInIcon } from '../images/icons/linkedIn.svg';
 import { ReactComponent as TelegramIcon } from '../images/icons/telegram.svg';
-
-// Use public path for logo so it resolves correctly when site is deployed to a subpath
-const logoSrc = `${process.env.PUBLIC_URL || ''}/images/logo.png`;
+import logoSrc from '../images/logo.png';
 
 export default function Nav() {
   return (
