@@ -9,10 +9,15 @@ const focusStyles = 'focus:-translate-y-0.5 focus:text-rose-500';
 // icon: React element, text: string (optional), href: string (required for external), to: string (for internal)
 const iconClass = 'h-7 w-7';
 
-export default function Link({ to, href, text, icon, children, className = '', showLinkIcon = false, ...props }) {
-  const classes = `${baseStyles} ${hoverStyles} ${focusStyles} ${className}`.trim();
+export default function Link({ to, href, text, icon, children, className = '', showLinkIcon = false, preserveIconColor = false, ...props }) {
+  const baseClasses = preserveIconColor ? 'transition-transform duration-150' : baseStyles;
+  const hoverClasses = preserveIconColor ? 'hover:-translate-y-0.5' : hoverStyles;
+  const focusClasses = preserveIconColor ? 'focus:-translate-y-0.5' : focusStyles;
+  const classes = `${baseClasses} ${hoverClasses} ${focusClasses} ${className}`.trim();
   // If icon only (no text/children), center icon; icon always gets same size
-  const iconEl = icon ? React.cloneElement(icon, { className: iconClass }) : null;
+  const iconEl = icon ? React.cloneElement(icon, { 
+    className: `${iconClass} ${icon.props.className || ''}`.trim() 
+  }) : null;
   const content = <>
     {iconEl && <span className={text || children ? 'mr-2 inline-flex' : 'inline-flex'}>{iconEl}</span>}
     {text}
