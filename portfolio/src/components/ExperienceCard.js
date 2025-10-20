@@ -5,7 +5,7 @@ import Link from './Link';
 
 export default function ExperienceCard({ experience }) {
   return (
-    <article className="flex flex-row gap-8 max-w-[1200px]">
+    <article className="flex flex-col xl:flex-row gap-1 xl:gap-8 max-w-[1200px]">
       <div className="min-w-[120px] text-zinc-500 mt-8">{experience.dates}</div>
       <div className="flex-1">
         <div>

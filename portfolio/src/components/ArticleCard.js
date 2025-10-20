@@ -5,7 +5,7 @@ import Link from './Link';
 
 export default function ArticleCard({ article }) {
   return (
-    <article className="gap-8 mb-8 bg-zinc-50/75 p-8 rounded-xl dark:bg-zinc-800/60">
+    <article className="gap-8 bg-zinc-50/75 p-8 rounded-xl dark:bg-zinc-800/60">
       <p className="text-3xl">📰</p>
       <Text variant="h3">{article.name}</Text>
       <Text variant="p">{article.description}</Text>

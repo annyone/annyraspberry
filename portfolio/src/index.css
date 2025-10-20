@@ -5,6 +5,8 @@
 /* Custom base styles (kept minimal) */
 /* Custom base styles (kept minimal) */
 body{
-  @apply px-12 font-raleway bg-white text-zinc-800 text-xl/9 dark:bg-zinc-900 dark:text-zinc-300;
+  @apply px-12 font-raleway bg-white text-zinc-800 text-base dark:bg-zinc-900 dark:text-zinc-300;
+  @apply md:text-lg/7;
+  @apply xl:text-xl/9;
 }
 
