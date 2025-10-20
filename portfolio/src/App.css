@@ -1,3 +1,24 @@
 /* Minimal placeholder App styles; most styling is done with Tailwind classes */
 html,body,#root{height:100%}
 
+/* Page transition animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Smooth transitions for route changes */
+#root > * {
+  animation: fadeIn 0.4s ease-out;
+}
+
