@@ -47,7 +47,7 @@ export default function ProjectLoader(){
     }
     load();
     return ()=>{ mounted = false };
-  }, [id]);
+  }, [id, project]);
 
   if(!project){
     // let ProjectTemplate render the not-found UI
