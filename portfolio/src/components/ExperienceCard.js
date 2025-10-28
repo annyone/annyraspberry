@@ -9,7 +9,7 @@ export default function ExperienceCard({ experience }) {
       <div className="min-w-[120px] text-zinc-500 mb-4">{experience.dates}</div>
       <div className="flex-1">
         <div className="flex flex-col xl:inline">
-          <Text variant="h3" className="xl:mr-4 !mt-0">{experience.position}</Text>
+          <Text variant="h3" className="mb-4 xl:mb-8 xl:mr-4 !mt-0">{experience.position}</Text>
           {experience.company && (
             <>
               {experience.link ? (
@@ -21,7 +21,7 @@ export default function ExperienceCard({ experience }) {
           )}
         </div>
         {experience.tasks && (
-          <Text variant="p" className="mr-4">{experience.tasks}</Text>
+          <Text variant="p" className="mb-4 mr-4">{experience.tasks}</Text>
         )}
         <MarkerList marker={experience.marker} items={experience.achievements} className="space-y-2" />
       </div>

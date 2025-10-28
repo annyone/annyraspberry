@@ -8,13 +8,13 @@ import ArticleCard from '../components/ArticleCard';
 import projects from '../data/projects';
 import { experiences } from '../data/experiences';
 import { articles } from '../data/articles';
-// photo is now handled inside Hero component
+
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Nav />
-      <main className="max-w-[1600px] w-full mx-auto">
+      <main className="max-w-[1600px] w-full mx-auto pb-1">
 
         <Hero />
 

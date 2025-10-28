@@ -17,7 +17,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="text-5xl leading-tight mt-8">
+      <div className="text-5xl leading-tight mt-12">
         Создаю интуитивно понятные интерфейсы<br />для сложных продуктов 😎
       </div>
     </section>

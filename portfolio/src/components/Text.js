@@ -1,17 +1,21 @@
 import React from 'react';
 
 const variants = {
+  h1: {
+    tag: 'h1',
+    className: 'text-4xl font-bold',
+  },
   h2: {
     tag: 'h2',
-    className: 'text-4xl font-bold mb-8',
+    className: 'text-4xl',
   },
   h3: {
     tag: 'h3',
-    className: 'text-3xl font-medium inline-block mt-4 xl:mt-8 mb-2 xl:mb-4',
+    className: 'text-3xl font-medium inline-block',
   },
   h4: {
     tag: 'h4',
-    className: 'text-2xl font-medium mt-6 mb-4',
+    className: 'text-2xl font-medium',
   },
   subtitle: {
     tag: 'p',
@@ -19,7 +23,7 @@ const variants = {
   },
   p:{
     tag: 'p',
-    className: 'text-base md:text-lg/7 xl:text-xl/9 my-4',
+    className: 'text-base md:text-lg/7 xl:text-xl/9',
   },
 };
 

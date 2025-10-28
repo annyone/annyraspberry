@@ -1,8 +1,6 @@
 
 import React, { useState } from 'react';
 import Link from './Link';
-import { ReactComponent as LinkedInIcon } from '../images/icons/linkedIn.svg';
-import { ReactComponent as TelegramIcon } from '../images/icons/telegram.svg';
 import logoSrc from '../images/logo.png';
 
 export default function Nav() {
@@ -48,20 +46,31 @@ export default function Nav() {
           {/* Icons */}
           <Link
             href="https://www.linkedin.com/in/annyraspberry/"
-            icon={<LinkedInIcon color="currentColor" />}
+            icon={
+              <img 
+                src="/images/linkedin.svg" 
+                alt="LinkedIn" 
+                className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
+              />
+            }
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2"
+            className="ml-2 group"
             aria-label="LinkedIn"
           />
           <Link
             href="https://t.me/annyraspberry"
-            icon={<TelegramIcon />}
+            icon={
+              <img 
+                src="/images/telegram.svg" 
+                alt="Telegram" 
+                className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
+              />
+            }
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 !text-inherit"
+            className="ml-2 group"
             aria-label="Telegram"
-            preserveIconColor={true}
           />
         </div>
       </div>
@@ -90,22 +99,33 @@ export default function Nav() {
           <div className="flex items-center space-x-4 pt-4">
             <Link
               href="https://www.linkedin.com/in/annyraspberry/"
-              icon={<LinkedInIcon color="currentColor" />}
+              icon={
+                <img 
+                  src="/images/linkedin.svg" 
+                  alt="LinkedIn" 
+                  className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
+                />
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2"
+              className="ml-2 group"
               aria-label="LinkedIn"
               onClick={closeDrawer}
             />
             <Link
               href="https://t.me/annyraspberry"
-              icon={<TelegramIcon />}
+              icon={
+                <img 
+                  src="/images/telegram.svg" 
+                  alt="Telegram" 
+                  className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
+                />
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 !text-inherit"
+              className="ml-2 group"
               aria-label="Telegram"
               onClick={closeDrawer}
-              preserveIconColor={true}
             />
           </div>
         </div>
