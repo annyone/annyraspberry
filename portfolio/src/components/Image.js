@@ -19,7 +19,7 @@ const Image = ({ src, backgroundColor, alt = '', className = '' }) => {
     );
   } else {
     return (
-      <img src={src} alt={alt} className={`rounded-lg ${className || 'w-full h-full'} pb-8`} />
+      <img src={src} alt={alt} className={`rounded-lg ${className || 'w-full h-full'}`} />
     );
   }
 
