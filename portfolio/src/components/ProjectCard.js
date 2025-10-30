@@ -8,7 +8,7 @@ export default function ProjectCard({ project }) {
     <article className="flex flex-col xl:flex-row overflow-hidden gap-8">
       {/* Text block */}
       <div className="w-full xl:w-[40%] flex flex-col">
-        <Text variant="h3" className="mb-4 xl:mb-8">{project.title}</Text>
+        <Text variant="h2" className="mb-4 xl:mb-8">{project.title}</Text>
         <Text variant="p" className="mb-4">{project.excerpt}</Text>
         <Link to={`/${project.id}`} label="Подробнее" className="self-start" />
       </div>

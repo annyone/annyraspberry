@@ -16,7 +16,7 @@ const navItems = [
     label: 'Статьи'
   },
   {
-    url: '/cv.pdf',
+    url: '/CV-Malinina-Anna-UI-UX-designer.pdf',
     label: 'Скачать CV',
     download: true
   },

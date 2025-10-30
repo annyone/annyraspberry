@@ -14,11 +14,10 @@ export default function ArticleCard({ article }) {
           <Link
             key={index}
             href={link.url}
+            label={link.text}
             target="_blank"
             rel="noopener noreferrer"
-          >
-            {link.text}
-          </Link>
+          />
         ))}
       </div>
     </article>

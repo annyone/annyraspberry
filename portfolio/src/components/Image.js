@@ -13,7 +13,7 @@ const Image = ({ src, backgroundColor, alt = '', className = '' }) => {
 
 
     return (
-      <div className={`rounded-lg p-10 ${className || 'w-full'}`} style={backgroundStyle}>
+      <div className={`rounded-lg p-2 lg:p-6 xl:p-10 ${className || 'w-full'}`} style={backgroundStyle}>
         <img src={src} alt={alt} className="rounded-lg w-full h-full" />
       </div>
     );
