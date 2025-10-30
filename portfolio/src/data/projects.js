@@ -14,6 +14,14 @@ const projects = [
     thumbnail: '/images/darts/thumbnail.png',
     thumbnailBackground: 'linear-gradient(to bottom, #016630, #002800)',
     page: 'darts'
+  },
+  {
+    id: 'adidas',
+    title: 'Adidas — промо-сайт / конкурс Pyrobattle 2023',
+    excerpt: 'За 12 дней разработала концепт и спроектировала дизайн лендинга для промосайта компании будущего Adidas. Работа заняла 49 место из 185.',
+    thumbnail: '/images/adidas/thumbnail.png',
+    thumbnailBackground: 'linear-gradient(to bottom, #ad00adff, #3301a8ff)',
+    page: 'adidas'
   }
 ]
 

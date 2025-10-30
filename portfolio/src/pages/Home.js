@@ -8,24 +8,25 @@ import ArticleCard from '../components/ArticleCard';
 import projects from '../data/projects';
 import { experiences } from '../data/experiences';
 import { articles } from '../data/articles';
+import navItems from '../data/navItems';
 
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Nav />
+      <Nav items={navItems} />
       <main className="max-w-[1600px] w-full mx-auto pb-1">
 
         <Hero />
 
         {/* Cases */}
-        <Section id="cases" title="кейсы">
+        <Section id="cases" subtitle="кейсы">
           {projects.map(p=> <ProjectCard key={p.id} project={p} />)}
         </Section>
 
 
         {/* About */}
-        <Section id="about" title="обо мне">
+        <Section id="about" subtitle="обо мне">
           {experiences.map((experience, index) => (
             <ExperienceCard 
               key={index}
@@ -35,7 +36,7 @@ export default function Home() {
         </Section>
 
         {/* Articles */}
-        <Section id="articles" title="статьи" className="!gap-6 xl:grid-cols-2">
+        <Section id="articles" subtitle="статьи" className="!gap-6 xl:grid-cols-2" last>
             {articles.map((article, index) => (
             <ArticleCard 
               key={index}

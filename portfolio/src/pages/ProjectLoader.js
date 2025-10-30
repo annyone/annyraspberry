@@ -2,13 +2,17 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import projects from '../data/projects';
 import Nav from '../components/Nav';
+import navItems from '../data/navItems';
 // Statically import known case pages so they are included in the main bundle
-import LogiqCase from '../casepages/logiq';
-import DartsCase from '../casepages/darts';
+import LogiqCase from './logiq';
+import DartsCase from './darts';
+import AdidasCase from './adidas';
+
 
 const staticPages = {
   logiq: LogiqCase,
   darts: DartsCase,
+  adidas: AdidasCase,
 };
 
 // Contract:
@@ -39,8 +43,8 @@ export default function ProjectLoader(){
         return;
       }
       try{
-        // dynamic import from src/casepages/<page>.js
-        const mod = await import(`../casepages/${project.page}.js`);
+        // dynamic import from src/pages/<page>.js
+        const mod = await import(`../pages/${project.page}.js`);
         if(mounted){
           setCaseComponent(()=>mod.default || null);
           setIsLoading(false);
@@ -62,7 +66,7 @@ export default function ProjectLoader(){
   if(!project){
     return (
       <div className="min-h-screen page-transition">
-        <Nav />
+        <Nav items={navItems} />
         <main className="max-w-3xl mx-auto px-4 py-12">
           <h2 className="text-xl font-semibold">Project not found</h2>
           <Link to="/" className="text-indigo-600">Back home</Link>
@@ -94,7 +98,7 @@ export default function ProjectLoader(){
   // Error state - case page not found
   return (
     <div className="min-h-screen page-transition">
-      <Nav />
+      <Nav items={navItems} />
       <main className="max-w-3xl mx-auto px-4 py-12">
         <h2 className="text-xl font-semibold">Case page not available</h2>
         <p className="mt-4 text-gray-600">This project doesn't have a detailed case study yet.</p>

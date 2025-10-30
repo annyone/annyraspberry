@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from './Link';
 import logoSrc from '../images/logo.png';
 
-export default function Nav() {
+export default function Nav({ items = [] }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -39,39 +39,19 @@ export default function Nav() {
 
         {/* Desktop Menu (hidden on small devices) */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="#cases">Кейсы</Link>
-          <Link href="#about">Обо мне</Link>
-          <Link href="#articles">Статьи</Link>
-          <Link href="/cv.pdf" download>Скачать CV</Link>
-          {/* Icons */}
-          <Link
-            href="https://www.linkedin.com/in/annyraspberry/"
-            icon={
-              <img 
-                src="/images/linkedin.svg" 
-                alt="LinkedIn" 
-                className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
-              />
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 group"
-            aria-label="LinkedIn"
-          />
-          <Link
-            href="https://t.me/annyraspberry"
-            icon={
-              <img 
-                src="/images/telegram.svg" 
-                alt="Telegram" 
-                className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
-              />
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 group"
-            aria-label="Telegram"
-          />
+          {items.map((item, index) => (
+            <Link
+              key={index}
+              href={item.url}
+              label={item.label}
+              icon={item.icon}
+              {...(item.download && { download: item.download })}
+              {...(item.target && { target: item.target })}
+              {...(item.rel && { rel: item.rel })}
+              {...(item.className && { className: item.className })}
+              {...(item['aria-label'] && { 'aria-label': item['aria-label'] })}
+            />
+          ))}
         </div>
       </div>
 
@@ -90,44 +70,20 @@ export default function Nav() {
         }`}
       >
         <div className="flex flex-col p-6 space-y-6 mt-16">
-          <Link href="#cases" onClick={closeDrawer}>Кейсы</Link>
-          <Link href="#about" onClick={closeDrawer}>Обо мне</Link>
-          <Link href="#articles" onClick={closeDrawer}>Статьи</Link>
-          <Link href="/cv.pdf" download onClick={closeDrawer}>Скачать CV</Link>
-          
-          {/* Icons */}
-          <div className="flex items-center space-x-4 pt-4">
+          {items.map((item, index) => (
             <Link
-              href="https://www.linkedin.com/in/annyraspberry/"
-              icon={
-                <img 
-                  src="/images/linkedin.svg" 
-                  alt="LinkedIn" 
-                  className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
-                />
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 group"
-              aria-label="LinkedIn"
+              key={index}
+              href={item.url}
+              label={item.label}
+              icon={item.icon}
+              {...(item.download && { download: item.download })}
+              {...(item.target && { target: item.target })}
+              {...(item.rel && { rel: item.rel })}
+              {...(item.className && { className: item.className })}
+              {...(item['aria-label'] && { 'aria-label': item['aria-label'] })}
               onClick={closeDrawer}
             />
-            <Link
-              href="https://t.me/annyraspberry"
-              icon={
-                <img 
-                  src="/images/telegram.svg" 
-                  alt="Telegram" 
-                  className="transition-all duration-150 [filter:invert(42%)_sepia(8%)_saturate(348%)_hue-rotate(182deg)_brightness(95%)_contrast(87%)] group-hover:[filter:invert(52%)_sepia(98%)_saturate(2989%)_hue-rotate(314deg)_brightness(99%)_contrast(92%)]"
-                />
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 group"
-              aria-label="Telegram"
-              onClick={closeDrawer}
-            />
-          </div>
+          ))}
         </div>
       </div>
     </nav>
