@@ -54,7 +54,7 @@ export default function AdidasCase() {
                     </Article>
 
                     <Article title='Просмотр всего образа и выбор одежды'>
-                        <Text variant="p">...</Text>
+                        <Text variant="p">Подобно персонажу в игре, пользователь может настраивать свой образ, выбирая различные элементы одежды и аксессуары. При этом сразу можно увидеть, как выбранные вещи будут выглядеть на модели, и сколько будет стоить полный образ.</Text>
                         <Image
                             src="/images/adidas/2.png"
                             alt="Лендинг Adidas"
@@ -62,7 +62,7 @@ export default function AdidasCase() {
                     </Article>
 
                     <Article title='Характеристики выбранной модели'>
-                        <Text variant="p">...</Text>
+                        <Text variant="p">На странице определенной модели пользователь может увидеть все характеристики выбранной вещи, включая материалы, размеры и доступные цвета.</Text>
                         <Image
                             src="/images/adidas/3.png"
                             alt="Лендинг Adidas"
@@ -70,7 +70,7 @@ export default function AdidasCase() {
                     </Article>
 
                     <Article title='Анимация интерфейса' last>
-                        <Text variant="p">...</Text>
+                        <Text variant="p">Интерфейс подразумевает использование окон, которые находятся как бы в воздушном пространстве, создавая эффект глубины и многослойности. Анимация скольжения добавляет динамики и футуристичности.</Text>
 
                         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                             <iframe 
