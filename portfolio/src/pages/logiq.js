@@ -64,6 +64,7 @@ export default function LogiqCase(){
             <Image
               src="/images/logiq/1.png"
               alt="Интерфейс до редизайна"
+              shadow
             />
           </Article>
           <Article last>
@@ -72,6 +73,7 @@ export default function LogiqCase(){
               src="/images/logiq/2.png"
               alt="Интерфейс до редизайна"
               className='!pb-0'
+              shadow 
             />
           </Article>
         </Section>
@@ -82,6 +84,7 @@ export default function LogiqCase(){
             <Image
               src="/images/logiq/4.png"
               alt="Интерфейс после редизайна"
+              shadow 
             />
           </Article>
           <Article title='Новая структура страницы'>
@@ -89,6 +92,7 @@ export default function LogiqCase(){
             <Image
               src="/images/logiq/3.png"
               alt="Интерфейс после редизайна"
+              shadow
             />
           </Article>
           <Article title='Конструктор запросов'>
@@ -100,13 +104,14 @@ export default function LogiqCase(){
             />
           </Article>
           <Article title='Ввод условия поиска' last>
-            <div className="flex gap-8 items-start">
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
               <Image
                 src="/images/logiq/6.gif"
                 alt="Интерфейс после редизайна"
-                className="w-1/2 !pb-0"
+                className="w-full lg:w-1/2 !pb-0"
+                shadow
               />
-              <Text variant="p" className="w-1/2">Ввод самого условия стал последовательным процессом, в течение которого система помогает пользователю — необязательно знать SQL, чтобы полноценно использовать продукт. В любой момент пользователь может вводить параметры с помощью мышки или переключиться на ввод с клавиатуры.</Text>
+              <Text variant="p" className="w-full lg:w-1/2">Ввод самого условия стал последовательным процессом, в течение которого система помогает пользователю — необязательно знать SQL, чтобы полноценно использовать продукт. В любой момент пользователь может вводить параметры с помощью мышки или переключиться на ввод с клавиатуры.</Text>
             </div>
           </Article>          
         </Section>

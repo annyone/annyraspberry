@@ -52,6 +52,7 @@ export default function DartsCase(){
             <Image
               src="/images/darts/10.gif"
               alt="Создание игрока"
+              shadow
             />
           </Article>
           <Article title='Создание турнира' last>
@@ -73,6 +74,7 @@ export default function DartsCase(){
           <Image
             src="/images/darts/3.png"
             alt="Масштабируемость"
+            shadow
           />
         </Section>
 
@@ -84,6 +86,7 @@ export default function DartsCase(){
             <Image
               src="/images/darts/4.gif"
               alt="Добавление участников в турнир"
+              shadow
             />
           </Article>
           <Article title='Проверка документов перед турниром'>
@@ -91,6 +94,7 @@ export default function DartsCase(){
             <Image
               src="/images/darts/5.png"
               alt="Проверка документов перед турниром"
+              shadow
             />
           </Article>
           <Article title='Формирование групп' last>
@@ -98,6 +102,7 @@ export default function DartsCase(){
             <Image
               src="/images/darts/6.png"
               alt="Формирование групп"
+              shadow
             />
           </Article>
           <Article title='Завершение турнира' last>
@@ -105,6 +110,7 @@ export default function DartsCase(){
             <Image
               src="/images/darts/7.png"
               alt="Завершение турнира"
+              shadow
             />
           </Article>
         </Section>
@@ -137,8 +143,6 @@ export default function DartsCase(){
           />
           <Text variant="p">Кроме этого, система обладает другими важными характеристиками, которые позволят проще и легче использовать её и развивать в будущем.</Text>
         </Section>
-
-
       </main>
     </div>
   );

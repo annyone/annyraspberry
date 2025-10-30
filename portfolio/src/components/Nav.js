@@ -65,8 +65,8 @@ export default function Nav({ items = [] }) {
 
       {/* Mobile Drawer (slides from right) */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-zinc-900 shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
-          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 h-full w-64 bg-zinc-900 shadow-lg transform duration-300 ease-in-out z-50 md:hidden ${
+          isDrawerOpen ? 'translate-x-0' : 'translate-x-full invisible'
         }`}
       >
         <div className="flex flex-col p-6 space-y-6 mt-16">
@@ -76,7 +76,7 @@ export default function Nav({ items = [] }) {
               href={item.url}
               label={item.label}
               icon={item.icon}
-              {...(item.download && { download: item.download })}
+              {...(item.download && { download: item.download})}
               {...(item.target && { target: item.target })}
               {...(item.rel && { rel: item.rel })}
               {...(item.className && { className: item.className })}
