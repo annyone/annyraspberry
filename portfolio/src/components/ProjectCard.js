@@ -16,7 +16,6 @@ export default function ProjectCard({ project }) {
           <Text variant="h2" className="mb-4 xl:mb-8">{project.title}</Text>
           <Text variant="p" className="mb-4">{project.excerpt}</Text>
 
-          {/* 'Подробнее' rendered as a non-interactive element that takes link-hover styles via group-hover */}
           <span
             className="self-start inline-flex items-center text-zinc-500 transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:text-rose-500"
             aria-hidden="true"
