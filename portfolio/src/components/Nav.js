@@ -15,12 +15,13 @@ export default function Nav({ items = [] }) {
   };
 
   return (
-    <nav className="w-full">
-      <div className="max-w-[1600px] w-full mx-auto flex items-center justify-between h-20 px-4">
+    <>
+      <nav className="w-full fixed top-0 left-0 right-0 z-50">
+        <div className="max-w-[1600px] w-full mx-auto flex items-center justify-between h-20 px-4 bg-white dark:bg-zinc-900 backdrop-blur-sm">
         {/* Logo */}
         <Link
           to="/"
-          icon={<img src={logoSrc} alt="logo" className="select-none w-10 h-10" />}
+          icon={<img src={logoSrc} alt="logo" className="select-none w-14 h-14" />}
           aria-label="Главная страница"
           className="flex items-center h-full group"
         />
@@ -53,7 +54,11 @@ export default function Nav({ items = [] }) {
             />
           ))}
         </div>
-      </div>
+        </div>
+      </nav>
+
+      {/* Spacer to prevent page content from sitting under the fixed nav */}
+      <div className="h-20 w-full" aria-hidden="true" />
 
       {/* Overlay */}
       {isDrawerOpen && (
@@ -86,6 +91,6 @@ export default function Nav({ items = [] }) {
           ))}
         </div>
       </div>
-    </nav>
+    </>
   );
 }
