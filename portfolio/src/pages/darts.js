@@ -18,10 +18,13 @@ export default function DartsCase(){
 
         <Section className="pt-12 gap-8">
           <Text variant="h2">{project.title}</Text>
-          <Image 
+          <Image
             src={project.thumbnail}
+            sources={[
+              { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
+            ]}
             backgroundColor={project.thumbnailBackground}
-            alt={project.title}
+            alt={`alt=${project.title}`}
           />
           <Text variant="h4">Федерация Дартс Челябинска — это некоммерческая организация, которая занимается популяризацией спорта дартс. Кроме организации турниров они занимаются еще обучением детей и взрослых. Для проведения турниров федерация использовала специальную систему, которая не обладала всеми необходимыми инструментами. К тому же, владельцы системы обязали включать на турниры ставки, что недопустимо для НКО.</Text>
         </Section>
@@ -61,8 +64,11 @@ export default function DartsCase(){
             <Text variant="p">Администратор может вносить изменения в турнир до его фактического начала. Когда турнир начнется, поля на вкладках «Основное» и «Структура» заблокируются, чтобы не нарушить логику формирования матчей.</Text>
 
             <Image
-              src="/images/darts/2.png"
-              alt="Создание турнира"
+              src="/images/darts/scenario.webp"
+              sources={[
+                { srcSet: "/images/darts/scenario-2x.webp", media: "(min-width: 1024px)" }
+              ]}
+              alt="Сценарий создания турнира"
             />
           </Article>
         </Section>
@@ -72,9 +78,11 @@ export default function DartsCase(){
           <Text variant="p">Страницы имеют универсальный шаблон. По мере развития системы (например, добавление команд) не будет проблем добавить кнопки для новых разделов в сайдбаре. Остальные элементы, такие как фильтр, строка поиска, таблицы, табы могут быть переиспользованы для новых страниц — это позволит быстро собрать новую страницу и не «сломать» привычный вид.</Text>
 
           <Image
-            src="/images/darts/3.png"
+            src="/images/darts/scale.webp"
+            sources={[
+              { srcSet: "/images/darts/scale-2x.webp", media: "(min-width: 1024px)" }
+            ]}
             alt="Масштабируемость"
-            shadow
           />
         </Section>
 
@@ -84,15 +92,20 @@ export default function DartsCase(){
           <Article title='Добавление участников в турнир'>
             <Text variant="p">Администратор может добавить игроков по одному или нескольких сразу. Уже добавленные игроки не отображаются в списке.</Text>
             <Image
-              src="/images/darts/4.gif"
+              src="/images/darts/add.webp"
+              sources={[
+                { srcSet: "/images/darts/add-2x.webp", media: "(min-width: 1024px)" }
+              ]}
               alt="Добавление участников в турнир"
-              shadow
             />
           </Article>
           <Article title='Проверка документов перед турниром'>
             <Text variant="p">Перед началом турнира на площадке огранизатор проверяет документы игроков. Из таблицы зарегистрированных участников ему доступны все необходимые данные для проверки.</Text>
             <Image
-              src="/images/darts/5.png"
+              src="/images/darts/player.webp"
+              sources={[
+                { srcSet: "/images/darts/player-2x.webp", media: "(min-width: 1024px)" }
+              ]}
               alt="Проверка документов перед турниром"
               shadow
             />
@@ -100,7 +113,10 @@ export default function DartsCase(){
           <Article title='Формирование групп' last>
             <Text variant="p">Система случайным образом распределяет игроков по группам. При необходимости огранизатор может поменять игроков местами, чтобы сбалансировать состав групп.</Text>
             <Image
-              src="/images/darts/6.png"
+              src="/images/darts/groups.webp"
+              sources={[
+                { srcSet: "/images/darts/groups-2x.webp", media: "(min-width: 1024px)" }
+              ]}
               alt="Формирование групп"
               shadow
             />
@@ -108,7 +124,10 @@ export default function DartsCase(){
           <Article title='Завершение турнира' last>
             <Text variant="p">Во время подведения результатов система распределяет игроко в соответствии с набранными очками, но у администратора остается возможность внести изменения. Первые 3 места обычно занимают отдельные игроки, далее места распределяются группами, например, с 4 по 8 место без указания определенного места.</Text>
             <Image
-              src="/images/darts/7.png"
+              src="/images/darts/results.webp"
+              sources={[
+                { srcSet: "/images/darts/results-2x.webp", media: "(min-width: 1024px)" }
+              ]}
               alt="Завершение турнира"
               shadow
             />
@@ -118,7 +137,10 @@ export default function DartsCase(){
         <Section title='Информативность' className="gap-4">
           <Text variant="p">На разных этапах интерфейс подсказывает что сейчас происходит или что будет происходить потом — снижается порог входа и шанс ошибки. Так же пользователю не потребуется обращаться к документации для выполнения задачи.</Text>
           <Image
-            src="/images/darts/8.png"
+            src="/images/darts/stages.webp"
+            sources={[
+              { srcSet: "/images/darts/stages-2x.webp", media: "(min-width: 1024px)" }
+            ]}
             alt="Информативность"
           />
         </Section>
@@ -126,7 +148,10 @@ export default function DartsCase(){
         <Section title='Привычность' className="gap-4">
           <Text variant="p">Калькулятор игры адаптирован под мобильные устройства, которые используются судьями для фиксирования результатов. Предусмотрены информационные сообщения в зависимости от статуса матча. Интерфейс калькулятора выглядит как большинство привычных для спортсменов приложений для ведения счета.</Text>
           <Image
-            src="/images/darts/9.png"
+            src="/images/darts/calc.webp"
+            sources={[
+              { srcSet: "/images/darts/calc-2x.webp", media: "(min-width: 1024px)" }
+            ]}
             alt="Привычность"
           />
         </Section>

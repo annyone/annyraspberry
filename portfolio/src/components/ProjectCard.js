@@ -30,6 +30,9 @@ export default function ProjectCard({ project }) {
 
             <Image
               src={project.thumbnail}
+              sources={[
+                { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
+              ]}
               backgroundColor={project.thumbnailBackground}
               alt={`alt=${project.title}`}
             />
