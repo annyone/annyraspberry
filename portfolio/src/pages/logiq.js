@@ -7,116 +7,119 @@ import MarkerList from '../components/MarkerList';
 import Image from '../components/Image';
 import projects from '../data/projects';
 import FeedBackCard from '../components/FeedBackCard';
-import navItems from '../data/navItems';
+import { getNavItems } from '../data/navItems';
 import Article from '../components/Article';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function LogiqCase(){
+  const { t } = useLanguage();
   const project = projects.find(p => p.id === 'logiq');
+  const title = t('projects.logiq.title', project.title);
   
   return (
     <div className="min-h-screen">
-      <Nav items={navItems} />
+      <Nav items={getNavItems(t)} />
       <main className="max-w-[1600px] w-full mx-auto pb-1">
 
         <Section className="pt-12 gap-8">
-          <Text variant="h1">{project.title}</Text>
+          <Text variant="h1">{title}</Text>
           <Image
             src={project.thumbnail}
             sources={[
               { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
             ]}
             backgroundColor={project.thumbnailBackground}
-            alt={`alt=${project.title}`}
+            alt={title}
           />
-          <Text variant="h4">LogIQ — продукт для аналитиков кибербезопасности, которым важна скорость работы и удобная подача информации для расследования инцидентов</Text>
+          <Text variant="h4">{t('pages.logiq.subtitle')}</Text>
         </Section>
 
-        <Section title='Задачи' className="gap-4">
+        <Section title={t('pages.logiq.tasks.title')} className="gap-4">
           <div className="grid gap-4 grid-cols-1 xl:grid-cols-3">
             <Banner emoji="🤩" 
-                    title="Упростить разрастающийся интерфейс"
-                    text="С появлением новых функций интерфейс начал хаотично обрастать новыми элементами — появилось много визуального шума, воспринимать информацию стало сложнее"
+                    title={t('pages.logiq.tasks.simplify.title')}
+                    text={t('pages.logiq.tasks.simplify.text')}
             />
             <Banner emoji="📉"
-              title="Снизить порог вхождения в продукт"
-              text="Не все аналитики знают SQL и боятся пользоваться интерфейсом, так как он кажется сложным и «тяжёлым»"
+              title={t('pages.logiq.tasks.reduce.title')}
+              text={t('pages.logiq.tasks.reduce.text')}
             /> 
             <Banner emoji="ℹ️" 
-                    title="Повысить информативность интерфейса"
-                    text="Интерфейс «скрывает» информацию, которая необходима аналитику — приходится многое запоминать или вспоминать, отвлекаясь от работы"
+                    title={t('pages.logiq.tasks.increase.title')}
+                    text={t('pages.logiq.tasks.increase.text')}
             />
           </div>
         </Section>
 
-        <Section title='Что я сделала' className="gap-4">
+        <Section title={t('pages.logiq.what.title')} className="gap-4">
           <MarkerList
             className="space-y-2"
             items={[
-              'Собрала и проанализировала обратную связь от пользователей — что сейчас не нравится или не удобно в интерфейсе',
-              'Провела интервью с пользователями и узнала, как они пользуются продуктом',
-              'Провела конкурентный анализ — выбрала системы для решения похожих задач, проанализировала их плюсы и минусы',
-              'Разработала структуру основного раздела так, чтобы его было удобно развивать в будущем',
-              'Сделала редизайн основного раздела с учетом новой структуры, улучшила сценарии ввода параметров запроса',
+              t('pages.logiq.what.items.0'),
+              t('pages.logiq.what.items.1'),
+              t('pages.logiq.what.items.2'),
+              t('pages.logiq.what.items.3'),
+              t('pages.logiq.what.items.4'),
             ]}
           />
         </Section>
 
-        <Section title='Было' className="gap-4">
+        <Section title={t('pages.logiq.before.title')} className="gap-4">
           <Article>
-            <Text variant="p">Основная информация скрыта в строке запроса — нет понимания, какие события сейчас отображаются на экране (для тех, кто не знает SQL, разворачивание строки не помогает). Кнопки бессистемно расположены по странице — нет четкого понимания что для чего. Много цветных элементов рассеивают внимание.</Text>
+            <Text variant="p">{t('pages.logiq.before.main')}</Text>
             <Image
               src="/images/logiq/was.webp"
               sources={[
                 { srcSet: "/images/logiq/was-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="before redesign"
+              alt={t('pages.logiq.before.altBefore')}
               shadow
             />
           </Article>
           <Article last>
-            <Text variant="p">Констуктор запроса пугал своими размерами и большим количеством элементов.</Text>
-            <Text variant="p">Для получения результатов по запросу сначала нужно было нажать кнопку «Применить», чтобы применились параметры запроса, а потом «Выполнить», чтобы получить результаты.</Text>
+            <Text variant="p">{t('pages.logiq.before.constructor1')}</Text>
+            <Text variant="p">{t('pages.logiq.before.constructor2')}</Text>
             <Image
               src="/images/logiq/2.png"
-              alt="Интерфейс до редизайна"
+              alt={t('pages.logiq.before.altBefore')}
               className='!pb-0'
               shadow 
             />
           </Article>
         </Section>
 
-        <Section title='Стало' className="gap-4">
-          <Article title='Новая структура страницы'>
-            <Text variant="p">В режиме конструктора нет строки SQL запроса, при этом все параметры отображаются — теперь всегда есть понимание, какие события анализируются. Теги можно легко и привычно убирать по клику на крестик. Интерфейс стал менее цветной и воздушный, остались акценты на критически важных элементах управления — фокус сместился на информацию в таблице.</Text>
+        <Section title={t('pages.logiq.after.title')} className="gap-4">
+          <Article title={t('pages.logiq.after.structure.title')}>
+            <Text variant="p">{t('pages.logiq.after.structure.text')}</Text>
             <Image
               src="/images/logiq/now.webp"
               sources={[
                 { srcSet: "/images/logiq/now-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="after redesign"
+              alt={t('pages.logiq.after.altAfter')}
               shadow
             />
           </Article>
           <Article>
-            <Text variant="p">Информация на странице сгруппирована и структурирована — теперь кнопки и остальные элементы имеют «своё» место, а с новыми не будет вопросов, куда их разместить.</Text>
+            <Text variant="p">{t('pages.logiq.after.grouped')}</Text>
             <Image
               src="/images/logiq/layout.webp"
               sources={[
                 { srcSet: "/images/logiq/layout-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="layout redesign"
+              alt={t('pages.logiq.after.altAfter')}
               shadow
             />
           </Article>
-          <Article title='2 режима' >
+          <Article title={t('pages.logiq.after.modes.title')} >
             <div className='flex flex-col lg:flex-row gap-8 items-start'>
               <div className='w-full lg:w-[35%] grid gap-2'>
-                <Text variant="p">Из-за специфики реализации было принято решение реализовать 2 отдельных режима работы с запросом: «Конструктор» и «SQL строка».</Text>
-                <Text variant="p">«Конструктор» предоставляет визуальный интерфейс для построения запросов, в то время как режим SQL строки позволяет пользователям работать напрямую с текстом запроса на «чистом» SQL.</Text>
+                <Text variant="p">{t('pages.logiq.after.modes.text1')}</Text>
+                <Text variant="p">{t('pages.logiq.after.modes.text2')}</Text>
               </div>
               <Image
                 src="/images/logiq/12.gif"
-                alt="Интерфейс после редизайна"
+                alt={t('pages.logiq.after.altAfter')}
                 className='w-full lg:w-[65%]'
                 shadow
               />
@@ -126,61 +129,61 @@ export default function LogiqCase(){
           </Article>
         </Section>
 
-        <Section title='Режим конструктора' className="gap-4">
+        <Section title={t('pages.logiq.constructor.title')} className="gap-4">
           <Article>
-              <Text variant="p">Громоздкий конструктор разбит на маленькие части — теперь он представлен в виде панели инструментов, так как удобнее и проще решать по одной задаче за раз. Остальные блоки конструктора не отвлекают внимание от текущей задачи и не пугают своим количеством.</Text>
+              <Text variant="p">{t('pages.logiq.constructor.main1')}</Text>
               
-              <Text variant="p">Все изменения применяются сразу. Чтобы получить новые результаты достаточно нажать кнопку «Обновить».</Text>
+              <Text variant="p">{t('pages.logiq.constructor.main2')}</Text>
             
             <Image
               src="/images/logiq/board.webp"
               sources={[
                 { srcSet: "/images/logiq/board-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="board redesign"
+              alt={t('pages.logiq.after.altAfter')}
               shadow
             />
             </Article>
-            <Article title='Выбор полей'>
-              <Text variant="p">Выбор полей теперь происходит в компактном дропдауне, где можно быстро найти нужное поле с помощью поиска. Так же доступны кнопки быстрого выбора всех полей или выбора полей по умолчанию. Выбранные поля отображаются вверху списка для быстрого доступа. В этом же окне можно задать псевдоним для поля или перейти в расширенный режим работы с полями, где можно задать сразу несколько псевдонимов.</Text>
+            <Article title={t('pages.logiq.constructor.fields.title')}>
+              <Text variant="p">{t('pages.logiq.constructor.fields.text')}</Text>
               <Image
                 src="/images/logiq/fields.webp"
                 sources={[
                   { srcSet: "/images/logiq/fields-2x.webp", media: "(min-width: 1024px)" }
                 ]}
-                alt="fields redesign"
+                alt={t('pages.logiq.after.altAfter')}
               />
             </Article>
-            <Article title='Ввод условия поиска'>
+            <Article title={t('pages.logiq.constructor.search.title')}>
               <div className="flex flex-col lg:flex-row gap-8 items-start">
                 <Image
                   src="/images/logiq/6.gif"
-                  alt="Интерфейс после редизайна"
+                  alt={t('pages.logiq.after.altAfter')}
                   className="w-full lg:w-1/2 !pb-0"
                   shadow
                 />
-                <Text variant="p" className="w-full lg:w-1/2">Ввод самого условия стал последовательным процессом, в течение которого система помогает пользователю — необязательно знать SQL, чтобы полноценно использовать продукт. В любой момент пользователь может вводить параметры с помощью мышки или переключиться на ввод с клавиатуры.</Text>
+                <Text variant="p" className="w-full lg:w-1/2">{t('pages.logiq.constructor.search.text')}</Text>
               </div>
             </Article>   
-            <Article title='Сортировка' last>
-              <Text variant="p">Сценарий выбора сортировки стал короче и последовательнее — теперь в дропдауне сразу отображаются поля для сортировки. Для быстрого доступа поля из запроса отображаются выше. При выборе поля система предлагает часто используемый вариант направления по умолчанию. Например, пользователи чаще всего сортируют записи по timestamp от новых к старым.</Text>
+            <Article title={t('pages.logiq.constructor.sorting.title')} last>
+              <Text variant="p">{t('pages.logiq.constructor.sorting.text')}</Text>
               <Image
                 src="/images/logiq/sorting.webp"
                 sources={[
                   { srcSet: "/images/logiq/sorting-2x.webp", media: "(min-width: 1024px)" }
                 ]}
-                alt="sorting redesign"
+                alt={t('pages.logiq.after.altAfter')}
               />     
             </Article>
         </Section>
 
-        <Section title='Результат' last className="gap-4">
-          <Text variant="p">Согласно обратной связи от пользователей, новый интерфейс стал более интуитивно понятным и удобным в использовании. Пользователи отметили, что теперь легче находить нужные функции и работать с инструментами анализа.</Text>
+        <Section title={t('pages.logiq.result.title')} last className="gap-4">
+          <Text variant="p">{t('pages.logiq.result.text')}</Text>
           <FeedBackCard
-            text="От себя скажу, что Заказчики на демо и пилотах высоко оценивают функциональность и уровень зрелости продукта, его UI и интуитивность использования."
+            text={t('pages.logiq.result.feedback1')}
           />
           <FeedBackCard
-            text="оч нравится интерфейс лог-менеджмента"
+            text={t('pages.logiq.result.feedback2')}
           />
         </Section>
       </main>

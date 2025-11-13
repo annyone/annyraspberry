@@ -5,168 +5,171 @@ import Section from '../components/Section';
 import MarkerList from '../components/MarkerList';
 import Image from '../components/Image';
 import projects from '../data/projects';
-import navItems from '../data/navItems';
+import { getNavItems } from '../data/navItems';
 import Article from '../components/Article';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function DartsCase(){
+  const { t } = useLanguage();
   const project = projects.find(p => p.id === 'darts');
+  const title = t('projects.darts.title', project.title);
   
   return (
     <div className="min-h-screen">
-      <Nav items={navItems} />
+      <Nav items={getNavItems(t)} />
       <main className="max-w-[1600px] w-full mx-auto">
 
         <Section className="pt-12 gap-8">
-          <Text variant="h2">{project.title}</Text>
+          <Text variant="h2">{title}</Text>
           <Image
             src={project.thumbnail}
             sources={[
               { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
             ]}
             backgroundColor={project.thumbnailBackground}
-            alt={`alt=${project.title}`}
+            alt={title}
           />
-          <Text variant="h4">Федерация Дартс Челябинска — это некоммерческая организация, которая занимается популяризацией спорта дартс. Кроме организации турниров они занимаются еще обучением детей и взрослых. Для проведения турниров федерация использовала специальную систему, которая не обладала всеми необходимыми инструментами. К тому же, владельцы системы обязали включать на турниры ставки, что недопустимо для НКО.</Text>
+          <Text variant="h4">{t('pages.darts.subtitle')}</Text>
         </Section>
 
-        <Section title='Задачa' className="gap-4">
-          <Text variant="p">Разработать систему, которая позволит автоматизировать проведение турниров по дартс, минимизировать ручные действия и ошибки.</Text>
-          <Text variant="p">❤️ Работа выполнялась в рамках задания на платформе procharity.ru.</Text>
+        <Section title={t('pages.darts.task.title')} className="gap-4">
+          <Text variant="p">{t('pages.darts.task.text1')}</Text>
+          <Text variant="p">{t('pages.darts.task.text2')}</Text>
         </Section>
 
-        <Section title='Мое участие в проекте' className="gap-4">
+        <Section title={t('pages.darts.participation.title')} className="gap-4">
           <MarkerList
             className="space-y-2"
             items={[
-              'Провела брифинг с заказчиком. Обсудили: как в целом проводится турнир, какие есть роли у организаторов, какие проблемы обычно возникают, чего не хватает в текущей системе, какие есть ожидания от новой системы.',
-              'Проанализировала текущую систему и изучила правила по спорту. Прочитала руководство пользователя, прошла путь от создания турнира до его завершения. Зафиксировала, какие функции предоставляет система сейчас. Определила основные слабые места системы: устаревший дизайн, сложно разобраться без документации, запутанные сценарии.',
-              'Разработала концепт системы для решения задач пользователя: определила основные сущности, их атрибуты и юзерфлоу. Подготовила макеты и презентовала их заказчику.',
-              'Проводила онбординг для новых участников команды разработки.',
-              'После разработки проводила дизайн ревью готовой системы.',
+              t('pages.darts.participation.items.0'),
+              t('pages.darts.participation.items.1'),
+              t('pages.darts.participation.items.2'),
+              t('pages.darts.participation.items.3'),
+              t('pages.darts.participation.items.4'),
             ]}
           />
         </Section>    
 
-        <Section title='Некоторые сценарии' className="gap-4">
-          <Article title='Создание игрока'>
-            <Text variant="p">Игрок — базовая сущность системы. Создание начинается из списка игроков. Для того чтобы не перегружать пользователя поля формы разделены на 3 смысловые вкладки, которые заполняются поэтапно. Степпер дает информацию о шагах и необходимой информации.</Text>
-            <Text variant="p">Форма содержит только необходимую информацию для участия в турнире. Некоторые поля помечены как необязательные и не препятствуют созданию игрока, однако до начала турнира игроку необходимо будет предоставить недостающую информацию.</Text>
+        <Section title={t('pages.darts.scenarios.title')} className="gap-4">
+          <Article title={t('pages.darts.scenarios.player.title')}>
+            <Text variant="p">{t('pages.darts.scenarios.player.text1')}</Text>
+            <Text variant="p">{t('pages.darts.scenarios.player.text2')}</Text>
 
             <Image
               src="/images/darts/10.gif"
-              alt="Создание игрока"
+              alt={t('pages.darts.scenarios.player.alt')}
               shadow
             />
           </Article>
-          <Article title='Создание турнира' last>
-            <Text variant="p">Создание турнира так же начинается из списка. У турнира гораздо больше параметров, поэтому больше вкладок. На первом этапе организатору доступны только 2 первых таба — для продолжения работы с турниром необходимо знать основные параметры и структуру, которые будут влиять на логику.</Text>
-            <Text variant="p">На вкладке «Структура» по умолчанию выбрана смешанная система турнира как наиболее часто используемая.</Text>
-            <Text variant="p">Администратор может вносить изменения в турнир до его фактического начала. Когда турнир начнется, поля на вкладках «Основное» и «Структура» заблокируются, чтобы не нарушить логику формирования матчей.</Text>
+          <Article title={t('pages.darts.scenarios.tournament.title')} last>
+            <Text variant="p">{t('pages.darts.scenarios.tournament.text1')}</Text>
+            <Text variant="p">{t('pages.darts.scenarios.tournament.text2')}</Text>
+            <Text variant="p">{t('pages.darts.scenarios.tournament.text3')}</Text>
 
             <Image
               src="/images/darts/scenario.webp"
               sources={[
                 { srcSet: "/images/darts/scenario-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="Сценарий создания турнира"
+              alt={t('pages.darts.scenarios.tournament.alt')}
             />
           </Article>
         </Section>
 
 
-        <Section title='Масштабируемость' className="gap-4">
-          <Text variant="p">Страницы имеют универсальный шаблон. По мере развития системы (например, добавление команд) не будет проблем добавить кнопки для новых разделов в сайдбаре. Остальные элементы, такие как фильтр, строка поиска, таблицы, табы могут быть переиспользованы для новых страниц — это позволит быстро собрать новую страницу и не «сломать» привычный вид.</Text>
+        <Section title={t('pages.darts.scalability.title')} className="gap-4">
+          <Text variant="p">{t('pages.darts.scalability.text')}</Text>
 
           <Image
             src="/images/darts/scale.webp"
             sources={[
               { srcSet: "/images/darts/scale-2x.webp", media: "(min-width: 1024px)" }
             ]}
-            alt="Масштабируемость"
+            alt={t('pages.darts.scalability.alt')}
           />
         </Section>
 
-        <Section title='Этапность' className="gap-4">
-          <Text variant="p">Сложные и длинные флоу и формы разбиты на логические этапы, что позволяет не перегружать пользователя в момент работы с формами, а так же способствует быстрой навигации в системе.</Text>
+        <Section title={t('pages.darts.stages.title')} className="gap-4">
+          <Text variant="p">{t('pages.darts.stages.text')}</Text>
 
-          <Article title='Добавление участников в турнир'>
-            <Text variant="p">Администратор может добавить игроков по одному или нескольких сразу. Уже добавленные игроки не отображаются в списке.</Text>
+          <Article title={t('pages.darts.stages.participants.title')}>
+            <Text variant="p">{t('pages.darts.stages.participants.text')}</Text>
             <Image
               src="/images/darts/add.webp"
               sources={[
                 { srcSet: "/images/darts/add-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="Добавление участников в турнир"
+              alt={t('pages.darts.stages.participants.alt')}
             />
           </Article>
-          <Article title='Проверка документов перед турниром'>
-            <Text variant="p">Перед началом турнира на площадке огранизатор проверяет документы игроков. Из таблицы зарегистрированных участников ему доступны все необходимые данные для проверки.</Text>
+          <Article title={t('pages.darts.stages.documents.title')}>
+            <Text variant="p">{t('pages.darts.stages.documents.text')}</Text>
             <Image
               src="/images/darts/player.webp"
               sources={[
                 { srcSet: "/images/darts/player-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="Проверка документов перед турниром"
+              alt={t('pages.darts.stages.documents.alt')}
               shadow
             />
           </Article>
-          <Article title='Формирование групп' last>
-            <Text variant="p">Система случайным образом распределяет игроков по группам. При необходимости огранизатор может поменять игроков местами, чтобы сбалансировать состав групп.</Text>
+          <Article title={t('pages.darts.stages.groups.title')} last>
+            <Text variant="p">{t('pages.darts.stages.groups.text')}</Text>
             <Image
               src="/images/darts/groups.webp"
               sources={[
                 { srcSet: "/images/darts/groups-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="Формирование групп"
+              alt={t('pages.darts.stages.groups.alt')}
               shadow
             />
           </Article>
-          <Article title='Завершение турнира' last>
-            <Text variant="p">Во время подведения результатов система распределяет игроко в соответствии с набранными очками, но у администратора остается возможность внести изменения. Первые 3 места обычно занимают отдельные игроки, далее места распределяются группами, например, с 4 по 8 место без указания определенного места.</Text>
+          <Article title={t('pages.darts.stages.finish.title')} last>
+            <Text variant="p">{t('pages.darts.stages.finish.text')}</Text>
             <Image
               src="/images/darts/results.webp"
               sources={[
                 { srcSet: "/images/darts/results-2x.webp", media: "(min-width: 1024px)" }
               ]}
-              alt="Завершение турнира"
+              alt={t('pages.darts.stages.finish.alt')}
               shadow
             />
           </Article>
         </Section>
 
-        <Section title='Информативность' className="gap-4">
-          <Text variant="p">На разных этапах интерфейс подсказывает что сейчас происходит или что будет происходить потом — снижается порог входа и шанс ошибки. Так же пользователю не потребуется обращаться к документации для выполнения задачи.</Text>
+        <Section title={t('pages.darts.informativeness.title')} className="gap-4">
+          <Text variant="p">{t('pages.darts.informativeness.text')}</Text>
           <Image
             src="/images/darts/stages.webp"
             sources={[
               { srcSet: "/images/darts/stages-2x.webp", media: "(min-width: 1024px)" }
             ]}
-            alt="Информативность"
+            alt={t('pages.darts.informativeness.alt')}
           />
         </Section>
 
-        <Section title='Привычность' className="gap-4">
-          <Text variant="p">Калькулятор игры адаптирован под мобильные устройства, которые используются судьями для фиксирования результатов. Предусмотрены информационные сообщения в зависимости от статуса матча. Интерфейс калькулятора выглядит как большинство привычных для спортсменов приложений для ведения счета.</Text>
+        <Section title={t('pages.darts.familiarity.title')} className="gap-4">
+          <Text variant="p">{t('pages.darts.familiarity.text')}</Text>
           <Image
             src="/images/darts/calc.webp"
             sources={[
               { srcSet: "/images/darts/calc-2x.webp", media: "(min-width: 1024px)" }
             ]}
-            alt="Привычность"
+            alt={t('pages.darts.familiarity.alt')}
           />
         </Section>
 
-        <Section title='Результат' className="gap-4" last>
-          <Text variant="p">Новая система сокращает ручной труд и вероятность совершить ошибку насколько это возможно.</Text>
+        <Section title={t('pages.darts.result.title')} className="gap-4" last>
+          <Text variant="p">{t('pages.darts.result.text1')}</Text>
           <MarkerList
             className="space-y-2"
             items={[
-              'Создана база игроков, в которой хранятся необходимые данные о них — теперь нет необходимости заполнять всё вручную, а информация, на которую нужно обратить внимание, будет подсвечиваться.',
-              'Переработана схема создания и проведения турнира — новая схема максимально приближена к тому, как это происходит в реальности.',
-              'Автоматизирован этап создания отчетов о турнире — подготовка документов требует минимального участия от пользователя.',
+              t('pages.darts.result.items.0'),
+              t('pages.darts.result.items.1'),
+              t('pages.darts.result.items.2'),
             ]}
           />
-          <Text variant="p">Кроме этого, система обладает другими важными характеристиками, которые позволят проще и легче использовать её и развивать в будущем.</Text>
+          <Text variant="p">{t('pages.darts.result.text2')}</Text>
         </Section>
       </main>
     </div>

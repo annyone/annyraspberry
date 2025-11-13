@@ -17,6 +17,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && powershell -Command \"Copy-Item -Path ./build/* -Destination ../ -Recurse -Force; Copy-Item -Path ./build/index.html -Destination ../404.html -Force\"",
+    "start:ru": "powershell -Command \"$env:REACT_APP_LANG='ru'; npm run start\"",
+    "start:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run start\"",
+    "build:ru": "powershell -Command \"$env:REACT_APP_LANG='ru'; npm run _build:one; if (Test-Path ../build-ru) { Remove-Item ../build-ru -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-ru -Recurse -Force\"",
+    "build:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run _build:one; if (Test-Path ../build-en) { Remove-Item ../build-en -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-en -Recurse -Force\"",
+    "_build:one": "react-scripts build",
+    "build:both": "npm run build:ru && npm run build:en",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

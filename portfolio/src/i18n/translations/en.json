@@ -1,0 +1,308 @@
+{
+  "nav": {
+    "cases": "Cases",
+    "about": "About",
+    "articles": "Articles",
+    "downloadCV": "Download CV",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "home": "Home"
+  },
+  "lang": {
+    "ru": "RU",
+    "en": "EN",
+    "switchAria": "Toggle language"
+  },
+  "common": {
+    "more": "Learn more",
+    "now": "now"
+  },
+  "projectCard": {
+    "open": "Open"
+  },
+  "hero": {
+    "photoAlt": "Anya",
+    "greeting": "Hi! 🤚 I'm Anya",
+    "subtitle": {
+      "part1": "UI/UX designer with 11 years in IT:",
+      "part2": "product design, development, testing"
+    },
+    "tagline": {
+      "part1": "I create intuitive interfaces",
+      "part2": "for complex products 😎"
+    }
+  },
+  "home": {
+    "sections": {
+      "cases": "cases",
+      "about": "about",
+      "articles": "articles"
+    }
+  },
+  "projects": {
+    "logiq": {
+      "title": "Redesign of the main LogIQ section",
+      "excerpt": "Rethought and rebuilt the main product section UI after MVP with limited input. Received positive user feedback after release."
+    },
+    "darts": {
+      "title": "Darts tournament management system",
+      "excerpt": "Designed a complex system for running darts tournaments from scratch. Took part in the full development cycle from requirements to design reviews of implemented features."
+    },
+    "adidas": {
+      "title": "Adidas — promo website / Pyrobattle 2023",
+      "excerpt": "In 12 days crafted the concept and designed a landing for a future Adidas promo website. Placed 49th out of 185."
+    }
+  },
+  "experiences": {
+    "axelpro": {
+      "position": "Product Designer",
+      "company": "Axel Pro",
+      "tasks": "LogIQ is a web app for log monitoring and security incident analytics. I implement new flows and improve existing ones, maintain and develop the design system, present solutions to the team, and run design reviews after development.",
+      "achievements": {
+        "0": "Reworked the main product section after MVP; by feedback, the interface became simpler and more accessible; SUS increased by 18 points",
+        "1": "Improved the design system: modernized key components and the token system, speeding up the team",
+        "2": "Developed UI guides and patterns, unified user flows and reduced the time to create and develop new features — UI bugs after design review decreased by 19%",
+        "3": "Optimized the design review process: introduced using JIRA to track issues, speeding up reviews via templates",
+        "4": "Created a Figma plugin to quickly find common layout issues"
+      }
+    },
+    "darts_freelance": {
+      "position": "Product Designer",
+      "company": "Darts Federation (freelance)",
+      "tasks": "Developed a system for running tournaments from scratch — a web app mainly used on desktop and partially on mobile. Conducted interviews and requirements gathering, designed user flows and the interface, presented solutions to the client.",
+      "achievements": {
+        "0": "Most manual work was automated",
+        "1": "Fewer errors",
+        "2": "User flows became consistent and logical",
+        "3": "A more modern interface"
+      }
+    },
+    "freelance": {
+      "position": "UI/UX Designer",
+      "company": "Freelance",
+      "tasks": "Worked with small volunteer and friendly projects.",
+      "achievements": {
+        "0": "Conducted a website usability audit for a foundation — evaluated against core usability principles, compared with similar sites, and gave improvement recommendations.",
+        "1": "Redesigned a website for a detailing studio and implemented it on Tilda.",
+        "2": "Redesigned a page for a non-profit.",
+        "3": "Participated in the Pyrobattle 2023 contest."
+      }
+    }
+  },
+  "articles": {
+    "errors": {
+      "name": "Working with errors",
+      "description": "Why form errors occur, why they are annoying, how to reduce frustration and help users not get stuck in the flow"
+    },
+    "figma_plugin": {
+      "name": "How I built a Figma plugin with ChatGPT",
+      "description": "My experience building a native-looking notes plugin with configurable categories using AI"
+    }
+  },
+  "pages": {
+    "logiq": {
+      "subtitle": "LogIQ is a product for cybersecurity analysts who value speed and convenient information for investigating incidents",
+      "tasks": {
+        "title": "Tasks",
+        "simplify": {
+          "title": "Simplify the growing interface",
+          "text": "As new features appeared, the interface started to grow chaotically — too much visual noise made information harder to perceive"
+        },
+        "reduce": {
+          "title": "Lower the entry barrier",
+          "text": "Not all analysts know SQL and are afraid to use the interface because it seems complex and 'heavy'"
+        },
+        "increase": {
+          "title": "Increase interface informativeness",
+          "text": "The interface 'hides' information that analysts need — they have to remember or recall many things, getting distracted from work"
+        }
+      },
+      "what": {
+        "title": "What I did",
+        "items": {
+          "0": "Collected and analyzed user feedback — what they currently dislike or find inconvenient in the interface",
+          "1": "Conducted user interviews and learned how they use the product",
+          "2": "Performed competitive analysis — selected systems for similar tasks and analyzed their pros and cons",
+          "3": "Designed the main section structure to be easily scalable in the future",
+          "4": "Redesigned the main section with the new structure, improved query parameter input scenarios"
+        }
+      },
+      "before": {
+        "title": "Before",
+        "main": "Main information is hidden in the query string — no understanding of which events are currently displayed (for those who don't know SQL, expanding the string doesn't help). Buttons are randomly placed on the page — no clear understanding of what's for what. Many colored elements distract attention.",
+        "constructor1": "The query builder was intimidating with its size and number of elements.",
+        "constructor2": "To get query results, you first had to press 'Apply' to apply query parameters, then 'Execute' to get results.",
+        "altBefore": "Interface before redesign"
+      },
+      "after": {
+        "title": "After",
+        "structure": {
+          "title": "New page structure",
+          "text": "In builder mode there's no SQL query string, yet all parameters are displayed — now there's always understanding of which events are being analyzed. Tags can be easily removed by clicking the cross. The interface became less colorful and more spacious, accents remain on critically important controls — focus shifted to table information."
+        },
+        "grouped": "Information on the page is grouped and structured — now buttons and other elements have 'their' place, and there won't be questions about where to place new ones.",
+        "modes": {
+          "title": "2 modes",
+          "text1": "Due to implementation specifics, it was decided to implement 2 separate query modes: 'Builder' and 'SQL string'.",
+          "text2": "'Builder' provides a visual interface for building queries, while SQL string mode allows users to work directly with 'pure' SQL query text."
+        },
+        "altAfter": "Interface after redesign"
+      },
+      "constructor": {
+        "title": "Builder mode",
+        "main1": "The bulky builder is split into small parts — now it's presented as a toolbar, since it's more convenient and easier to solve one task at a time. Other builder blocks don't distract from the current task and don't intimidate with their quantity.",
+        "main2": "All changes are applied immediately. To get new results, just press the 'Refresh' button.",
+        "fields": {
+          "title": "Field selection",
+          "text": "Field selection now happens in a compact dropdown where you can quickly find the needed field with search. Quick selection buttons for all fields or default fields are also available. Selected fields are displayed at the top of the list for quick access. In the same window you can set an alias for a field or switch to advanced field mode where you can set multiple aliases at once."
+        },
+        "search": {
+          "title": "Search condition input",
+          "text": "Condition input became a sequential process where the system helps the user — no need to know SQL to fully use the product. At any moment the user can input parameters with a mouse or switch to keyboard input."
+        },
+        "sorting": {
+          "title": "Sorting",
+          "text": "The sorting selection scenario became shorter and more sequential — now sorting fields are immediately displayed in the dropdown. Query fields are displayed higher for quick access. When selecting a field, the system suggests a commonly used default direction. For example, users most often sort records by timestamp from newest to oldest."
+        }
+      },
+      "result": {
+        "title": "Result",
+        "text": "According to user feedback, the new interface became more intuitive and convenient to use. Users noted that it's now easier to find needed functions and work with analysis tools.",
+        "feedback1": "I'll add that Customers at demos and pilots highly rate the functionality and maturity level of the product, its UI and ease of use.",
+        "feedback2": "really like the log management interface"
+      }
+    },
+    "darts": {
+      "subtitle": "Darts Federation of Chelyabinsk is a nonprofit organization that promotes darts. Besides organizing tournaments, they also teach children and adults. For running tournaments, the federation used a specialized system that lacked all necessary tools. Moreover, the system owners mandated including betting in tournaments, which is unacceptable for an NGO.",
+      "task": {
+        "title": "Task",
+        "text1": "Develop a system that will automate running darts tournaments, minimize manual actions and errors.",
+        "text2": "❤️ This work was performed as part of an assignment on procharity.ru."
+      },
+      "participation": {
+        "title": "My project involvement",
+        "items": {
+          "0": "Conducted a briefing with the client. Discussed: how tournaments are generally conducted, what roles organizers have, what problems usually arise, what's missing in the current system, what expectations there are for the new system.",
+          "1": "Analyzed the current system and studied sport rules. Read the user guide, went through the path from tournament creation to completion. Recorded what functions the system currently provides. Identified main system weaknesses: outdated design, difficult to understand without documentation, confusing scenarios.",
+          "2": "Developed a system concept to solve user tasks: defined main entities, their attributes and user flows. Prepared mockups and presented them to the client.",
+          "3": "Conducted onboarding for new development team members.",
+          "4": "After development, conducted design reviews of the finished system."
+        }
+      },
+      "scenarios": {
+        "title": "Some scenarios",
+        "player": {
+          "title": "Player creation",
+          "text1": "Player is a basic system entity. Creation starts from the player list. To avoid overwhelming the user, form fields are divided into 3 semantic tabs that are filled step-by-step. The stepper provides information about steps and required information.",
+          "text2": "The form contains only necessary information for tournament participation. Some fields are marked as optional and don't prevent player creation, however before the tournament starts the player will need to provide missing information.",
+          "alt": "Player creation"
+        },
+        "tournament": {
+          "title": "Tournament creation",
+          "text1": "Tournament creation also starts from the list. A tournament has much more parameters, so more tabs. At the first stage only the first 2 tabs are available to the organizer — to continue working with the tournament it's necessary to know basic parameters and structure that will affect logic.",
+          "text2": "On the 'Structure' tab, a mixed tournament system is selected by default as the most commonly used.",
+          "text3": "The administrator can make changes to the tournament before its actual start. When the tournament begins, fields on 'Main' and 'Structure' tabs will lock to not break match formation logic.",
+          "alt": "Tournament creation scenario"
+        }
+      },
+      "scalability": {
+        "title": "Scalability",
+        "text": "Pages have a universal template. As the system develops (e.g., adding teams) there won't be problems adding buttons for new sections in the sidebar. Other elements like filters, search bar, tables, tabs can be reused for new pages — this will allow quickly assembling a new page without 'breaking' the familiar look.",
+        "alt": "Scalability"
+      },
+      "stages": {
+        "title": "Staged approach",
+        "text": "Complex and long flows and forms are split into logical stages, which avoids overwhelming the user when working with forms and promotes quick system navigation.",
+        "participants": {
+          "title": "Adding participants to tournament",
+          "text": "The administrator can add players one by one or several at once. Already added players are not displayed in the list.",
+          "alt": "Adding participants to tournament"
+        },
+        "documents": {
+          "title": "Document check before tournament",
+          "text": "Before the tournament starts at the venue, the organizer checks players' documents. From the registered participants table, all necessary verification data is available.",
+          "alt": "Document check before tournament"
+        },
+        "groups": {
+          "title": "Group formation",
+          "text": "The system randomly distributes players into groups. If needed, the organizer can swap players to balance group composition.",
+          "alt": "Group formation"
+        },
+        "finish": {
+          "title": "Tournament completion",
+          "text": "During results tallying, the system distributes players according to points scored, but the administrator retains the ability to make changes. The first 3 places are usually taken by individual players, then places are distributed in groups, for example, 4th to 8th place without specifying a particular place.",
+          "alt": "Tournament completion"
+        }
+      },
+      "informativeness": {
+        "title": "Informativeness",
+        "text": "At different stages the interface hints at what's happening now or what will happen next — lowering the entry barrier and chance of error. Also the user won't need to refer to documentation to complete a task.",
+        "alt": "Informativeness"
+      },
+      "familiarity": {
+        "title": "Familiarity",
+        "text": "The game calculator is adapted for mobile devices used by referees to record results. Informational messages are provided depending on match status. The calculator interface looks like most scorekeeping apps familiar to athletes.",
+        "alt": "Familiarity"
+      },
+      "result": {
+        "title": "Result",
+        "text1": "The new system reduces manual labor and the probability of making mistakes as much as possible.",
+        "items": {
+          "0": "Created a player database that stores necessary data about them — now there's no need to fill everything manually, and information that needs attention will be highlighted.",
+          "1": "Reworked the tournament creation and running scheme — the new scheme is as close as possible to how it happens in reality.",
+          "2": "Automated the tournament report creation stage — document preparation requires minimal user involvement."
+        },
+        "text2": "Besides this, the system has other important characteristics that will make it easier to use and develop in the future."
+      }
+    },
+    "adidas": {
+      "subtitle": "This project is a competition entry in which I developed the concept and designed a landing page for an Adidas promo website in 12 days.",
+      "task": {
+        "title": "Task",
+        "text": "Imagine all famous tech leaders and their companies decided to move to Russia. Elon Musk, Zuckerberg and others - launch businesses in domestic cities. They repeat their success, but their products acquire local flavor. In 12 days create a landing or promo website design and present as a case on Dprofile."
+      },
+      "concept": {
+        "title": "Idea and concept",
+        "main1": "Since all famous companies are moving to Russia in the future, there will be opportunities to create high-tech products. Also considering that digitalization is actively promoted in Russia.",
+        "main2": "As a foreign brand I chose the largest sports company Adidas, which will produce clothing and footwear of the future. Besides its own production, Adidas will create unique items in collaboration with domestic companies.",
+        "main3": "Welcome to cyberpunk!",
+        "ai": {
+          "title": "Using neural networks",
+          "text": "With neural networks, online stores will offer the ability to try on clothes instantly in a couple of clicks, as well as pick an outfit based on context."
+        },
+        "ar": {
+          "title": "AR/VR adaptation",
+          "text": "AR/VR technologies will be widespread, which will lead to pattern changes with the emergence of new devices."
+        }
+      },
+      "result": {
+        "title": "Result",
+        "landing": {
+          "title": "Landing page",
+          "text": "On the main page the user chooses gender 'male' or 'female'. You can also upload a photo to 'try on' clothes on a specific person.",
+          "alt": "Adidas landing"
+        },
+        "outfit": {
+          "title": "Full outfit view and clothing selection",
+          "text": "Like a game character, the user can customize their look by choosing various clothing elements and accessories. At the same time, you can immediately see how selected items will look on the model and how much the full outfit will cost."
+        },
+        "specs": {
+          "title": "Selected model specifications",
+          "text": "On a specific model's page, the user can see all characteristics of the selected item, including materials, sizes and available colors."
+        },
+        "animation": {
+          "title": "Interface animation",
+          "text": "The interface implies using windows that are seemingly in the air space, creating an effect of depth and layering. Slide animation adds dynamics and futurism.",
+          "videoTitle": "Interface animation"
+        }
+      },
+      "feedback": {
+        "title": "Judges' comments on the work",
+        "text1": "Hi Anna! My name is Sergey, I'll be reviewing your work. Very strong work. Liked how you implemented the clothing animation through Figma. Immediately reminded me of the cyberpunk game at release. I bought a pre-order for ps4 then. Good times. Overall, I liked everything. I would work a bit on the case design. Maybe redesign the first slides and combine them? But it's all up to you. Great work, looking forward to ordering Kind Adidas",
+        "text2": "Cool idea, though not new. But it's rarely applied to clothing."
+      }
+    }
+  }
+}
