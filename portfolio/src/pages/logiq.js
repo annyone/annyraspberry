@@ -12,13 +12,13 @@ import Article from '../components/Article';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function LogiqCase(){
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const project = projects.find(p => p.id === 'logiq');
   const title = t('projects.logiq.title', project.title);
   
   return (
     <div className="min-h-screen">
-      <Nav items={getNavItems(t)} />
+  <Nav items={getNavItems(t, lang)} />
       <main className="max-w-[1600px] w-full mx-auto pb-1">
 
         <Section className="pt-12 gap-8">

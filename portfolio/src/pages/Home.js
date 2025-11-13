@@ -13,10 +13,10 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
     <div className="min-h-screen">
-      <Nav items={getNavItems(t)} />
+      <Nav items={getNavItems(t, lang)} />
       <main className="max-w-[1600px] w-full mx-auto pb-1">
 
         <Hero />

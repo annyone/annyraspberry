@@ -10,13 +10,13 @@ import Article from '../components/Article';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function DartsCase(){
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const project = projects.find(p => p.id === 'darts');
   const title = t('projects.darts.title', project.title);
   
   return (
     <div className="min-h-screen">
-      <Nav items={getNavItems(t)} />
+  <Nav items={getNavItems(t, lang)} />
       <main className="max-w-[1600px] w-full mx-auto">
 
         <Section className="pt-12 gap-8">
