@@ -37,7 +37,7 @@ export default function AxelNacCase(){
         </Section>
 
         <Section title={t('pages.axelnac.tasks.title')} className="gap-4">
-          <div className="grid gap-4 grid-cols-1 xl:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
             {Array.isArray(tasks) && tasks.map((task, i) => (
               <Banner
                 key={i}
@@ -118,19 +118,8 @@ export default function AxelNacCase(){
                 shadow
               />
             </div>
-
-
           </Article>
-
-
-
-
-
         </Section>
-          
-
-
-
         <Section title={t('pages.axelnac.result.title')} last className="gap-4">
           <Text variant="p">{t('pages.axelnac.result.1')}</Text>
         </Section>
