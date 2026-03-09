@@ -7,15 +7,21 @@ import { useLanguage } from '../i18n/LanguageContext';
 export default function ExperienceCard({ experience }) {
   const { t } = useLanguage();
   const keyBase = experience.id ? `experiences.${experience.id}` : null;
+  const dates = keyBase ? t(`${keyBase}.dates`, experience.dates) : experience.dates;
   const position = keyBase ? t(`${keyBase}.position`, experience.position) : experience.position;
   const company = keyBase ? t(`${keyBase}.company`, experience.company) : experience.company;
   const tasks = keyBase ? t(`${keyBase}.tasks`, experience.tasks) : experience.tasks;
-  const achievements = Array.isArray(experience.achievements)
-    ? experience.achievements.map((item, idx) => keyBase ? t(`${keyBase}.achievements.${idx}`, item) : item)
-    : [];
-  
-  // Translate "н.в." to localized "now"
-  const dates = experience.dates ? experience.dates.replace(/н\.в\./g, t('common.now', 'н.в.')) : experience.dates;
+  const rawAchievements = keyBase ? t(`${keyBase}.achievements`, experience.achievements) : experience.achievements;
+
+  let achievementsItems = [];
+  let achievementsMarker = experience.marker || '•';
+
+  if (rawAchievements && typeof rawAchievements === 'object' && !Array.isArray(rawAchievements)) {
+    if (Array.isArray(rawAchievements.items)) achievementsItems = rawAchievements.items;
+    if (rawAchievements.marker) achievementsMarker = rawAchievements.marker;
+  }
+
+ 
   
   return (
     <article className="flex flex-col xl:flex-row gap-1 xl:gap-8 max-w-[1200px]">
@@ -36,7 +42,7 @@ export default function ExperienceCard({ experience }) {
         {tasks && (
           <Text variant="p" className="mb-4 mr-4">{tasks}</Text>
         )}
-        <MarkerList marker={experience.marker} items={achievements} className="space-y-2" />
+        <MarkerList marker={achievementsMarker} items={achievementsItems} className="space-y-2" />
       </div>
     </article>
   );
