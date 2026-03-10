@@ -236,7 +236,7 @@
       "constructor": {
         "title": "Builder mode",
         "main1": "The bulky builder was split into smaller parts — it is now presented as a toolbar since it's easier to solve one task at a time. Other builder blocks don't distract from the current task and no longer overwhelm users.",
-        "main2": "All changes are applied immediately. To fetch new results just click 'Refresh'.",
+        "main2": "All changes are applied immediately. To fetch new results just click 'Execute'.",
         "fields": {
           "title": "Field selection",
           "text": "Field selection is now done in a compact dropdown where you can quickly find a field using search. Quick-select buttons for selecting all fields or default fields are also available. Selected fields appear at the top of the list for quick access. In the same window you can set a field alias or switch to an advanced mode where multiple aliases can be specified."
