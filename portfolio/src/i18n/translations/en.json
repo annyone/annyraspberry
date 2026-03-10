@@ -133,45 +133,56 @@
   },
   "pages": {
     "axelnac": {
-      "subtitle": "Live Logs — AxelNAC's section for monitoring real-time events that requires fast scanning and convenient filtering",
+      "subtitle": "Live Logs — AxelNAC section for monitoring real-time events. It is important that users can quickly and easily obtain and analyze information.",
       "tasks": {
-        "title": "Goals",
+        "title": "Tasks",
         "items": [
           {
             "icon": "↗️",
             "title": "Improve the section's usability",
-            "text": "Some filters are available in the UI only after matching lines appear in the logs — users must wait and see irrelevant information in the meantime."
+            "text": "The interface requires extra actions from the user: it's hard to find the necessary log files, filters are available only after data appears, and some settings have to be changed via terminal. This slows down analysis and complicates log work."
           },
           {
             "icon": "📖",
             "title": "Improve information perception",
-            "text": "The interface contained many attention-grabbing elements that distract from the important information."
+            "text": "The interface is overloaded with elements: panels and navigation occupy most of the screen and cannot be hidden, bright elements create visual noise. This makes it harder to focus on log content and find important events faster."
           }
         ]
       },
       "done": {
         "title": "What I did",
         "items": [
-          "Conducted user interviews — identified real pain points and missing features",
-          "Performed competitor analysis — selected several products addressing similar tasks and evaluated their pros and cons",
-          "Prioritized problems in our product to address first"
+          "Conducted user interviews — found out what really annoys and what functions are missing",
+          "Conducted competitor analysis — selected several products for similar tasks, analyzed their pros and cons",
+          "Designed mockups and showed them to users — got feedback and made changes after discussion",
+          "Prepared mockups for handover to development"
+        ]
+      },
+      "problems": {
+        "title": "Identified problems",
+        "items": [
+          "On the first screen, you need to select log files for analysis — usually users are interested in logs of specific services and they don't know which files contain these logs. Since the journal file name does not match the service name, searching becomes difficult.",
+          "Navigation and options panel occupy most of the screen — no way to hide them. Especially sensitive for devices with small screens.",
+          "Filters are available only after matching lines appear in the logs — you have to see useless information until they appear to set the necessary filter.",
+          "Missing function to change logging level to debug from the interface — currently you have to switch to terminal to change, then return to the interface.",
+          "The interface is overloaded with bright elements that draw attention and interfere with focusing on important information."
         ]
       },
       "before": {
-        "title": "Original flow",
-        "1": "The flow consisted of two screens. On the first, the user selected files for analysis and filled in a search string. On the second, they waited for matching filter options to appear to filter out irrelevant information, applied them, and only then started analysis.",
-        "2": "The second screen was cluttered with elements, behaved unpredictably, and important information was lost in visual noise. Navigation and the options panel occupied a large portion of the screen, which was especially inconvenient on small displays. To edit parameters the session had to be stopped so fields would unlock, then the session restarted.",
-        "altBefore": ""
+        "title": "Original scenario",
+        "1": "The scenario consisted of two screens. On the first, the user selected files for analysis, filled in the search string for events, and started the session.",
+        "2": "On the second screen, the user saw the logs window and the options panel. Options could be edited only after stopping the session.",
+        "altBefore": " "
       },
       "after": {
-        "title": "Updated flow",
-        "1": "The section is now a single page. All filters are available immediately — you can set what you need, start a monitoring session, and begin analysis without waiting or seeing irrelevant data. Navigation panels are expanded by default but automatically collapse when entering Live Logs to free space for information.",
-        "2": "After starting a session, parameters can be changed on the fly. The parameters panel can be hidden to give logs more space. Important information such as errors and warnings is highlighted by color. A new feature was added to highlight specific words in logs for faster detection. Bulky filter buttons were replaced with compact checkboxes — by default the five most important or commonly used filters are shown, and the rest are available after clicking 'Show all'.",
-        "3": "Control buttons are grouped and placed at the bottom of the screen where users can easily reach them. Some buttons were replaced with icons for clarity. Display settings are hidden in a separate window since they are used rarely."
+        "title": "Updated scenario",
+        "1": "The section now consists of one page. All filters are available immediately — you can set what you need, start the monitoring session, and immediately start analysis, without being distracted by waiting and useless information. In all sections, the navigation panel is expanded by default, but when entering the Live Logs section, it automatically collapses, freeing up space for information.",
+        "2": "After starting the session, parameters can be changed on the fly. The parameters block can be hidden to give more space to logs. Important information of error and warning levels is highlighted in color. A new function for highlighting individual words in logs has been added to see them faster. Bulky filter buttons have been replaced with more compact checkboxes — by default, the 5 most important or frequently used filters are shown, and the rest are available by clicking the 'Show all' button.",
+        "3": "Control buttons are grouped by meaning (session management, content management, settings) and placed at the bottom of the screen, where users can easily reach them if necessary. Some buttons have been replaced with icons for clarity. Display settings are hidden in a separate window since they are used rarely. The 'Clear screen' button is intentionally placed aside to avoid accidentally erasing received data."
       },
       "result": {
         "title": "Result",
-        "1": "The flow became shorter and more logical, and the interface is cleaner and simpler. We also added a backlog item to enable debug mode from the UI — currently it requires using the terminal, which users found inconvenient."
+        "1": "The scenario became shorter and more logical, and the interface — simpler and cleaner. The task of enabling debug mode from the interface requires significant rework, so we added it to the backlog."
       }
     },
     "logiq": {

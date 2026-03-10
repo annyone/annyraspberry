@@ -17,6 +17,7 @@ export default function AxelNacCase(){
   const title = t(`projects.${project.id}.title`, project.title);
   const tasks = t('pages.axelnac.tasks.items', { returnObjects: true });
   const done = t('pages.axelnac.done.items', { returnObjects: true });
+  const problems = t('pages.axelnac.problems.items', { returnObjects: true });
   
   return (
     <div className="min-h-screen">
@@ -53,6 +54,13 @@ export default function AxelNacCase(){
           <MarkerList
             className="space-y-2"
             items={done}
+          />
+        </Section>
+
+        <Section title={t('pages.axelnac.problems.title')} className="gap-4">
+          <MarkerList
+            className="space-y-2"
+            items={problems}
           />
         </Section>
 
