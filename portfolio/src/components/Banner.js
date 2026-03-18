@@ -1,7 +1,6 @@
 import React from 'react';
 import Text from './Text';
 
-// Simple Banner component: emoji, title, text
 export default function Banner({ emoji = 'ℹ️', title, text, className = '' }) {
   return (
     <div className={`flex gap-4 bg-zinc-50/75 p-6 rounded-xl dark:bg-zinc-800/60 ${className}`}>
