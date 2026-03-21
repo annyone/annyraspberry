@@ -19,7 +19,7 @@ jobs:
 
       - name: Build project
         working-directory: ./portfolio
-        run: npm run build
+        run: npm run _build:one
         env:
           CI: false
 
