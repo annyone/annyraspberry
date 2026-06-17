@@ -1,0 +1,109 @@
+{
+  "axelnac": {
+    "subtitle": {
+      "ru": "Live Logs — раздел AxelNAC для мониторинга событий в реальном времени. Важно, чтобы пользователи могли быстро и просто получить и проанализировать информацию. ",
+      "en": "Live Logs — AxelNAC section for monitoring real-time events. It is important that users can quickly and easily obtain and analyze information."
+    },
+    "tasks": {
+      "title": { "ru": "Задачи", "en": "Tasks" },
+      "items": [
+        {
+          "icon": "↗️",
+          "title": { "ru": "Повысить юзабилити раздела", "en": "Improve the section's usability" },
+          "text": {
+            "ru": "Интерфейс требует от пользователя лишних действий: сложно найти нужные файлы логов, фильтры доступны только после появления данных, а часть настроек приходится менять через терминал. Это замедляет анализ и усложняет работу с логами.",
+            "en": "The interface requires extra actions from the user: it's hard to find the necessary log files, filters are available only after data appears, and some settings have to be changed via terminal. This slows down analysis and complicates log work."
+          }
+        },
+        {
+          "icon": "📖",
+          "title": { "ru": "Улучшить восприятие информации", "en": "Improve information perception" },
+          "text": {
+            "ru": "Интерфейс перегружен элементами: большую часть экрана занимают панели и навигация, которые нельзя скрыть, а яркие элементы создают визуальный шум. Из-за этого сложнее сосредоточиться на содержимом логов и быстрее находить важные события.",
+            "en": "The interface is overloaded with elements: panels and navigation occupy most of the screen and cannot be hidden, bright elements create visual noise. This makes it harder to focus on log content and find important events faster."
+          }
+        }
+      ]
+    },
+    "done": {
+      "title": { "ru": "Что я сделала", "en": "What I did" },
+      "items": [
+        {
+          "ru": "Провела интервью с пользователями — выяснила, что на самом деле раздражает и каких функций не хватает",
+          "en": "Conducted user interviews — found out what really annoys and what functions are missing"
+        },
+        {
+          "ru": "Провела анализ конкурентов — выбрала несколько продуктов для решения похожих задач, проанализировала их плюсы и минусы",
+          "en": "Conducted competitor analysis — selected several products for similar tasks, analyzed their pros and cons"
+        },
+        {
+          "ru": "Спроектировала макеты и показала их пользователям — получила обратную связь и внесла правки после обсуждения",
+          "en": "Designed mockups and showed them to users — got feedback and made changes after discussion"
+        },
+        {
+          "ru": "Подготовила макеты для передачи в разработку",
+          "en": "Prepared mockups for handover to development"
+        }
+      ]
+    },
+    "problems": {
+      "title": { "ru": "Выявленные проблемы", "en": "Identified problems" },
+      "items": [
+        {
+          "ru": "На первом экране нужно выбирать файлы логов для анализа — обычно пользователей интересуют логи определённых сервисов и они не знают, в каких файлах лежат эти логи. Так как название файла журнала не соответствует названию сервиса, поиск становится сложным.",
+          "en": "On the first screen, you need to select log files for analysis — usually users are interested in logs of specific services and they don't know which files contain these logs. Since the journal file name does not match the service name, searching becomes difficult."
+        },
+        {
+          "ru": "Большую часть экрана занимает навигация и панель опций — нет возможности скрыть их. Особенно чувствительно для устройств с маленькими экранами.",
+          "en": "Navigation and options panel occupy most of the screen — no way to hide them. Especially sensitive for devices with small screens."
+        },
+        {
+          "ru": "Фильтры доступны только после того, как подходящие под них строки появятся в логах — приходится видеть бесполезную информацию, пока они появятся, чтобы можно было задать необходимый фильтр.",
+          "en": "Filters are available only after matching lines appear in the logs — you have to see useless information until they appear to set the necessary filter."
+        },
+        {
+          "ru": "Не хватает функции для изменения уровня логирования на debug из интерфейса — сейчас приходится переходить в терминал для изменения, а потом возвращаться в интерфейс.",
+          "en": "Missing function to change logging level to debug from the interface — currently you have to switch to terminal to change, then return to the interface."
+        },
+        {
+          "ru": "Интерфейс перегружен яркими элементами, которые перетягивают на себя внимание и мешают состедоточиться на важной информации.",
+          "en": "The interface is overloaded with bright elements that draw attention and interfere with focusing on important information."
+        }
+      ]
+    },
+    "before": {
+      "title": { "ru": "Исходный сценарий", "en": "Original scenario" },
+      "1": {
+        "ru": "Сценарий состоял из двух экранов. На первом пользователь выбирал файлы для анализа, заполнял строку для поиска событий и запускал сессию.",
+        "en": "The scenario consisted of two screens. On the first, the user selected files for analysis, filled in the search string for events, and started the session."
+      },
+      "2": {
+        "ru": "На втором экране пользователь видел окно с логами и панель с опциями. Опции можно было редактировать только после остановки сессии.",
+        "en": "On the second screen, the user saw the logs window and the options panel. Options could be edited only after stopping the session."
+      },
+      "altBefore": " "
+    },
+    "after": {
+      "title": { "ru": "Обновленный сценарий", "en": "Updated scenario" },
+      "1": {
+        "ru": "Раздел теперь состоит из одной страницы. Все фильтры доступны сразу — можно настроить то, что нужно, запустить сессию мониторинга и сразу приступать к анализу, не отвлекаясь на ожидание и бесполезную информацию. Во всех разделах панель навигации по умолчанию развернута, но при переходе в раздел Live Logs она автоматически сворачивается, освобождая полезное пространство для информации.",
+        "en": "The section now consists of one page. All filters are available immediately — you can set what you need, start the monitoring session, and immediately start analysis, without being distracted by waiting and useless information. In all sections, the navigation panel is expanded by default, but when entering the Live Logs section, it automatically collapses, freeing up space for information."
+      },
+      "2": {
+        "ru": "После запуска сессии параметры можно менять на лету. Блок параметров можно скрыть, чтобы для логов было еще больше места. Важная информация уровня error и warning выделена цветом. Добавлена новая фунция для подсветки отдельных слов в логах, чтобы быстрее их видеть. Громоздкие кнопки фильтров заменены на более компактные чекбоксы — по умолчанию показывается 5 самых важных или часто используемых фильтров, а остальные доступны по клику на кнопку «Показать все».",
+        "en": "After starting the session, parameters can be changed on the fly. The parameters block can be hidden to give more space to logs. Important information of error and warning levels is highlighted in color. A new function for highlighting individual words in logs has been added to see them faster. Bulky filter buttons have been replaced with more compact checkboxes — by default, the 5 most important or frequently used filters are shown, and the rest are available by clicking the 'Show all' button."
+      },
+      "3": {
+        "ru": "Кнопки управления сгруппированы по смыслу (управление сессией, управление контентом, настройки) и расположены в нижней части экрана, где пользователям наиболее близко до них добраться при необходимости. Некоторые кнопки заменены на иконки в виду понятности. Настройки отображения скрыты в отдельном окне, так как используются редко. Кнопка «Очистить экран» намеренно находится в стороне, чтобы случайно не стереть полученные данные.",
+        "en": "Control buttons are grouped by meaning (session management, content management, settings) and placed at the bottom of the screen, where users can easily reach them if necessary. Some buttons have been replaced with icons for clarity. Display settings are hidden in a separate window since they are used rarely. The 'Clear screen' button is intentionally placed aside to avoid accidentally erasing received data."
+      }
+    },
+    "result": {
+      "title": { "ru": "Результат", "en": "Result" },
+      "1": {
+        "ru": "Сценарий стал короче и логичнее, а интерфейс — проще и чище. Задаче по включению debug режима из интерфейса требует существенных доработок, поэтому добавили в бэклог.",
+        "en": "The scenario became shorter and more logical, and the interface — simpler and cleaner. The task of enabling debug mode from the interface requires significant rework, so we added it to the backlog."
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "cases":     { "ru": "Кейсы",          "en": "Cases" },
+    "about":     { "ru": "Опыт и образование",           "en": "Experience & Education" },
+    "articles":  { "ru": "Статьи",         "en": "Articles" },
+    "downloadCV":{ "ru": "Скачать CV",     "en": "Download CV" },
+    "linkedin":  { "ru": "LinkedIn",       "en": "LinkedIn" },
+    "telegram":  { "ru": "Telegram",       "en": "Telegram" },
+    "menu":      { "ru": "Меню",           "en": "Menu" },
+    "closeMenu": { "ru": "Закрыть меню",   "en": "Close menu" },
+    "home":      { "ru": "Главная страница","en": "Home" }
+  },
+  "lang": {
+    "switchAria": { "ru": "Переключить язык", "en": "Switch language" }
+  }
+}

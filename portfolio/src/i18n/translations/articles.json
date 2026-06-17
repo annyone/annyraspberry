@@ -1,0 +1,27 @@
+{
+  "articles": {
+    "items": [
+      {
+        "title": { "ru": "Работа над ошибками", "en": "Learning from Errors" },
+        "text": {
+          "ru": "О том, почему при заполнении формы возникают ошибки, почему они раздражают, как снизить это раздражение и помочь пользователю не застрять в сценарии",
+          "en": "About why form errors occur, why they frustrate users, how to reduce that frustration and help users avoid getting stuck in a flow."
+        },
+        "links": [
+          { "label": "dsgners", "url": "https://dsgners.ru/raspberry/12236-rabota-nad-oshibkami" },
+          { "label": "habr",    "url": "https://habr.com/ru/articles/936856/" }
+        ]
+      },
+      {
+        "title": { "ru": "Как я создала плагин для Figma с помощью ChatGPT", "en": "How I Built a Figma Plugin Using ChatGPT" },
+        "text": {
+          "ru": "Рассказала про свой опыт создания плагина для заметок с помощью нейросетей, который выглядит нативно и имеет настройку категорий",
+          "en": "I share my experience creating a notes plugin with neural networks that feels native and supports category configuration."
+        },
+        "links": [
+          { "label": "habr", "url": "https://habr.com/ru/articles/901112/" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "projects": {
+    "axelnac": {
+      "title": {
+        "ru": "Редизайн раздела логов в реальном времени в AxelNAC",
+        "en": "Redesign of the Live Logs section in AxelNAC"
+      },
+      "description": {
+        "ru": "Переработала интерфейс для работы с логами в реальном времени по обратной связи от пользователей — убрала лишний экран, упростила восприятие информации на экране, добавила новые функции, которых не хватало.",
+        "en": "Redesigned the interface for working with real-time logs based on user feedback — removed an unnecessary screen, simplified how information is presented, and added missing features."
+      }
+    },
+    "logiq": {
+      "title": {
+        "ru": "Редизайн основного раздела LogIQ",
+        "en": "Redesign of the main LogIQ section"
+      },
+      "description": {
+        "ru": "Переосмыслила и пересобрала интерфейс основного раздела продукта после MVP в условиях ограниченной вводной информации. Получила позитивную обратную связь об изменениях от пользователей после релиза.",
+        "en": "Rethought and rebuilt the product's main section after the MVP with limited initial input. Received positive user feedback after release."
+      }
+    },
+    "darts": {
+      "title": {
+        "ru": "Система управления турнирами Дартс",
+        "en": "Darts Tournament Management System"
+      },
+      "description": {
+        "ru": "С нуля спроектировала сложную систему для проведения турниров по дартс. Участвовала во всем цикле разработки от сбора требований до дизайн-ревью готовых фичей.",
+        "en": "Designed a complex system for running darts tournaments from scratch. Participated in the full development cycle from requirements gathering to design reviews of finished features."
+      }
+    },
+    "adidas": {
+      "title": {
+        "ru": "Adidas — промо-сайт / конкурс Pyrobattle 2023",
+        "en": "Adidas — promo site / Pyrobattle 2023 contest"
+      },
+      "description": {
+        "ru": "За 12 дней разработала концепт и спроектировала дизайн лендинга для промосайта компании будущего Adidas. Работа заняла 49 место из 185.",
+        "en": "In 12 days I developed the concept and designed a landing page for a future Adidas promo site. The entry placed 49th out of 185."
+      }
+    }
+  }
+}

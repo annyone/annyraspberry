@@ -1,0 +1,163 @@
+{
+  "darts": {
+    "subtitle": {
+      "ru": "Федерация Дартс Челябинска — это некоммерческая организация, которая занимается популяризацией спорта дартс. Кроме организации турниров они занимаются еще обучением детей и взрослых. Для проведения турниров федерация использовала специальную систему, которая не обладала всеми необходимыми инструментами. К тому же, владельцы системы обязали включать на турниры ставки, что недопустимо для НКО.",
+      "en": "The Chelyabinsk Darts Federation is a non-profit organization that promotes darts. Besides organising tournaments, they also provide training for children and adults. For tournaments the federation used a special system that lacked necessary tools. Additionally, the system owners required placing bets at tournaments, which is unacceptable for an NPO."
+    },
+    "task": {
+      "title": { "ru": "Задачa", "en": "Task" },
+      "text1": {
+        "ru": "Разработать систему, которая позволит автоматизировать проведение турниров по дартс, минимизировать ручные действия и ошибки.",
+        "en": "Develop a system to automate darts tournaments, minimize manual actions and reduce errors."
+      },
+      "text2": {
+        "ru": "❤️ Работа выполнялась в рамках задания на платформе procharity.ru.",
+        "en": "❤️ This work was completed as part of an assignment on procharity.ru."
+      }
+    },
+    "participation": {
+      "title": { "ru": "Мое участие в проекте", "en": "My role in the project" },
+      "items": {
+        "0": {
+          "ru": "Провела брифинг с заказчиком. Обсудили: как в целом проводится турнир, какие есть роли у организаторов, какие проблемы обычно возникают, чего не хватает в текущей системе, какие есть ожидания от новой системы.",
+          "en": "Held a briefing with the client. Discussed how tournaments are generally run, organizer roles, common problems, shortcomings of the current system, and expectations for the new system."
+        },
+        "1": {
+          "ru": "Проанализировала текущую систему и изучила правила по спорту. Прочитала руководство пользователя, прошла путь от создания турнира до его завершения. Зафиксировала, какие функции предоставляет система сейчас. Определила основные слабые места системы: устаревший дизайн, сложно разобраться без документации, запутанные сценарии.",
+          "en": "Analysed the current system and studied the sport rules. Read user guides and went through the flow from creating a tournament to its completion. Documented current system features and identified key weaknesses: outdated design, hard to understand without documentation, and confusing flows."
+        },
+        "2": {
+          "ru": "Разработала концепт системы для решения задач пользователя: определила основные сущности, их атрибуты и юзерфлоу. Подготовила макеты и презентовала их заказчику.",
+          "en": "Designed a system concept to meet user needs: defined main entities, their attributes, and user flows. Prepared mockups and presented them to the client."
+        },
+        "3": {
+          "ru": "Проводила онбординг для новых участников команды разработки.",
+          "en": "Conducted onboarding for new members of the development team."
+        },
+        "4": {
+          "ru": "После разработки проводила дизайн ревью готовой системы.",
+          "en": "Performed design reviews of the completed system after development."
+        }
+      }
+    },
+    "scenarios": {
+      "title": { "ru": "Некоторые сценарии", "en": "Some scenarios" },
+      "player": {
+        "title": { "ru": "Создание игрока", "en": "Creating a player" },
+        "text1": {
+          "ru": "Игрок — базовая сущность системы. Создание начинается из списка игроков. Для того чтобы не перегружать пользователя поля формы разделены на 3 смысловые вкладки, которые заполняются поэтапно. Степпер дает информацию о шагах и необходимой информации.",
+          "en": "A player is a core entity in the system. Creation starts from the players list. To avoid overwhelming the user, form fields are split into three meaningful tabs filled step-by-step. A stepper shows progress and required information."
+        },
+        "text2": {
+          "ru": "Форма содержит только необходимую информацию для участия в турнире. Некоторые поля помечены как необязательные и не препятствуют созданию игрока, однако до начала турнира игроку необходимо будет предоставить недостающую информацию.",
+          "en": "The form contains only the information necessary to participate in the tournament. Some fields are optional and do not block player creation, but missing information must be provided before the tournament starts."
+        },
+        "alt": { "ru": "Создание игрока", "en": "Creating a player" }
+      },
+      "tournament": {
+        "title": { "ru": "Создание турнира", "en": "Creating a tournament" },
+        "text1": {
+          "ru": "Создание турнира так же начинается из списка. У турнира гораздо больше параметров, поэтому больше вкладок. На первом этапе организатору доступны только 2 первых таба — для продолжения работы с турниром необходимо знать основные параметры и структуру, которые будут влиять на логику.",
+          "en": "Tournament creation also starts from the list. A tournament has many parameters, so it contains more tabs. At the first stage the organizer has access to only the first two tabs — continuing requires knowing the main parameters and structure that affect match logic."
+        },
+        "text2": {
+          "ru": "На вкладке «Структура» по умолчанию выбрана смешанная система турнира как наиболее часто используемая.",
+          "en": "The 'Structure' tab defaults to a mixed tournament system as the most commonly used option."
+        },
+        "text3": {
+          "ru": "Администратор может вносить изменения в турнир до его фактического начала. Когда турнир начнется, поля на вкладках «Основное» и «Структура» заблокируются, чтобы не нарушить логику формирования матчей.",
+          "en": "The administrator can change the tournament before it actually starts. Once the tournament begins, fields on the 'Main' and 'Structure' tabs are locked to avoid breaking match formation logic."
+        },
+        "alt": { "ru": "Сценарий создания турнира", "en": "Tournament creation flow" }
+      }
+    },
+    "scalability": {
+      "title": { "ru": "Масштабируемость", "en": "Scalability" },
+      "text": {
+        "ru": "Страницы имеют универсальный шаблон. По мере развития системы (например, добавление команд) не будет проблем добавить кнопки для новых разделов в сайдбаре. Остальные элементы, такие как фильтр, строка поиска, таблицы, табы могут быть переиспользованы для новых страниц — это позволит быстро собрать новую страницу и не «сломать» привычный вид.",
+        "en": "Pages use a universal template. As the system grows (for example, adding teams) it's easy to add buttons for new sections in the sidebar. Other elements like filters, search, tables, and tabs can be reused for new pages — this allows quickly assembling pages without breaking the familiar layout."
+      },
+      "alt": { "ru": "Масштабируемость", "en": "Scalability" }
+    },
+    "stages": {
+      "title": { "ru": "Этапность", "en": "Staged approach" },
+      "text": {
+        "ru": "Сложные и длинные флоу и формы разбиты на логические этапы, что позволяет не перегружать пользователя в момент работы с формами, а так же способствует быстрой навигации в системе.",
+        "en": "Complex and long flows and forms are broken into logical stages, which prevents overwhelming users and supports fast navigation in the system."
+      },
+      "participants": {
+        "title": { "ru": "Добавление участников в турнир", "en": "Adding participants to a tournament" },
+        "text": {
+          "ru": "Администратор может добавить игроков по одному или нескольких сразу. Уже добавленные игроки не отображаются в списке.",
+          "en": "The administrator can add players one by one or several at once. Players already added do not appear in the list."
+        },
+        "alt": { "ru": "Добавление участников в турнир", "en": "Adding participants to a tournament" }
+      },
+      "documents": {
+        "title": { "ru": "Проверка документов перед турниром", "en": "Checking documents before the tournament" },
+        "text": {
+          "ru": "Перед началом турнира на площадке огранизатор проверяет документы игроков. Из таблицы зарегистрированных участников ему доступны все необходимые данные для проверки.",
+          "en": "Before the tournament starts on site, the organizer checks players' documents. The registered participants table provides all necessary data for verification."
+        },
+        "alt": { "ru": "Проверка документов перед турниром", "en": "Document check before the tournament" }
+      },
+      "groups": {
+        "title": { "ru": "Формирование групп", "en": "Group formation" },
+        "text": {
+          "ru": "Система случайным образом распределяет игроков по группам. При необходимости огранизатор может поменять игроков местами, чтобы сбалансировать состав групп.",
+          "en": "The system randomly assigns players to groups. If needed, the organizer can swap players to balance group composition."
+        },
+        "alt": { "ru": "Формирование групп", "en": "Group formation" }
+      },
+      "finish": {
+        "title": { "ru": "Завершение турнира", "en": "Finishing the tournament" },
+        "text": {
+          "ru": "Во время подведения результатов система распределяет игроко в соответствии с набранными очками, но у администратора остается возможность внести изменения. Первые 3 места обычно занимают отдельные игроки, далее места распределяются группами, например, с 4 по 8 место без указания определенного места.",
+          "en": "When tallying results, the system ranks players according to points, but the administrator can still make adjustments. The top three places are usually individual; subsequent places may be grouped (for example, 4–8 without specifying exact positions)."
+        },
+        "alt": { "ru": "Завершение турнира", "en": "Finishing the tournament" }
+      }
+    },
+    "informativeness": {
+      "title": { "ru": "Информативность", "en": "Informativeness" },
+      "text": {
+        "ru": "На разных этапах интерфейс подсказывает что сейчас происходит или что будет происходить потом — снижается порог входа и шанс ошибки. Так же пользователю не потребуется обращаться к документации для выполнения задачи.",
+        "en": "At different stages the interface hints what is happening or what will happen next — lowering the entry barrier and reducing errors. Users also won't need to consult documentation to complete tasks."
+      },
+      "alt": { "ru": "Информативность", "en": "Informativeness" }
+    },
+    "familiarity": {
+      "title": { "ru": "Привычность", "en": "Familiar UX" },
+      "text": {
+        "ru": "Калькулятор игры адаптирован под мобильные устройства, которые используются судьями для фиксирования результатов. Предусмотрены информационные сообщения в зависимости от статуса матча. Интерфейс калькулятора выглядит как большинство привычных для спортсменов приложений для ведения счета.",
+        "en": "The match calculator is adapted for mobile devices used by judges to record results. Informational messages are shown depending on match status. The calculator interface resembles many familiar scorekeeping apps used by athletes."
+      },
+      "alt": { "ru": "Привычность", "en": "Familiar UX" }
+    },
+    "result": {
+      "title": { "ru": "Результат", "en": "Result" },
+      "text1": {
+        "ru": "Новая система сокращает ручной труд и вероятность совершить ошибку насколько это возможно.",
+        "en": "The new system reduces manual work and the chance of errors as much as possible."
+      },
+      "items": {
+        "0": {
+          "ru": "Создана база игроков, в которой хранятся необходимые данные о них — теперь нет необходимости заполнять всё вручную, а информация, на которую нужно обратить внимание, будет подсвечиваться.",
+          "en": "A player database was created that stores necessary data — no need to fill everything manually, and important information is highlighted."
+        },
+        "1": {
+          "ru": "Переработана схема создания и проведения турнира — новая схема максимально приближена к тому, как это происходит в реальности.",
+          "en": "The tournament creation and execution flow was redesigned to closely match how it works in reality."
+        },
+        "2": {
+          "ru": "Автоматизирован этап создания отчетов о турнире — подготовка документов требует минимального участия от пользователя.",
+          "en": "The report generation stage was automated — preparing documents now requires minimal user involvement."
+        }
+      },
+      "text2": {
+        "ru": "Кроме этого, система обладает другими важными характеристиками, которые позволят проще и легче использовать её и развивать в будущем.",
+        "en": "Additionally, the system has other important characteristics that will make it easier to use and extend in the future."
+      }
+    }
+  }
+}

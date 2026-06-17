@@ -1,0 +1,131 @@
+{
+  "logiq": {
+    "subtitle": {
+      "ru": "LogIQ — продукт для аналитиков кибербезопасности, которым важна скорость работы и удобная подача информации для расследования инцидентов",
+      "en": "LogIQ — a product for cybersecurity analysts who need speed and clear presentation of information for incident investigations"
+    },
+    "tasks": {
+      "title": { "ru": "Задачи", "en": "Goals" },
+      "simplify": {
+        "title": { "ru": "Упростить разрастающийся интерфейс", "en": "Simplify the growing interface" },
+        "text": {
+          "ru": "С появлением новых функций интерфейс начал хаотично обрастать новыми элементами — появилось много визуального шума, воспринимать информацию стало сложнее",
+          "en": "With new features the interface started accumulating elements chaotically — visual noise increased and information became harder to perceive."
+        }
+      },
+      "reduce": {
+        "title": { "ru": "Снизить порог вхождения в продукт", "en": "Lower the product's entry barrier" },
+        "text": {
+          "ru": "Не все аналитики знают SQL и боятся пользоваться интерфейсом, так как он кажется сложным и «тяжёлым»",
+          "en": "Not all analysts know SQL and some are intimidated by the interface because it feels complex and 'heavy'."
+        }
+      },
+      "increase": {
+        "title": { "ru": "Повысить информативность интерфейса", "en": "Increase the interface's informativeness" },
+        "text": {
+          "ru": "Интерфейс «скрывает» информацию, которая необходима аналитику — приходится многое запоминать или вспоминать, отвлекаясь от работы",
+          "en": "The interface 'hides' information needed by analysts — they must remember or recall details, which distracts from their work."
+        }
+      }
+    },
+    "what": {
+      "title": { "ru": "Что я сделала", "en": "What I did" },
+      "items": {
+        "0": { "ru": "Собрала и проанализировала обратную связь от пользователей — что сейчас не нравится или не удобно в интерфейсе", "en": "Collected and analysed user feedback — what users dislike or find inconvenient" },
+        "1": { "ru": "Провела интервью с пользователями и узнала, как они пользуются продуктом", "en": "Conducted user interviews to learn how they use the product" },
+        "2": { "ru": "Провела конкурентный анализ — выбрала системы для решения похожих задач, проанализировала их плюсы и минусы", "en": "Performed competitive analysis — selected systems for similar tasks and analysed their pros and cons" },
+        "3": { "ru": "Разработала структуру основного раздела так, чтобы его было удобно развивать в будущем", "en": "Designed the main section structure so it can be easily extended in the future" },
+        "4": { "ru": "Сделала редизайн основного раздела с учетом новой структуры, улучшила сценарии ввода параметров запроса", "en": "Redesigned the main section according to the new structure and improved the query parameter input flows" }
+      }
+    },
+    "before": {
+      "title": { "ru": "Было", "en": "Before" },
+      "main": {
+        "ru": "Основная информация скрыта в строке запроса — нет понимания, какие события сейчас отображаются на экране (для тех, кто не знает SQL, разворачивание строки не помогает). Кнопки бессистемно расположены по странице — нет четкого понимания что для чего. Много цветных элементов рассеивают внимание.",
+        "en": "Key information was hidden in the query string — there was no clarity about which events were currently shown on screen (expanding the query line didn't help those who don't know SQL). Buttons were placed without a clear system — it wasn't obvious what each did. Many colorful elements distracted attention."
+      },
+      "constructor1": {
+        "ru": "Констуктор запроса пугал своими размерами и большим количеством элементов.",
+        "en": "The query builder intimidated users with its size and the number of elements."
+      },
+      "constructor2": {
+        "ru": "Для получения результатов по запросу сначала нужно было нажать кнопку «Применить», чтобы применились параметры запроса, а потом «Выполнить», чтобы получить результаты.",
+        "en": "To get results a user first had to click 'Apply' to set the query parameters, then 'Run' to get the results."
+      },
+      "altBefore": { "ru": "Интерфейс до редизайна", "en": "Interface before the redesign" }
+    },
+    "after": {
+      "title": { "ru": "Стало", "en": "After" },
+      "structure": {
+        "title": { "ru": "Новая структура страницы", "en": "New page structure" },
+        "text": {
+          "ru": "В режиме конструктора нет строки SQL запроса, при этом все параметры отображаются — теперь всегда есть понимание, какие события анализируются. Теги можно легко и привычно убирать по клику на крестик. Интерфейс стал менее цветной и воздушный, остались акценты на критически важных элементах управления — фокус сместился на информацию в таблице.",
+          "en": "In builder mode there is no SQL query line, yet all parameters are shown — now there's always clarity about which events are being analysed. Tags can be removed easily by clicking the cross. The interface is less colorful and airier, leaving emphasis only on critical controls — the focus shifted to the table data."
+        }
+      },
+      "grouped": {
+        "ru": "Информация на странице сгруппирована и структурирована — теперь кнопки и остальные элементы имеют «своё» место, а с новыми не будет вопросов, куда их разместить.",
+        "en": "Information on the page is grouped and structured — buttons and other elements now have their 'place', so adding new ones won't be an issue."
+      },
+      "modes": {
+        "title": { "ru": "Два режима", "en": "Two modes" },
+        "text1": {
+          "ru": "Из-за специфики реализации было принято решение реализовать два отдельных режима работы с запросом: «Конструктор» и «SQL строка».",
+          "en": "Due to implementation specifics we decided to provide two separate modes for working with queries: 'Builder' and 'SQL line'."
+        },
+        "text2": {
+          "ru": "«Конструктор» предоставляет визуальный интерфейс для построения запросов, в то время как режим SQL строки позволяет пользователям работать напрямую с текстом запроса на «чистом» SQL.",
+          "en": "The 'Builder' provides a visual interface for constructing queries, while the SQL line mode allows users to work directly with raw SQL text."
+        }
+      },
+      "altAfter": { "ru": "Интерфейс после редизайна", "en": "Interface after the redesign" }
+    },
+    "constructor": {
+      "title": { "ru": "Режим конструктора", "en": "Builder mode" },
+      "main1": {
+        "ru": "Громоздкий конструктор разбит на маленькие части — теперь он представлен в виде панели инструментов, так как удобнее и проще решать по одной задаче за раз. Остальные блоки конструктора не отвлекают внимание от текущей задачи и не пугают своим количеством.",
+        "en": "The bulky builder was split into smaller parts — it is now presented as a toolbar since it's easier to solve one task at a time. Other builder blocks don't distract from the current task and no longer overwhelm users."
+      },
+      "main2": {
+        "ru": "Все изменения применяются сразу. Чтобы получить новые результаты достаточно нажать кнопку «Выполнить».",
+        "en": "All changes are applied immediately. To fetch new results just click 'Execute'."
+      },
+      "fields": {
+        "title": { "ru": "Выбор полей", "en": "Field selection" },
+        "text": {
+          "ru": "Выбор полей теперь происходит в компактном дропдауне, где можно быстро найти нужное поле с помощью поиска. Так же доступны кнопки быстрого выбора всех полей или выбора полей по умолчанию. Выбранные поля отображаются вверху списка для быстрого доступа. В этом же окне можно задать псевдоним для поля или перейти в расширенный режим работы с полями, где можно задать сразу несколько псевдонимов.",
+          "en": "Field selection is now done in a compact dropdown where you can quickly find a field using search. Quick-select buttons for selecting all fields or default fields are also available. Selected fields appear at the top of the list for quick access. In the same window you can set a field alias or switch to an advanced mode where multiple aliases can be specified."
+        }
+      },
+      "search": {
+        "title": { "ru": "Ввод условия поиска", "en": "Entering search conditions" },
+        "text": {
+          "ru": "Ввод самого условия стал последовательным процессом, в течение которого система помогает пользователю — необязательно знать SQL, чтобы полноценно использовать продукт. В любой момент пользователь может вводить параметры с помощью мышки или переключиться на ввод с клавиатуры.",
+          "en": "Entering a condition became a guided process where the system helps the user — knowing SQL is no longer required to use the product effectively. At any time the user can enter parameters with the mouse or switch to keyboard input."
+        }
+      },
+      "sorting": {
+        "title": { "ru": "Сортировка", "en": "Sorting" },
+        "text": {
+          "ru": "Сценарий выбора сортировки стал короче и последовательнее — теперь в дропдауне сразу отображаются поля для сортировки. Для быстрого доступа поля из запроса отображаются выше. При выборе поля система предлагает часто используемый вариант направления по умолчанию. Например, пользователи чаще всего сортируют записи по timestamp от новых к старым.",
+          "en": "The sorting flow became shorter and more consistent — the dropdown now shows sortable fields immediately. For quick access, fields from the query are displayed at the top. When choosing a field the system suggests a commonly used sort direction by default. For example, users usually sort records by timestamp from newest to oldest."
+        }
+      }
+    },
+    "result": {
+      "title": { "ru": "Результат", "en": "Result" },
+      "text": {
+        "ru": "Согласно обратной связи от пользователей, новый интерфейс стал более интуитивно понятным и удобным в использовании. Пользователи отметили, что теперь легче находить нужные функции и работать с инструментами анализа.",
+        "en": "According to user feedback, the new interface became more intuitive and easier to use. Users noted that it's now easier to find features and work with analysis tools."
+      },
+      "feedback1": {
+        "ru": "От себя скажу, что Заказчики на демо и пилотах высоко оценивают функциональность и уровень зрелости продукта, его UI и интуитивность использования.",
+        "en": "From my side: clients during demos and pilots highly rate the functionality and maturity of the product, its UI, and its intuitiveness."
+      },
+      "feedback2": {
+        "ru": "оч нравится интерфейс лог-менеджмента",
+        "en": "Users really like the log management interface"
+      }
+    }
+  }
+}

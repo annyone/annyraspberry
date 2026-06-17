@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "photoAlt": { "ru": "Аня", "en": "Anya" },
+    "greeting":  { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
+    "subtitle": {
+      "part1": { "ru": "UI/UX дизайнер с 11-летним опытом в IT:", "en": "UI/UX designer with 11 years of experience in IT:" },
+      "part2": { "ru": "продуктовый дизайн, разработка, тестирование", "en": "product design, development, testing" }
+    },
+    "tagline": {
+      "part1": { "ru": "Создаю интуитивно понятные интерфейсы", "en": "I create intuitive interfaces" },
+      "part2": { "ru": "для сложных продуктов 😎", "en": "for complex products 😎" }
+    }
+  },
+  "home": {
+    "sections": {
+      "cases":    { "ru": "кейсы",   "en": "cases" },
+      "about":    { "ru": "обо мне", "en": "about" },
+      "articles": { "ru": "статьи", "en": "articles" }
+    }
+  },
+  "common": {
+    "more": { "ru": "Подробнее", "en": "More" }
+  }
+}

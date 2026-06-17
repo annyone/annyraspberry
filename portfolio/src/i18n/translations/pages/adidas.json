@@ -1,0 +1,88 @@
+{
+  "adidas": {
+    "subtitle": {
+      "ru": "Этот проект — конкурсная работа, в которой я разработала концепт и спроектировала дизайн лендинга для промосайта компании Adidas за 12 дней.",
+      "en": "This project is a contest entry where I developed a concept and designed a landing page for an Adidas promo site in 12 days."
+    },
+    "task": {
+      "title": { "ru": "Задачa", "en": "Task" },
+      "text": {
+        "ru": "Представить, что все известные айтишники и их компании решили перебраться в Россию. Илон Маск, Цукерберг и другие - запускают бизнес в отечественных городах. Они повторяют успех, но их продукты обрели отечественный колорит. За 12 дней создать дизайн лендинга или промо-сайта и оформи в кейс на Dprofile.",
+        "en": "Imagine all well-known IT entrepreneurs and their companies moved to Russia. Elon Musk, Zuckerberg and others launch businesses in regional cities. They repeat their success, but their products gain local flavour. In 12 days create a landing page or promo site design and submit it as a case on Dprofile."
+      }
+    },
+    "concept": {
+      "title": { "ru": "Идея и концепция", "en": "Idea and concept" },
+      "main1": {
+        "ru": "Так как все известные компании перебираются в Россию в будущем, значит будут возможности создавать высокотехнологичные продукты. Так же учитывается тот факт, что в России активно продвигается диджитализация.",
+        "en": "If well-known companies relocate to Russia in the future, there will be opportunities to create high-tech products. Also consider that digitalisation is actively promoted in Russia."
+      },
+      "main2": {
+        "ru": "В качестве зарубежного бренда выбрала крупнейшую спортивную компанию Adidas, которая будет производить одежду и обувь будущего. Кроме собственного производства Adidas будет создавать уникальные вещи в коллаборации с отечественными компаниями.",
+        "en": "I chose the major sports brand Adidas as a foreign brand that will produce clothing and footwear of the future. Besides its own production, Adidas will create unique items in collaboration with local companies."
+      },
+      "main3": {
+        "ru": "Добро пожаловать в киберпанк!",
+        "en": "Welcome to cyberpunk!"
+      },
+      "ai": {
+        "title": { "ru": "Использование нейросетей", "en": "Use of neural networks" },
+        "text": {
+          "ru": "С помощью нейросетей онлайн-магазины будут предлагать возможность примерить одежду моментально в пару кликов, а так же подобрать образ на основе контекста.",
+          "en": "With neural networks online stores will offer instant virtual try-ons in a couple of clicks and suggest outfits based on context."
+        }
+      },
+      "ar": {
+        "title": { "ru": "Адаптация для AR/VR", "en": "AR/VR adaptation" },
+        "text": {
+          "ru": "Технологии AR/VR будут широко распространены, что повлечет изменение паттернов с появлением новых устройств.",
+          "en": "AR/VR technologies will be widespread, changing patterns with new device types emerging."
+        }
+      }
+    },
+    "result": {
+      "title": { "ru": "Результат", "en": "Result" },
+      "landing": {
+        "title": { "ru": "Лендинг", "en": "Landing" },
+        "text": {
+          "ru": "На главной странице пользователь выбирает пол \"мужчины\" или \"женщины\". Так же можно загрузить фото, чтобы \"примерить\" одежду на конкретного человека.",
+          "en": "On the main page the user selects gender 'men' or 'women'. You can also upload a photo to virtually 'try on' clothing on a specific person."
+        },
+        "alt": { "ru": "Лендинг Adidas", "en": "Adidas landing" }
+      },
+      "outfit": {
+        "title": { "ru": "Просмотр всего образа и выбор одежды", "en": "View full outfit and choose items" },
+        "text": {
+          "ru": "Подобно персонажу в игре, пользователь может настраивать свой образ, выбирая различные элементы одежды и аксессуары. При этом сразу можно увидеть, как выбранные вещи будут выглядеть на модели, и сколько будет стоить полный образ.",
+          "en": "Like a game character, the user can customize their look by selecting different clothing elements and accessories. You can immediately see how selected items look on a model and the total cost of the full outfit."
+        }
+      },
+      "specs": {
+        "title": { "ru": "Характеристики выбранной модели", "en": "Selected item's specifications" },
+        "text": {
+          "ru": "На странице определенной модели пользователь может увидеть все характеристики выбранной вещи, включая материалы, размеры и доступные цвета.",
+          "en": "On a product page the user can see all characteristics of the selected item, including materials, sizes, and available colors."
+        }
+      },
+      "animation": {
+        "title": { "ru": "Анимация интерфейса", "en": "Interface animation" },
+        "text": {
+          "ru": "Интерфейс подразумевает использование окон, которые находятся как бы в воздушном пространстве, создавая эффект глубины и многослойности. Анимация скольжения добавляет динамики и футуристичности.",
+          "en": "The interface uses windows that appear to float in space, creating depth and multilayer effects. Sliding animations add dynamism and a futuristic feel."
+        },
+        "videoTitle": { "ru": "Анимация интерфейса", "en": "Interface animation" }
+      }
+    },
+    "feedback": {
+      "title": { "ru": "Комментарии судей о работе", "en": "Judges' comments" },
+      "text1": {
+        "ru": " Привет, Анна! Меня зовут Сергей, я буду проверять твою работу. \n                        Очень сильная работа. Понравилось как ты реализовали анимацию одежды через фигму. Сразу вспомнилась игра киберпанк на релизе. Я тогда купил предзаказ на ps4. Золотое время. В целом, мне всё понравилось. Я бы немного поработал над оформлением кейса. Может быть, переоформить первые слайды и объединить их? Но всё, на твоё усмотрение. Работа крутая, жду возможности заказа Добрый адидас",
+        "en": "Hi, Anna! My name is Sergey, I'll be reviewing your work.\n                        Very strong work. I liked how you implemented the clothing animation via Figma. It immediately reminded me of the Cyberpunk game at launch — I even preordered it on PS4 back then. Golden times. Overall I liked everything. I'd tweak the case presentation a bit: maybe rework and combine the first slides? But it's up to you. Great job, looking forward to requests."
+      },
+      "text2": {
+        "ru": "Крутая идея, хоть и не новая. Но на одежду перекладывают редко.",
+        "en": "Cool idea, even if not entirely new. But clothes are rarely the main focus."
+      }
+    }
+  }
+}

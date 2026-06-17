@@ -1,0 +1,74 @@
+{
+  "experiences": [
+    {
+      "show": true,
+      "id": "ideco",
+      "dates":    { "ru": "01.26 — н.в.", "en": "01.26 — now" },
+      "position": { "ru": "Продуктовый дизайнер", "en": "Product Designer" },
+      "company":  { "ru": "Айдеко", "en": "Ideco" },
+      "link": "https://ideco.ru/",
+      "tasks": {
+        "ru": "Ideco NGFW — многофункциональный межсетевой экран с веб-интерфейсом. Реализую новые сценарии и улучшаю существующие, поддерживаю и улучшаю дизайн-систему, презентую свои решения внутри команды, провожу ревью макетов в команде дизайна и дизайн-ревью фичей после разработки.",
+        "en": "Ideco NGFW — a multifunctional firewall with a web interface. I implement new scenarios and improve existing ones, maintain and enhance the design system, present my solutions internally, and conduct mockup reviews and design reviews of features after development."
+      },
+      "achievements": []
+    },
+    {
+      "show": true,
+      "id": "axelpro",
+      "dates": "06.24 — 01.26",
+      "position": { "ru": "Продуктовый дизайнер", "en": "Product Designer" },
+      "company":  { "ru": "Аксель Про", "en": "Axel Pro" },
+      "link": "https://axel.pro",
+      "tasks": {
+        "ru": "LogIQ — web приложение для мониторинга и аналитики логов системы, работы с инцидентами безопасности. Реализую новые сценарии и улучшаю существующие, поддерживаю и разрабатываю дизайн-систему, презентую свои решения внутри команды, провожу дизайн-ревью фичей после разработки.",
+        "en": "LogIQ — a web app for monitoring and analysing system logs and handling security incidents. I implement new scenarios, improve existing ones, maintain and develop the design system, present my solutions within the team, and conduct design reviews after development."
+      },
+      "achievements": {
+        "marker": "🔥",
+        "items": [
+          {
+            "ru": "Переработала основной раздел продукта после MVP: по обратной связи — интерфейс стал проще и доступнее для пользователей, SUS вырос на 18 пунктов",
+            "en": "Reworked the product's main section after the MVP: based on feedback the interface became simpler and more accessible to users; SUS increased by 18 points"
+          },
+          {
+            "ru": "Улучшила дизайн-систему: модернизировала ключевые компоненты и систему токенов, ускорив работу команды",
+            "en": "Improved the design system: modernized key components and the token system, speeding up the team's work"
+          },
+          {
+            "ru": "Разработала UI-гайды и паттерны, унифицировала пользовательские сценарии и снизила время на создание новых фичей и разработку — количество UI-багов после дизайн-ревью снизилось на 19%",
+            "en": "Created UI guides and patterns, unified user flows and reduced time to create new features — UI bugs after design review decreased by 19%"
+          },
+          {
+            "ru": "Оптимизировала процесс дизайн-ревью: внедрила использование JIRA для фиксации замечаний, ускорив ревью за счет использования шаблонов",
+            "en": "Optimized the design review process: introduced JIRA for tracking issues and sped up reviews using templates"
+          },
+          {
+            "ru": "Создала плагин для Figma для быстрого поиска частых ошибок на макетах",
+            "en": "Built a Figma plugin for quickly finding common mistakes in mockups"
+          }
+        ]
+      }
+    },
+    {
+      "show": true,
+      "id": "darts",
+      "dates": "06.22 — 07.23",
+      "position": { "ru": "Продуктовый дизайнер", "en": "Product Designer" },
+      "company":  { "ru": "Федерация Дартс (фриланс)", "en": "Darts Federation (freelance)" },
+      "tasks": {
+        "ru": "Разработала систему для проведения турниров с нуля — web-приложение, которое в основном используется на desktop устройствах, частично на мобильных. Провела интервью и сбор требований, спроектировала пользовательские сценарии и интерфейс, провела презентацию решений клиенту.",
+        "en": "Designed a tournament management system from scratch — a web application primarily used on desktop and partially on mobile. Conducted interviews and requirements gathering, designed user flows and the interface, and presented solutions to the client."
+      },
+      "achievements": {
+        "marker": "❤️",
+        "items": [
+          { "ru": "Большая часть ручной работы автоматизирована",       "en": "Most manual work was automated" },
+          { "ru": "Сократилось количество ошибок",                      "en": "The number of mistakes decreased" },
+          { "ru": "Пользовательские сценарии стали последовательными и логичными", "en": "User flows became consistent and logical" },
+          { "ru": "Интерфейс стал современнее",                         "en": "The interface became more modern" }
+        ]
+      }
+    }
+  ]
+}
