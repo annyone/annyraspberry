@@ -3,8 +3,8 @@
     "photoAlt": { "ru": "Аня", "en": "Anya" },
     "greeting":  { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
     "subtitle": {
-      "part1": { "ru": "UI/UX дизайнер с 11-летним опытом в IT:", "en": "UI/UX designer with 11 years of experience in IT:" },
-      "part2": { "ru": "продуктовый дизайн, разработка, тестирование", "en": "product design, development, testing" }
+      "part1": { "ru": "Продуктовый дизайнер с большим опытом в IT:", "en": "Product designer with long experience in IT:" },
+      "part2": { "ru": "дизайн, разработка, тестирование", "en": "design, development, testing" }
     },
     "tagline": {
       "part1": { "ru": "Создаю интуитивно понятные интерфейсы", "en": "I create intuitive interfaces" },
