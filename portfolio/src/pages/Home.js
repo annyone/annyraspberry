@@ -21,7 +21,7 @@ export default function Home() {
         <Hero />
 
         {/* Cases */}
-        <Section id="cases" subtitle={t('home.sections.cases', 'cases')}>
+        <Section id="cases" subtitle={t('home.sections.cases', 'cases')} className="!gap-0">
           {
             // Use thumbnails and page info from src/data/projects.js
             (projects || []).map((project) => (

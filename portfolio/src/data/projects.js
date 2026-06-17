@@ -10,7 +10,7 @@ const projects = [
     id: 'logiq',
     thumbnail: '/images/logiq/thumbnail.webp',
     thumbnail_2x: '/images/logiq/thumbnail-2x.webp',
-    thumbnailBackground: 'linear-gradient(to bottom, #3585EF, #1663D4)',
+    thumbnailBackground: 'linear-gradient(to bottom, #1e6bd1, #0245a8)',
     page: 'logiq'
   },
   {

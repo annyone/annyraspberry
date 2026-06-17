@@ -1,7 +1,7 @@
 {
   "nav": {
     "cases":     { "ru": "Кейсы",          "en": "Cases" },
-    "about":     { "ru": "Опыт и образование",           "en": "Experience & Education" },
+    "about":     { "ru": "Обо мне",        "en": "About" },
     "articles":  { "ru": "Статьи",         "en": "Articles" },
     "downloadCV":{ "ru": "Скачать CV",     "en": "Download CV" },
     "linkedin":  { "ru": "LinkedIn",       "en": "LinkedIn" },

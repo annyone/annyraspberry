@@ -56,8 +56,8 @@ export default function Nav({ items = [] }) {
   return (
     <>
       {/* Навигационная панель */}
-      <nav className="w-full fixed top-0 left-0 right-0 z-40">
-        <div className={`max-w-[1600px] w-full mx-auto flex items-center ${NAV_HEIGHT} px-4 bg-white dark:bg-zinc-900 backdrop-blur-sm`}>
+      <nav className="w-full fixed top-0 left-0 right-0 z-40 bg-white dark:bg-zinc-900">
+        <div className={`max-w-[1600px] w-full mx-auto flex items-center ${NAV_HEIGHT} px-8 xl:px-12`}>
           {/* Логотип */}
           <Link
             to="/"
