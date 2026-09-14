@@ -17,7 +17,10 @@
         },
         {
           "icon": "📖",
-          "title": { "ru": "Улучшить восприятие информации", "en": "Improve information perception" },
+          "title": {
+            "ru": "Улучшить восприятие информации",
+            "en": "Improve information perception"
+          },
           "text": {
             "ru": "Интерфейс перегружен элементами: большую часть экрана занимают панели и навигация, которые нельзя скрыть, а яркие элементы создают визуальный шум. Из-за этого сложнее сосредоточиться на содержимом логов и быстрее находить важные события.",
             "en": "The interface is overloaded with elements: panels and navigation occupy most of the screen and cannot be hidden, bright elements create visual noise. This makes it harder to focus on log content and find important events faster."

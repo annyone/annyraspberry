@@ -5,23 +5,21 @@ import Banner from '../../components/Banner';
 import Section from '../../components/Section';
 import MarkerList from '../../components/MarkerList';
 import Image from '../../components/Image';
-import FeedBackCard from '../../components/FeedBackCard';
+import FeedbackCard from '../../components/FeedbackCard';
 import Article from '../../components/Article';
 import { useLanguage } from '../../i18n/LanguageContext';
 
-export default function LogiqCase({ project }){
+export default function LogiqCase({ project }) {
   const { t } = useLanguage();
   const title = t('projects.logiq.title');
-  
+
   return (
     <Layout title={`${title} — ${t('site.author')}`}>
       <Section className="pt-12 gap-8">
         <Text variant="h1">{title}</Text>
         <Image
           src={project.thumbnail}
-          sources={[
-            { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
-          ]}
+          sources={[{ srcSet: project.thumbnail_2x, media: '(min-width: 1024px)' }]}
           backgroundColor={project.thumbnailBackground}
           alt={title}
         />
@@ -30,17 +28,20 @@ export default function LogiqCase({ project }){
 
       <Section title={t('pages.logiq.tasks.title')} className="gap-4">
         <div className="grid gap-4 grid-cols-1 xl:grid-cols-3">
-          <Banner emoji="🤩" 
-                  title={t('pages.logiq.tasks.simplify.title')}
-                  text={t('pages.logiq.tasks.simplify.text')}
+          <Banner
+            emoji="🤩"
+            title={t('pages.logiq.tasks.simplify.title')}
+            text={t('pages.logiq.tasks.simplify.text')}
           />
-          <Banner emoji="📉"
+          <Banner
+            emoji="📉"
             title={t('pages.logiq.tasks.reduce.title')}
             text={t('pages.logiq.tasks.reduce.text')}
-          /> 
-          <Banner emoji="ℹ️" 
-                  title={t('pages.logiq.tasks.increase.title')}
-                  text={t('pages.logiq.tasks.increase.text')}
+          />
+          <Banner
+            emoji="ℹ️"
+            title={t('pages.logiq.tasks.increase.title')}
+            text={t('pages.logiq.tasks.increase.text')}
           />
         </div>
       </Section>
@@ -63,9 +64,7 @@ export default function LogiqCase({ project }){
           <Text variant="p">{t('pages.logiq.before.main')}</Text>
           <Image
             src="/images/logiq/was.webp"
-            sources={[
-              { srcSet: "/images/logiq/was-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/logiq/was-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.logiq.before.altBefore')}
             shadow
           />
@@ -76,8 +75,8 @@ export default function LogiqCase({ project }){
           <Image
             src="/images/logiq/2.png"
             alt={t('pages.logiq.before.altBefore')}
-            className='!pb-0'
-            shadow 
+            className="!pb-0"
+            shadow
           />
         </Article>
       </Section>
@@ -87,9 +86,7 @@ export default function LogiqCase({ project }){
           <Text variant="p">{t('pages.logiq.after.structure.text')}</Text>
           <Image
             src="/images/logiq/now.webp"
-            sources={[
-              { srcSet: "/images/logiq/now-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/logiq/now-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.logiq.after.altAfter')}
             shadow
           />
@@ -98,87 +95,75 @@ export default function LogiqCase({ project }){
           <Text variant="p">{t('pages.logiq.after.grouped')}</Text>
           <Image
             src="/images/logiq/layout.webp"
-            sources={[
-              { srcSet: "/images/logiq/layout-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/logiq/layout-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.logiq.after.altAfter')}
             shadow
           />
         </Article>
-        <Article title={t('pages.logiq.after.modes.title')} >
-          <div className='flex flex-col lg:flex-row gap-8 items-start'>
-            <div className='w-full lg:w-[35%] grid gap-2'>
+        <Article title={t('pages.logiq.after.modes.title')}>
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+            <div className="w-full lg:w-[35%] grid gap-2">
               <Text variant="p">{t('pages.logiq.after.modes.text1')}</Text>
               <Text variant="p">{t('pages.logiq.after.modes.text2')}</Text>
             </div>
             <Image
               src="/images/logiq/12.gif"
               alt={t('pages.logiq.after.altAfter')}
-              className='w-full lg:w-[65%]'
+              className="w-full lg:w-[65%]"
               shadow
             />
           </div>
-          
-
         </Article>
       </Section>
 
       <Section title={t('pages.logiq.constructor.title')} className="gap-4">
         <Article>
-            <Text variant="p">{t('pages.logiq.constructor.main1')}</Text>
-            
-            <Text variant="p">{t('pages.logiq.constructor.main2')}</Text>
-          
+          <Text variant="p">{t('pages.logiq.constructor.main1')}</Text>
+
+          <Text variant="p">{t('pages.logiq.constructor.main2')}</Text>
+
           <Image
             src="/images/logiq/board.webp"
-            sources={[
-              { srcSet: "/images/logiq/board-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/logiq/board-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.logiq.after.altAfter')}
             shadow
           />
-          </Article>
-          <Article title={t('pages.logiq.constructor.fields.title')}>
-            <Text variant="p">{t('pages.logiq.constructor.fields.text')}</Text>
+        </Article>
+        <Article title={t('pages.logiq.constructor.fields.title')}>
+          <Text variant="p">{t('pages.logiq.constructor.fields.text')}</Text>
+          <Image
+            src="/images/logiq/fields.webp"
+            sources={[{ srcSet: '/images/logiq/fields-2x.webp', media: '(min-width: 1024px)' }]}
+            alt={t('pages.logiq.after.altAfter')}
+          />
+        </Article>
+        <Article title={t('pages.logiq.constructor.search.title')}>
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
             <Image
-              src="/images/logiq/fields.webp"
-              sources={[
-                { srcSet: "/images/logiq/fields-2x.webp", media: "(min-width: 1024px)" }
-              ]}
+              src="/images/logiq/6.gif"
               alt={t('pages.logiq.after.altAfter')}
+              className="w-full lg:w-1/2 !pb-0"
+              shadow
             />
-          </Article>
-          <Article title={t('pages.logiq.constructor.search.title')}>
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
-              <Image
-                src="/images/logiq/6.gif"
-                alt={t('pages.logiq.after.altAfter')}
-                className="w-full lg:w-1/2 !pb-0"
-                shadow
-              />
-              <Text variant="p" className="w-full lg:w-1/2">{t('pages.logiq.constructor.search.text')}</Text>
-            </div>
-          </Article>   
-          <Article title={t('pages.logiq.constructor.sorting.title')} last>
-            <Text variant="p">{t('pages.logiq.constructor.sorting.text')}</Text>
-            <Image
-              src="/images/logiq/sorting.webp"
-              sources={[
-                { srcSet: "/images/logiq/sorting-2x.webp", media: "(min-width: 1024px)" }
-              ]}
-              alt={t('pages.logiq.after.altAfter')}
-            />     
-          </Article>
+            <Text variant="p" className="w-full lg:w-1/2">
+              {t('pages.logiq.constructor.search.text')}
+            </Text>
+          </div>
+        </Article>
+        <Article title={t('pages.logiq.constructor.sorting.title')} last>
+          <Text variant="p">{t('pages.logiq.constructor.sorting.text')}</Text>
+          <Image
+            src="/images/logiq/sorting.webp"
+            sources={[{ srcSet: '/images/logiq/sorting-2x.webp', media: '(min-width: 1024px)' }]}
+            alt={t('pages.logiq.after.altAfter')}
+          />
+        </Article>
       </Section>
 
       <Section title={t('pages.logiq.result.title')} last className="gap-4">
         <Text variant="p">{t('pages.logiq.result.text')}</Text>
-        <FeedBackCard
-          text={t('pages.logiq.result.feedback1')}
-        />
-        <FeedBackCard
-          text={t('pages.logiq.result.feedback2')}
-        />
+        <FeedbackCard text={t('pages.logiq.result.feedback1')} />
+        <FeedbackCard text={t('pages.logiq.result.feedback2')} />
       </Section>
     </Layout>
   );

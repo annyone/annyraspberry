@@ -86,20 +86,32 @@
         "en": "Complex and long flows and forms are broken into logical stages, which prevents overwhelming users and supports fast navigation in the system."
       },
       "participants": {
-        "title": { "ru": "Добавление участников в турнир", "en": "Adding participants to a tournament" },
+        "title": {
+          "ru": "Добавление участников в турнир",
+          "en": "Adding participants to a tournament"
+        },
         "text": {
           "ru": "Администратор может добавить игроков по одному или нескольких сразу. Уже добавленные игроки не отображаются в списке.",
           "en": "The administrator can add players one by one or several at once. Players already added do not appear in the list."
         },
-        "alt": { "ru": "Добавление участников в турнир", "en": "Adding participants to a tournament" }
+        "alt": {
+          "ru": "Добавление участников в турнир",
+          "en": "Adding participants to a tournament"
+        }
       },
       "documents": {
-        "title": { "ru": "Проверка документов перед турниром", "en": "Checking documents before the tournament" },
+        "title": {
+          "ru": "Проверка документов перед турниром",
+          "en": "Checking documents before the tournament"
+        },
         "text": {
           "ru": "Перед началом турнира на площадке огранизатор проверяет документы игроков. Из таблицы зарегистрированных участников ему доступны все необходимые данные для проверки.",
           "en": "Before the tournament starts on site, the organizer checks players' documents. The registered participants table provides all necessary data for verification."
         },
-        "alt": { "ru": "Проверка документов перед турниром", "en": "Document check before the tournament" }
+        "alt": {
+          "ru": "Проверка документов перед турниром",
+          "en": "Document check before the tournament"
+        }
       },
       "groups": {
         "title": { "ru": "Формирование групп", "en": "Group formation" },

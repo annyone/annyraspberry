@@ -34,11 +34,22 @@ function escapeAttr(value) {
     .replace(/"/g, '&quot;');
 }
 
+/**
+ * Строит выражение для поиска тега <meta> или <link> по одному его атрибуту.
+ *
+ * Между именем тега и атрибутами стоит \s+, а не пробел: Prettier переносит
+ * длинный тег на несколько строк, и жёстко записанный пробел перестал бы
+ * совпадать. Тогда upsert не нашёл бы тег и дописал бы второй такой же.
+ */
+function tagPattern(tag, attr, value) {
+  return new RegExp('<' + tag + '\\s+' + attr + '="' + value + '"[^>]*>');
+}
+
 /** Заменяет содержимое тега, если он есть, иначе добавляет тег перед </head>. */
 function upsert(html, pattern, tag) {
   return pattern.test(html)
     ? html.replace(pattern, tag)
-    : html.replace('</head>', `    ${tag}\n  </head>`);
+    : html.replace('</head>', '    ' + tag + '\n  </head>');
 }
 
 function buildPage(template, project, title, description) {
@@ -47,20 +58,58 @@ function buildPage(template, project, title, description) {
   const t = escapeAttr(title);
   const d = escapeAttr(description);
 
+  // Порядок: [тег, атрибут-опознаватель, значение атрибута, содержимое content/href].
+  const tags = [
+    ['meta', 'name', 'description', 'content', d],
+    ['meta', 'property', 'og:title', 'content', t],
+    ['meta', 'property', 'og:description', 'content', d],
+    ['meta', 'property', 'og:url', 'content', url],
+    ['meta', 'property', 'og:image', 'content', image],
+    ['meta', 'property', 'og:type', 'content', 'article'],
+    ['meta', 'name', 'twitter:title', 'content', t],
+    ['meta', 'name', 'twitter:description', 'content', d],
+    ['meta', 'name', 'twitter:url', 'content', url],
+    ['meta', 'name', 'twitter:image', 'content', image],
+    ['link', 'rel', 'canonical', 'href', url],
+  ];
+
   let html = template;
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeAttr(title)}</title>`);
-  html = upsert(html, /<meta name="description"[^>]*>/, `<meta name="description" content="${d}" />`);
-  html = upsert(html, /<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${t}" />`);
-  html = upsert(html, /<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${d}" />`);
-  html = upsert(html, /<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${url}" />`);
-  html = upsert(html, /<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${image}" />`);
-  html = upsert(html, /<meta property="og:type"[^>]*>/, `<meta property="og:type" content="article" />`);
-  html = upsert(html, /<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${t}" />`);
-  html = upsert(html, /<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${d}" />`);
-  html = upsert(html, /<meta name="twitter:url"[^>]*>/, `<meta name="twitter:url" content="${url}" />`);
-  html = upsert(html, /<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${image}" />`);
-  html = upsert(html, /<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${url}" />`);
+
+  for (const [tag, attr, attrValue, contentAttr, contentValue] of tags) {
+    html = upsert(
+      html,
+      tagPattern(tag, attr, attrValue),
+      `<${tag} ${attr}="${attrValue}" ${contentAttr}="${contentValue}" />`
+    );
+  }
+
   return html;
+}
+
+/**
+ * Пишет build/sitemap.xml: главная плюс по адресу на каждый кейс.
+ *
+ * Список берётся из того же src/data/projects.json, из которого делаются
+ * страницы кейсов, поэтому новый кейс попадает в карту сайта сам, без
+ * отдельной правки.
+ *
+ * Тега <lastmod> нет намеренно: под рукой только дата сборки, а она меняется
+ * и когда тексты кейса остались прежними. Дата, которой нельзя доверять,
+ * поисковым роботам не помогает.
+ */
+function buildSitemap() {
+  const urls = ['/', ...projects.map(project => `/${project.id}`)];
+  const body = urls.map(url => `  <url>\n    <loc>${ORIGIN}${url}</loc>\n  </url>`).join('\n');
+
+  const xml =
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    body +
+    '\n</urlset>\n';
+
+  fs.writeFileSync(path.join(BUILD, 'sitemap.xml'), xml, 'utf8');
+  console.log(`Готово: build/sitemap.xml, адресов в карте — ${urls.length}.`);
 }
 
 function main() {
@@ -72,8 +121,8 @@ function main() {
   if (template.includes('src="./static/')) {
     throw new Error(
       'В build/index.html относительные пути к файлам сборки. На вложенном ' +
-      'адресе вроде /logiq/ они разрешатся в /logiq/static/... и страница ' +
-      'не загрузится. Нужно поле "homepage": "/" в package.json.'
+        'адресе вроде /logiq/ они разрешатся в /logiq/static/... и страница ' +
+        'не загрузится. Нужно поле "homepage": "/" в package.json.'
     );
   }
 
@@ -82,7 +131,7 @@ function main() {
     if (!text) {
       throw new Error(
         `Для проекта "${project.id}" из src/data/projects.json нет текстов ` +
-        'в src/i18n/translations/projects.json — списки разошлись.'
+          'в src/i18n/translations/projects.json — списки разошлись.'
       );
     }
 
@@ -97,6 +146,8 @@ function main() {
   }
 
   console.log(`Готово: отдельный HTML на ${projects.length} кейса.`);
+
+  buildSitemap();
 }
 
 main();

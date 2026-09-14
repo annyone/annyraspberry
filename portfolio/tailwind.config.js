@@ -1,13 +1,5 @@
 module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    './public/index.html'
-  ],
-  safelist: [
-    'text-pink-500',
-    'hover:text-pink-500',
-    'focus:text-pink-500',
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {
       fontFamily: {
@@ -17,4 +9,4 @@ module.exports = {
   },
   darkMode: 'media',
   plugins: [],
-}
+};

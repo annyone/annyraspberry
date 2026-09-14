@@ -9,18 +9,19 @@
         },
         "links": [
           { "label": "dsgners", "url": "https://dsgners.ru/raspberry/12236-rabota-nad-oshibkami" },
-          { "label": "habr",    "url": "https://habr.com/ru/articles/936856/" }
+          { "label": "habr", "url": "https://habr.com/ru/articles/936856/" }
         ]
       },
       {
-        "title": { "ru": "Как я создала плагин для Figma с помощью ChatGPT", "en": "How I Built a Figma Plugin Using ChatGPT" },
+        "title": {
+          "ru": "Как я создала плагин для Figma с помощью ChatGPT",
+          "en": "How I Built a Figma Plugin Using ChatGPT"
+        },
         "text": {
           "ru": "Рассказала про свой опыт создания плагина для заметок с помощью нейросетей, который выглядит нативно и имеет настройку категорий",
           "en": "I share my experience creating a notes plugin with neural networks that feels native and supports category configuration."
         },
-        "links": [
-          { "label": "habr", "url": "https://habr.com/ru/articles/901112/" }
-        ]
+        "links": [{ "label": "habr", "url": "https://habr.com/ru/articles/901112/" }]
       }
     ]
   }

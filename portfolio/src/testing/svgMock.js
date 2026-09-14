@@ -7,9 +7,7 @@
 // и Telegram подключены как <ReactComponent>.
 const React = require('react');
 
-const SvgStub = React.forwardRef((props, ref) =>
-  React.createElement('svg', { ref, ...props })
-);
+const SvgStub = React.forwardRef((props, ref) => React.createElement('svg', { ref, ...props }));
 SvgStub.displayName = 'SvgStub';
 
 module.exports = {

@@ -7,21 +7,30 @@
     "tasks": {
       "title": { "ru": "Задачи", "en": "Goals" },
       "simplify": {
-        "title": { "ru": "Упростить разрастающийся интерфейс", "en": "Simplify the growing interface" },
+        "title": {
+          "ru": "Упростить разрастающийся интерфейс",
+          "en": "Simplify the growing interface"
+        },
         "text": {
           "ru": "С появлением новых функций интерфейс начал хаотично обрастать новыми элементами — появилось много визуального шума, воспринимать информацию стало сложнее",
           "en": "With new features the interface started accumulating elements chaotically — visual noise increased and information became harder to perceive."
         }
       },
       "reduce": {
-        "title": { "ru": "Снизить порог вхождения в продукт", "en": "Lower the product's entry barrier" },
+        "title": {
+          "ru": "Снизить порог вхождения в продукт",
+          "en": "Lower the product's entry barrier"
+        },
         "text": {
           "ru": "Не все аналитики знают SQL и боятся пользоваться интерфейсом, так как он кажется сложным и «тяжёлым»",
           "en": "Not all analysts know SQL and some are intimidated by the interface because it feels complex and 'heavy'."
         }
       },
       "increase": {
-        "title": { "ru": "Повысить информативность интерфейса", "en": "Increase the interface's informativeness" },
+        "title": {
+          "ru": "Повысить информативность интерфейса",
+          "en": "Increase the interface's informativeness"
+        },
         "text": {
           "ru": "Интерфейс «скрывает» информацию, которая необходима аналитику — приходится многое запоминать или вспоминать, отвлекаясь от работы",
           "en": "The interface 'hides' information needed by analysts — they must remember or recall details, which distracts from their work."
@@ -31,11 +40,26 @@
     "what": {
       "title": { "ru": "Что я сделала", "en": "What I did" },
       "items": {
-        "0": { "ru": "Собрала и проанализировала обратную связь от пользователей — что сейчас не нравится или не удобно в интерфейсе", "en": "Collected and analysed user feedback — what users dislike or find inconvenient" },
-        "1": { "ru": "Провела интервью с пользователями и узнала, как они пользуются продуктом", "en": "Conducted user interviews to learn how they use the product" },
-        "2": { "ru": "Провела конкурентный анализ — выбрала системы для решения похожих задач, проанализировала их плюсы и минусы", "en": "Performed competitive analysis — selected systems for similar tasks and analysed their pros and cons" },
-        "3": { "ru": "Разработала структуру основного раздела так, чтобы его было удобно развивать в будущем", "en": "Designed the main section structure so it can be easily extended in the future" },
-        "4": { "ru": "Сделала редизайн основного раздела с учетом новой структуры, улучшила сценарии ввода параметров запроса", "en": "Redesigned the main section according to the new structure and improved the query parameter input flows" }
+        "0": {
+          "ru": "Собрала и проанализировала обратную связь от пользователей — что сейчас не нравится или не удобно в интерфейсе",
+          "en": "Collected and analysed user feedback — what users dislike or find inconvenient"
+        },
+        "1": {
+          "ru": "Провела интервью с пользователями и узнала, как они пользуются продуктом",
+          "en": "Conducted user interviews to learn how they use the product"
+        },
+        "2": {
+          "ru": "Провела конкурентный анализ — выбрала системы для решения похожих задач, проанализировала их плюсы и минусы",
+          "en": "Performed competitive analysis — selected systems for similar tasks and analysed their pros and cons"
+        },
+        "3": {
+          "ru": "Разработала структуру основного раздела так, чтобы его было удобно развивать в будущем",
+          "en": "Designed the main section structure so it can be easily extended in the future"
+        },
+        "4": {
+          "ru": "Сделала редизайн основного раздела с учетом новой структуры, улучшила сценарии ввода параметров запроса",
+          "en": "Redesigned the main section according to the new structure and improved the query parameter input flows"
+        }
       }
     },
     "before": {

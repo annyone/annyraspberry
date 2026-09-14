@@ -7,19 +7,17 @@ import Image from '../../components/Image';
 import Article from '../../components/Article';
 import { useLanguage } from '../../i18n/LanguageContext';
 
-export default function DartsCase({ project }){
+export default function DartsCase({ project }) {
   const { t } = useLanguage();
   const title = t('projects.darts.title');
-  
+
   return (
     <Layout title={`${title} — ${t('site.author')}`} mainClassName="">
       <Section className="pt-12 gap-8">
         <Text variant="h2">{title}</Text>
         <Image
           src={project.thumbnail}
-          sources={[
-            { srcSet: project.thumbnail_2x, media: "(min-width: 1024px)" }
-          ]}
+          sources={[{ srcSet: project.thumbnail_2x, media: '(min-width: 1024px)' }]}
           backgroundColor={project.thumbnailBackground}
           alt={title}
         />
@@ -42,18 +40,14 @@ export default function DartsCase({ project }){
             t('pages.darts.participation.items.4'),
           ]}
         />
-      </Section>    
+      </Section>
 
       <Section title={t('pages.darts.scenarios.title')} className="gap-4">
         <Article title={t('pages.darts.scenarios.player.title')}>
           <Text variant="p">{t('pages.darts.scenarios.player.text1')}</Text>
           <Text variant="p">{t('pages.darts.scenarios.player.text2')}</Text>
 
-          <Image
-            src="/images/darts/10.gif"
-            alt={t('pages.darts.scenarios.player.alt')}
-            shadow
-          />
+          <Image src="/images/darts/10.gif" alt={t('pages.darts.scenarios.player.alt')} shadow />
         </Article>
         <Article title={t('pages.darts.scenarios.tournament.title')} last>
           <Text variant="p">{t('pages.darts.scenarios.tournament.text1')}</Text>
@@ -62,23 +56,18 @@ export default function DartsCase({ project }){
 
           <Image
             src="/images/darts/scenario.webp"
-            sources={[
-              { srcSet: "/images/darts/scenario-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/darts/scenario-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.darts.scenarios.tournament.alt')}
           />
         </Article>
       </Section>
-
 
       <Section title={t('pages.darts.scalability.title')} className="gap-4">
         <Text variant="p">{t('pages.darts.scalability.text')}</Text>
 
         <Image
           src="/images/darts/scale.webp"
-          sources={[
-            { srcSet: "/images/darts/scale-2x.webp", media: "(min-width: 1024px)" }
-          ]}
+          sources={[{ srcSet: '/images/darts/scale-2x.webp', media: '(min-width: 1024px)' }]}
           alt={t('pages.darts.scalability.alt')}
         />
       </Section>
@@ -90,9 +79,7 @@ export default function DartsCase({ project }){
           <Text variant="p">{t('pages.darts.stages.participants.text')}</Text>
           <Image
             src="/images/darts/add.webp"
-            sources={[
-              { srcSet: "/images/darts/add-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/darts/add-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.darts.stages.participants.alt')}
           />
         </Article>
@@ -100,9 +87,7 @@ export default function DartsCase({ project }){
           <Text variant="p">{t('pages.darts.stages.documents.text')}</Text>
           <Image
             src="/images/darts/player.webp"
-            sources={[
-              { srcSet: "/images/darts/player-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/darts/player-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.darts.stages.documents.alt')}
             shadow
           />
@@ -111,9 +96,7 @@ export default function DartsCase({ project }){
           <Text variant="p">{t('pages.darts.stages.groups.text')}</Text>
           <Image
             src="/images/darts/groups.webp"
-            sources={[
-              { srcSet: "/images/darts/groups-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/darts/groups-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.darts.stages.groups.alt')}
             shadow
           />
@@ -122,9 +105,7 @@ export default function DartsCase({ project }){
           <Text variant="p">{t('pages.darts.stages.finish.text')}</Text>
           <Image
             src="/images/darts/results.webp"
-            sources={[
-              { srcSet: "/images/darts/results-2x.webp", media: "(min-width: 1024px)" }
-            ]}
+            sources={[{ srcSet: '/images/darts/results-2x.webp', media: '(min-width: 1024px)' }]}
             alt={t('pages.darts.stages.finish.alt')}
             shadow
           />
@@ -135,9 +116,7 @@ export default function DartsCase({ project }){
         <Text variant="p">{t('pages.darts.informativeness.text')}</Text>
         <Image
           src="/images/darts/stages.webp"
-          sources={[
-            { srcSet: "/images/darts/stages-2x.webp", media: "(min-width: 1024px)" }
-          ]}
+          sources={[{ srcSet: '/images/darts/stages-2x.webp', media: '(min-width: 1024px)' }]}
           alt={t('pages.darts.informativeness.alt')}
         />
       </Section>
@@ -146,9 +125,7 @@ export default function DartsCase({ project }){
         <Text variant="p">{t('pages.darts.familiarity.text')}</Text>
         <Image
           src="/images/darts/calc.webp"
-          sources={[
-            { srcSet: "/images/darts/calc-2x.webp", media: "(min-width: 1024px)" }
-          ]}
+          sources={[{ srcSet: '/images/darts/calc-2x.webp', media: '(min-width: 1024px)' }]}
           alt={t('pages.darts.familiarity.alt')}
         />
       </Section>

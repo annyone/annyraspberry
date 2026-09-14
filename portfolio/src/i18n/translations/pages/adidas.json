@@ -51,14 +51,20 @@
         "alt": { "ru": "Лендинг Adidas", "en": "Adidas landing" }
       },
       "outfit": {
-        "title": { "ru": "Просмотр всего образа и выбор одежды", "en": "View full outfit and choose items" },
+        "title": {
+          "ru": "Просмотр всего образа и выбор одежды",
+          "en": "View full outfit and choose items"
+        },
         "text": {
           "ru": "Подобно персонажу в игре, пользователь может настраивать свой образ, выбирая различные элементы одежды и аксессуары. При этом сразу можно увидеть, как выбранные вещи будут выглядеть на модели, и сколько будет стоить полный образ.",
           "en": "Like a game character, the user can customize their look by selecting different clothing elements and accessories. You can immediately see how selected items look on a model and the total cost of the full outfit."
         }
       },
       "specs": {
-        "title": { "ru": "Характеристики выбранной модели", "en": "Selected item's specifications" },
+        "title": {
+          "ru": "Характеристики выбранной модели",
+          "en": "Selected item's specifications"
+        },
         "text": {
           "ru": "На странице определенной модели пользователь может увидеть все характеристики выбранной вещи, включая материалы, размеры и доступные цвета.",
           "en": "On a product page the user can see all characteristics of the selected item, including materials, sizes, and available colors."

@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useMemo, useState, useEffect } from 'react';
 
-import nav         from './translations/nav.json';
-import ui          from './translations/ui.json';
-import projects    from './translations/projects.json';
+import nav from './translations/nav.json';
+import ui from './translations/ui.json';
+import projects from './translations/projects.json';
 import experiences from './translations/experiences.json';
-import articles    from './translations/articles.json';
-import axelnac     from './translations/pages/axelnac.json';
-import logiq       from './translations/pages/logiq.json';
-import darts       from './translations/pages/darts.json';
-import adidas      from './translations/pages/adidas.json';
+import articles from './translations/articles.json';
+import axelnac from './translations/pages/axelnac.json';
+import logiq from './translations/pages/logiq.json';
+import darts from './translations/pages/darts.json';
+import adidas from './translations/pages/adidas.json';
 
 const dict = {
   ...nav,
@@ -38,10 +38,9 @@ function resolveInitialLang() {
 }
 
 function getByPath(obj, path) {
-  return path.split('.').reduce(
-    (acc, part) => (acc && acc[part] != null ? acc[part] : undefined),
-    obj
-  );
+  return path
+    .split('.')
+    .reduce((acc, part) => (acc && acc[part] != null ? acc[part] : undefined), obj);
 }
 
 // Recursively resolves { ru, en } bilingual pairs to the target language.
@@ -62,7 +61,9 @@ export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(resolveInitialLang);
 
   useEffect(() => {
-    try { window.localStorage.setItem('lang', lang); } catch {}
+    try {
+      window.localStorage.setItem('lang', lang);
+    } catch {}
   }, [lang]);
 
   const t = useMemo(() => {

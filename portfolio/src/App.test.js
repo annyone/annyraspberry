@@ -16,7 +16,7 @@ beforeEach(() => {
   window.localStorage.setItem('lang', 'ru');
 });
 
-test.each(projects.map(p => p.id))('прямой адрес /%s рисует страницу кейса', (id) => {
+test.each(projects.map(p => p.id))('прямой адрес /%s рисует страницу кейса', id => {
   renderAt(`/${id}`);
   const title = caseTexts.projects[id].title.ru;
   expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
@@ -36,7 +36,11 @@ test('со страницы кейса пункты меню ведут на с�
   renderAt('/logiq');
   // Раньше здесь было просто "#cases", то есть /logiq#cases: клик оставлял
   // на кейсе, секции с таким id там нет, прокрутки не происходило
-  for (const [name, href] of [['Кейсы', '/#cases'], ['Обо мне', '/#about'], ['Статьи', '/#articles']]) {
+  for (const [name, href] of [
+    ['Кейсы', '/#cases'],
+    ['Обо мне', '/#about'],
+    ['Статьи', '/#articles'],
+  ]) {
     const links = screen.getAllByRole('link', { name });
     expect(links.length).toBeGreaterThan(0);
     links.forEach(link => expect(link).toHaveAttribute('href', href));

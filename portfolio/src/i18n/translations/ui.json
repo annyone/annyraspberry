@@ -1,31 +1,40 @@
 {
   "site": {
-    "title":  { "ru": "Малинина Анна — UI/UX дизайнер", "en": "Anna Malinina — UI/UX designer" },
+    "title": { "ru": "Малинина Анна — UI/UX дизайнер", "en": "Anna Malinina — UI/UX designer" },
     "author": { "ru": "Малинина Анна", "en": "Anna Malinina" }
   },
   "hero": {
     "photoAlt": { "ru": "Аня", "en": "Anya" },
-    "greeting":  { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
+    "greeting": { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
     "subtitle": {
-      "part1": { "ru": "Продуктовый дизайнер с большим опытом в IT:", "en": "Product designer with long experience in IT:" },
+      "part1": {
+        "ru": "Продуктовый дизайнер с большим опытом в IT:",
+        "en": "Product designer with long experience in IT:"
+      },
       "part2": { "ru": "дизайн, разработка, тестирование", "en": "design, development, testing" }
     },
     "tagline": {
-      "part1": { "ru": "Создаю интуитивно понятные интерфейсы", "en": "I create intuitive interfaces" },
+      "part1": {
+        "ru": "Создаю интуитивно понятные интерфейсы",
+        "en": "I create intuitive interfaces"
+      },
       "part2": { "ru": "для сложных продуктов 😎", "en": "for complex products 😎" }
     }
   },
   "home": {
     "sections": {
-      "cases":    { "ru": "кейсы",   "en": "cases" },
-      "about":    { "ru": "обо мне", "en": "about" },
+      "cases": { "ru": "кейсы", "en": "cases" },
+      "about": { "ru": "обо мне", "en": "about" },
       "articles": { "ru": "статьи", "en": "articles" }
     }
   },
   "notFound": {
     "title": { "ru": "Страница не найдена", "en": "Page not found" },
-    "text":  { "ru": "Такой страницы на сайте нет — возможно, в адресе опечатка.", "en": "There is no such page — the address may contain a typo." },
-    "back":  { "ru": "На главную", "en": "Back home" }
+    "text": {
+      "ru": "Такой страницы на сайте нет — возможно, в адресе опечатка.",
+      "en": "There is no such page — the address may contain a typo."
+    },
+    "back": { "ru": "На главную", "en": "Back home" }
   },
   "common": {
     "more": { "ru": "Подробнее", "en": "More" }

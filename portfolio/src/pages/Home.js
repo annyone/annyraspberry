@@ -19,34 +19,33 @@ export default function Home() {
       <Section id="cases" subtitle={t('home.sections.cases', 'cases')} className="!gap-0">
         {
           // Use thumbnails and page info from src/data/projects.json
-          (projects || []).map((project) => (
+          (projects || []).map(project => (
             <ProjectCard key={project.id} project={project} />
           ))
         }
       </Section>
 
-
       {/* About */}
       <Section id="about" subtitle={t('home.sections.about', 'about')}>
         {
           // read experiences from translations (array) — fallback to empty array
-          (t('experiences') || []).filter(e => e && e.show !== false).map((experience, index) => (
-            <ExperienceCard
-              key={experience.id || index}
-              experience={experience}
-            />
+          (t('experiences') || []).map((experience, index) => (
+            <ExperienceCard key={experience.id || index} experience={experience} />
           ))
         }
       </Section>
 
       {/* Articles */}
-      <Section id="articles" subtitle={t('home.sections.articles', 'articles')} className="!gap-6 xl:grid-cols-2" last>
-        {Array.isArray(localizedArticles) && localizedArticles.map((article, i) => (
-          <ArticleCard
-            key={article.title || i}
-            article={article}
-          />
-        ))}
+      <Section
+        id="articles"
+        subtitle={t('home.sections.articles', 'articles')}
+        className="!gap-6 xl:grid-cols-2"
+        last
+      >
+        {Array.isArray(localizedArticles) &&
+          localizedArticles.map((article, i) => (
+            <ArticleCard key={article.title || i} article={article} />
+          ))}
       </Section>
     </Layout>
   );

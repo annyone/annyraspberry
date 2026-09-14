@@ -1,0 +1,15 @@
+# В репозитории все текстовые файлы хранятся с переводом строки LF.
+# Без этой строки Windows коммитит CRLF, и git при каждом коммите печатает
+# предупреждение «LF will be replaced by CRLF».
+* text=auto eol=lf
+
+# Двоичные файлы git не трогает: перенос строк в них — часть данных.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
