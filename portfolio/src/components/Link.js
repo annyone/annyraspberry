@@ -8,9 +8,11 @@ const iconClass = 'h-7 w-7';
 
 export default function Link({ to, href, label, icon, className = '', ...props }) {
   // Клонируем иконку с нужными классами - SVG наследует цвет через currentColor
-  const iconEl = icon ? React.cloneElement(icon, { 
-    className: `${iconClass} ${icon.props.className || ''}`.trim()
-  }) : null;
+  const iconEl = icon
+    ? React.cloneElement(icon, {
+        className: `${iconClass} ${icon.props.className || ''}`.trim(),
+      })
+    : null;
 
   const content = (
     <>

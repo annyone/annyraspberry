@@ -8,7 +8,6 @@ const variants = {
   hero: {
     tag: 'h2',
     className: 'text-lg lg:text-xl xl:text-2xl font-normal',
-
   },
   h1: {
     tag: 'h1',
@@ -28,9 +27,9 @@ const variants = {
   },
   subtitle: {
     tag: 'p',
-    className: 'text-base text-zinc-500 font-feature-settings-smcp',
+    className: 'text-base text-zinc-500',
   },
-  p:{
+  p: {
     tag: 'p',
     className: 'text-base md:text-lg/7 xl:text-xl/9',
   },

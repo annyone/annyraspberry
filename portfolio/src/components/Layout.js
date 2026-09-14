@@ -21,9 +21,7 @@ export default function Layout({ title, mainClassName = 'pb-1', children }) {
   return (
     <div className="min-h-screen">
       <Nav items={getNavItems(t, lang)} />
-      <main className={`max-w-[1600px] w-full mx-auto ${mainClassName}`.trim()}>
-        {children}
-      </main>
+      <main className={`max-w-[1600px] w-full mx-auto ${mainClassName}`.trim()}>{children}</main>
     </div>
   );
 }

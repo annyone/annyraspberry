@@ -10,7 +10,7 @@ const DRAWER_WIDTH = 'w-64';
 // Компонент иконки бургер-меню
 const BurgerIcon = ({ isOpen, onClick, label }) => {
   const lineClass = 'block w-6 h-0.5 bg-zinc-900 dark:bg-white';
-  
+
   return (
     <button
       onClick={onClick}
@@ -60,7 +60,9 @@ export default function Nav({ items = [] }) {
     <>
       {/* Навигационная панель */}
       <nav className="w-full fixed top-0 left-0 right-0 z-40 bg-white dark:bg-zinc-900">
-        <div className={`max-w-[1600px] w-full mx-auto flex items-center ${NAV_HEIGHT} px-8 xl:px-12`}>
+        <div
+          className={`max-w-[1600px] w-full mx-auto flex items-center ${NAV_HEIGHT} px-8 xl:px-12`}
+        >
           {/* Логотип */}
           <Link
             to="/"
@@ -68,10 +70,14 @@ export default function Nav({ items = [] }) {
             aria-label={t('nav.home', 'Home')}
             className="flex items-center h-full group"
           />
-          
+
           {/* Иконка бургер-меню */}
           <div className="ml-auto">
-            <BurgerIcon isOpen={isDrawerOpen} onClick={toggleDrawer} label={t('nav.menu', 'Menu')} />
+            <BurgerIcon
+              isOpen={isDrawerOpen}
+              onClick={toggleDrawer}
+              label={t('nav.menu', 'Menu')}
+            />
           </div>
 
           {/* Десктопное меню */}
@@ -84,7 +90,6 @@ export default function Nav({ items = [] }) {
               <LanguageSwitcher />
             </div>
           </div>
-          
         </div>
       </nav>
 
@@ -111,7 +116,7 @@ export default function Nav({ items = [] }) {
           <span className="block w-6 h-0.5 bg-zinc-900 dark:bg-white absolute rotate-45" />
           <span className="block w-6 h-0.5 bg-zinc-900 dark:bg-white absolute -rotate-45" />
         </button>
-        
+
         <nav className="flex flex-col p-6 space-y-6 mt-20" aria-label={t('nav.menu', 'Menu')}>
           {items.map((item, index) => (
             <NavItem key={index} item={item} onClick={closeDrawer} />
