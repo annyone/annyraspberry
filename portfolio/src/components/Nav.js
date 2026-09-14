@@ -28,6 +28,9 @@ const BurgerIcon = ({ isOpen, onClick, label }) => {
 // Компонент элемента навигации с автоматической передачей всех необходимых props
 const NavItem = ({ item, onClick }) => {
   const linkProps = {
+    // `to` — внутренний переход через RouterLink, `url` — обычная ссылка.
+    // Link выбирает между ними сам, поэтому пробрасываем оба поля.
+    ...(item.to && { to: item.to }),
     href: item.url,
     label: item.label,
     icon: item.icon,

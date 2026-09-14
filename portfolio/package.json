@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -16,12 +16,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && powershell -Command \"Copy-Item -Path ./build/* -Destination ../ -Recurse -Force; Copy-Item -Path ./build/index.html -Destination ../404.html -Force\"",
+    "build": "react-scripts build && node scripts/generate-case-html.js",
     "start:ru": "powershell -Command \"$env:REACT_APP_LANG='ru'; npm run start\"",
     "start:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run start\"",
-    "build:ru": "powershell -Command \"$env:REACT_APP_LANG='ru'; npm run _build:one; if (Test-Path ../build-ru) { Remove-Item ../build-ru -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-ru -Recurse -Force\"",
-    "build:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run _build:one; if (Test-Path ../build-en) { Remove-Item ../build-en -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-en -Recurse -Force\"",
-    "_build:one": "react-scripts build",
+    "build:ru": "powershell -Command \"$env:REACT_APP_LANG='ru'; npm run build; if (Test-Path ../build-ru) { Remove-Item ../build-ru -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-ru -Recurse -Force\"",
+    "build:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run build; if (Test-Path ../build-en) { Remove-Item ../build-en -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-en -Recurse -Force\"",
     "build:both": "npm run build:ru && npm run build:en",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -35,7 +34,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.4.18"
   },
   "browserslist": {
@@ -49,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.svg$": "<rootDir>/src/testing/svgMock.js"
+    }
   }
 }

@@ -1,4 +1,8 @@
 {
+  "site": {
+    "title":  { "ru": "Малинина Анна — UI/UX дизайнер", "en": "Anna Malinina — UI/UX designer" },
+    "author": { "ru": "Малинина Анна", "en": "Anna Malinina" }
+  },
   "hero": {
     "photoAlt": { "ru": "Аня", "en": "Anya" },
     "greeting":  { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
@@ -17,6 +21,11 @@
       "about":    { "ru": "обо мне", "en": "about" },
       "articles": { "ru": "статьи", "en": "articles" }
     }
+  },
+  "notFound": {
+    "title": { "ru": "Страница не найдена", "en": "Page not found" },
+    "text":  { "ru": "Такой страницы на сайте нет — возможно, в адресе опечатка.", "en": "There is no such page — the address may contain a typo." },
+    "back":  { "ru": "На главную", "en": "Back home" }
   },
   "common": {
     "more": { "ru": "Подробнее", "en": "More" }

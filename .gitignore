@@ -1,0 +1,5 @@
+node_modules/
+
+# Снимки сборок для конкретного языка, их делают build:ru и build:en
+/build-ru/
+/build-en/

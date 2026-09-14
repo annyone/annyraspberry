@@ -13,10 +13,6 @@ html,body,#root{height:100%}
   }
 }
 
-.page-transition {
-  animation: fadeIn 0.4s ease-out forwards;
-}
-
 /* Smooth transitions for route changes */
 #root > * {
   animation: fadeIn 0.4s ease-out;

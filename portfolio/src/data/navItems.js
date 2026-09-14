@@ -15,16 +15,22 @@ export function getNavItems(t, lang = 'en') {
   const cvUrl = '/' + encodeURIComponent(cvFile);
 
   return [
+    // Ссылки на секции задаются от корня сайта и полем `to`, а не `href`.
+    // Просто '#cases' со страницы кейса даёт адрес /logiq#cases: остаёмся
+    // на кейсе, секции с таким id там нет, никуда не прокручиваемся.
+    // Поле `to` заставляет Link отрендерить RouterLink, поэтому переход
+    // на главную идёт без перезагрузки страницы, а прокрутку к якорю
+    // выполняет components/ScrollToTop.js.
     {
-      url: '#cases',
+      to: '/#cases',
       label: t('nav.cases', 'Cases')
     },
     {
-      url: '#about',
+      to: '/#about',
       label: t('nav.about', 'About')
     },
     {
-      url: '#articles',
+      to: '/#articles',
       label: t('nav.articles', 'Articles')
     },
     {

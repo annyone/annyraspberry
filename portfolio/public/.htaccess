@@ -1,0 +1,28 @@
+# Одностраничное приложение: маршрутов /axelnac, /logiq, /darts, /adidas
+# нет на диске как отдельных скриптов — их разбирает react-router в браузере.
+# Без правил ниже Apache на прямой запрос /logiq не находит файл и отдаёт 404,
+# то есть ссылка из мессенджера или F5 на странице кейса не работают.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Существующий файл отдаём как есть: static/*, images/*, *.pdf,
+  #    robots.txt, manifest.json, favicon.ico.
+  #    Проверка идёт первой, иначе отсутствующий /static/js/main.*.js
+  #    вернулся бы как HTML по правилу 3 и страница сломалась бы молча.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # 2. Если для маршрута собран свой HTML (build/logiq/index.html,
+  #    его делает scripts/generate-case-html.js) — отдаём его сразу.
+  #    Без этого правила Apache перенаправил бы /logiq на /logiq/
+  #    со слешем на конце, меняя адрес в строке браузера.
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^([^/.]+)/?$ /$1/index.html [L]
+
+  # 3. Всё остальное — общий index.html с кодом ответа 200.
+  #    Адрес в строке браузера не меняется, маршрут разбирает react-router.
+  #    Условие !-d оставляет каталогам обычную обработку Apache.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ /index.html [L]
+</IfModule>
