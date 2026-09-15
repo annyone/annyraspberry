@@ -11,6 +11,8 @@
     "home": { "ru": "Главная страница", "en": "Home" }
   },
   "lang": {
-    "switchAria": { "ru": "Переключить язык", "en": "Switch language" }
+    "group": { "ru": "Язык интерфейса", "en": "Interface language" },
+    "ru": { "ru": "Русский", "en": "Russian" },
+    "en": { "ru": "Английский", "en": "English" }
   }
 }

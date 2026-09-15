@@ -17,28 +17,28 @@
     },
     "participation": {
       "title": { "ru": "Мое участие в проекте", "en": "My role in the project" },
-      "items": {
-        "0": {
+      "items": [
+        {
           "ru": "Провела брифинг с заказчиком. Обсудили: как в целом проводится турнир, какие есть роли у организаторов, какие проблемы обычно возникают, чего не хватает в текущей системе, какие есть ожидания от новой системы.",
           "en": "Held a briefing with the client. Discussed how tournaments are generally run, organizer roles, common problems, shortcomings of the current system, and expectations for the new system."
         },
-        "1": {
+        {
           "ru": "Проанализировала текущую систему и изучила правила по спорту. Прочитала руководство пользователя, прошла путь от создания турнира до его завершения. Зафиксировала, какие функции предоставляет система сейчас. Определила основные слабые места системы: устаревший дизайн, сложно разобраться без документации, запутанные сценарии.",
           "en": "Analysed the current system and studied the sport rules. Read user guides and went through the flow from creating a tournament to its completion. Documented current system features and identified key weaknesses: outdated design, hard to understand without documentation, and confusing flows."
         },
-        "2": {
+        {
           "ru": "Разработала концепт системы для решения задач пользователя: определила основные сущности, их атрибуты и юзерфлоу. Подготовила макеты и презентовала их заказчику.",
           "en": "Designed a system concept to meet user needs: defined main entities, their attributes, and user flows. Prepared mockups and presented them to the client."
         },
-        "3": {
+        {
           "ru": "Проводила онбординг для новых участников команды разработки.",
           "en": "Conducted onboarding for new members of the development team."
         },
-        "4": {
+        {
           "ru": "После разработки проводила дизайн ревью готовой системы.",
           "en": "Performed design reviews of the completed system after development."
         }
-      }
+      ]
     },
     "scenarios": {
       "title": { "ru": "Некоторые сценарии", "en": "Some scenarios" },
@@ -152,20 +152,20 @@
         "ru": "Новая система сокращает ручной труд и вероятность совершить ошибку насколько это возможно.",
         "en": "The new system reduces manual work and the chance of errors as much as possible."
       },
-      "items": {
-        "0": {
+      "items": [
+        {
           "ru": "Создана база игроков, в которой хранятся необходимые данные о них — теперь нет необходимости заполнять всё вручную, а информация, на которую нужно обратить внимание, будет подсвечиваться.",
           "en": "A player database was created that stores necessary data — no need to fill everything manually, and important information is highlighted."
         },
-        "1": {
+        {
           "ru": "Переработана схема создания и проведения турнира — новая схема максимально приближена к тому, как это происходит в реальности.",
           "en": "The tournament creation and execution flow was redesigned to closely match how it works in reality."
         },
-        "2": {
+        {
           "ru": "Автоматизирован этап создания отчетов о турнире — подготовка документов требует минимального участия от пользователя.",
           "en": "The report generation stage was automated — preparing documents now requires minimal user involvement."
         }
-      },
+      ],
       "text2": {
         "ru": "Кроме этого, система обладает другими важными характеристиками, которые позволят проще и легче использовать её и развивать в будущем.",
         "en": "Additionally, the system has other important characteristics that will make it easier to use and extend in the future."

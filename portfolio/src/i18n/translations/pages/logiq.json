@@ -39,28 +39,28 @@
     },
     "what": {
       "title": { "ru": "Что я сделала", "en": "What I did" },
-      "items": {
-        "0": {
+      "items": [
+        {
           "ru": "Собрала и проанализировала обратную связь от пользователей — что сейчас не нравится или не удобно в интерфейсе",
           "en": "Collected and analysed user feedback — what users dislike or find inconvenient"
         },
-        "1": {
+        {
           "ru": "Провела интервью с пользователями и узнала, как они пользуются продуктом",
           "en": "Conducted user interviews to learn how they use the product"
         },
-        "2": {
+        {
           "ru": "Провела конкурентный анализ — выбрала системы для решения похожих задач, проанализировала их плюсы и минусы",
           "en": "Performed competitive analysis — selected systems for similar tasks and analysed their pros and cons"
         },
-        "3": {
+        {
           "ru": "Разработала структуру основного раздела так, чтобы его было удобно развивать в будущем",
           "en": "Designed the main section structure so it can be easily extended in the future"
         },
-        "4": {
+        {
           "ru": "Сделала редизайн основного раздела с учетом новой структуры, улучшила сценарии ввода параметров запроса",
           "en": "Redesigned the main section according to the new structure and improved the query parameter input flows"
         }
-      }
+      ]
     },
     "before": {
       "title": { "ru": "Было", "en": "Before" },

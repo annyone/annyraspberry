@@ -10,7 +10,10 @@ import projects from '../data/projects.json';
 
 export default function Home() {
   const { t } = useLanguage();
-  const localizedArticles = t('articles.items', { returnObjects: true });
+  // Второй аргумент t() — запасное значение. Для списков это всегда [],
+  // чтобы при отсутствующем ключе в разметку не уехала строка ключа.
+  const localizedArticles = t('articles.items', []);
+  const localizedExperiences = t('experiences', []);
   return (
     <Layout title={t('site.title')}>
       <Hero />
@@ -27,12 +30,10 @@ export default function Home() {
 
       {/* About */}
       <Section id="about" subtitle={t('home.sections.about', 'about')}>
-        {
-          // read experiences from translations (array) — fallback to empty array
-          (t('experiences') || []).map((experience, index) => (
+        {Array.isArray(localizedExperiences) &&
+          localizedExperiences.map((experience, index) => (
             <ExperienceCard key={experience.id || index} experience={experience} />
-          ))
-        }
+          ))}
       </Section>
 
       {/* Articles */}

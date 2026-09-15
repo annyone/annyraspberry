@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
 
+// Второй источник картинки для экранов с двойной плотностью.
+//
+// Соглашение об именовании: рядом с X.webp лежит X-2x.webp. Проверено по
+// public/images — пара есть у каждого .webp без единого исключения, и ни
+// у одного .png или .gif её нет. Отсюда правило: для .webp возвращаем
+// второй источник, для остальных расширений — пустой список, иначе
+// в разметку попадёт <source> без srcset.
+//
+// Порог (min-width: 1024px) до этого был записан руками в 22 местах
+// страниц кейсов; здесь он один.
+export function retinaSources(src) {
+  if (typeof src !== 'string' || !src.endsWith('.webp')) return [];
+  return [{ srcSet: src.replace(/\.webp$/, '-2x.webp'), media: '(min-width: 1024px)' }];
+}
+
 const Image = ({
   src,
   sources = [], // массив объектов { srcSet, media, type }
@@ -7,6 +22,12 @@ const Image = ({
   alt = '',
   className = '',
   shadow = false,
+  // Когда браузер начинает качать файл. 'lazy' — только при приближении
+  // картинки к области просмотра, 'eager' — сразу. По умолчанию 'lazy':
+  // на страницах кейсов картинок девять и больше, и без этого все они
+  // качаются одновременно с первым экраном. Критерий выбора 'eager':
+  // картинка видна без прокрутки при открытии страницы.
+  loading = 'lazy',
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -55,7 +76,10 @@ const Image = ({
   const imageContent =
     sources.length > 0 ? (
       <picture style={{ width: '100%', display: 'block', position: 'relative' }}>
-        <div style={skeletonStyle} className="rounded-lg bg-zinc-200 dark:bg-zinc-700" />
+        <div
+          style={skeletonStyle}
+          className="rounded-lg bg-zinc-200 dark:bg-zinc-700 animate-pulse"
+        />
         {sources.map((source, index) => (
           <source key={index} srcSet={source.srcSet} media={source.media} type={source.type} />
         ))}
@@ -64,18 +88,25 @@ const Image = ({
           alt={alt}
           className="rounded-lg"
           style={imageStyle}
+          loading={loading}
+          decoding="async"
           onLoad={handleImageLoad}
           onError={handleImageError}
         />
       </picture>
     ) : (
       <div style={{ position: 'relative', width: '100%', display: 'block' }}>
-        <div style={skeletonStyle} className="rounded-lg bg-zinc-200 dark:bg-zinc-700" />
+        <div
+          style={skeletonStyle}
+          className="rounded-lg bg-zinc-200 dark:bg-zinc-700 animate-pulse"
+        />
         <img
           src={src}
           alt={alt}
           className="rounded-lg"
           style={imageStyle}
+          loading={loading}
+          decoding="async"
           onLoad={handleImageLoad}
           onError={handleImageError}
         />

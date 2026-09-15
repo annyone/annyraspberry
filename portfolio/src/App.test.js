@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
 import projects from './data/projects.json';
 import caseTexts from './i18n/translations/projects.json';
@@ -25,6 +25,32 @@ test.each(projects.map(p => p.id))('прямой адрес /%s рисует с�
 test('заголовок вкладки содержит название кейса', () => {
   renderAt('/logiq');
   expect(document.title).toContain(caseTexts.projects.logiq.title.ru);
+});
+
+// Переключатель внизу страницы кейса: порядок берётся из data/projects.json,
+// у крайних кейсов одна из двух ссылок отсутствует.
+test.each([
+  ['axelnac', null, 'logiq'],
+  ['logiq', 'axelnac', 'darts'],
+  ['darts', 'logiq', 'adidas'],
+  ['adidas', 'darts', null],
+])('на /%s переключатель ведёт на соседние кейсы', (id, previousId, nextId) => {
+  renderAt(`/${id}`);
+  const switcher = screen.getByRole('navigation', { name: 'Другие кейсы' });
+
+  for (const [label, neighbourId] of [
+    ['Предыдущий кейс', previousId],
+    ['Следующий кейс', nextId],
+  ]) {
+    const name = neighbourId && `${label}: ${caseTexts.projects[neighbourId].title.ru}`;
+    const link = name ? within(switcher).queryByRole('link', { name }) : null;
+
+    if (neighbourId) {
+      expect(link).toHaveAttribute('href', `/${neighbourId}`);
+    } else {
+      expect(within(switcher).queryByText(label)).not.toBeInTheDocument();
+    }
+  }
 });
 
 test('несуществующий адрес ведёт на страницу «не найдено»', () => {

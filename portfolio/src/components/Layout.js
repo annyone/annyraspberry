@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Nav from './Nav';
 import { getNavItems } from '../data/navItems';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -12,6 +12,12 @@ import { useLanguage } from '../i18n/LanguageContext';
 export default function Layout({ title, mainClassName = 'pb-1', children }) {
   const { t, lang } = useLanguage();
 
+  // getNavItems собирает шесть объектов и два элемента иконок. Без useMemo
+  // это происходит при каждой перерисовке любой страницы, хотя результат
+  // зависит только от языка. Условие пересборки: изменился lang (вместе с
+  // ним меняется и t — оно пересоздаётся в LanguageProvider при смене языка).
+  const navItems = useMemo(() => getNavItems(t, lang), [t, lang]);
+
   // Заголовок вкладки задаём в одном месте, а не хуком в каждой странице.
   // Строка зависит от языка, поэтому эффект повторяется при его смене.
   useEffect(() => {
@@ -20,7 +26,7 @@ export default function Layout({ title, mainClassName = 'pb-1', children }) {
 
   return (
     <div className="min-h-screen">
-      <Nav items={getNavItems(t, lang)} />
+      <Nav items={navItems} />
       <main className={`max-w-[1600px] w-full mx-auto ${mainClassName}`.trim()}>{children}</main>
     </div>
   );

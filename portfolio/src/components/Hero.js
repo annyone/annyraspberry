@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import photo from '../images/photo.jpg';
 import Text from '../components/Text';
+import Image from '../components/Image';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Hero() {
-  const [photoLoaded, setPhotoLoaded] = useState(false);
   const { t } = useLanguage();
 
   return (
     <section className="flex flex-col p-[40px] md:p-[80px] xl:p-[140px]">
       <div className="flex flex-col xl:flex-row items-start text-left">
+        {/* Заглушку на время загрузки и плавное появление рисует Image —
+            здесь задаётся только размер. Раньше та же логика была написана
+            в Hero второй раз, и именно её копия растягивала серый блок
+            на весь экран. loading="eager": фотография видна без прокрутки. */}
         <div className="w-40 h-40 flex-shrink-0 xl:mr-12 mb-6 xl:mb-0">
-          {!photoLoaded && (
-            <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-700 rounded-lg animate-pulse" />
-          )}
-          <img
+          <Image
             src={photo}
             alt={t('hero.photoAlt', 'Anya')}
-            className="rounded-lg w-40 h-40 transition-opacity duration-500"
-            style={{
-              opacity: photoLoaded ? 1 : 0,
-            }}
-            onLoad={() => setPhotoLoaded(true)}
+            className="w-40 h-40"
+            loading="eager"
           />
         </div>
         <div className="w-full">

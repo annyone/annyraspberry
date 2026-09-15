@@ -2,25 +2,21 @@ import React from 'react';
 import Text from './Text';
 import MarkerList from './MarkerList';
 import Link from './Link';
-import { useLanguage } from '../i18n/LanguageContext';
 
+// Карточка получает уже локализованную запись опыта: Home читает
+// t('experiences') целиком, и t() подставляет нужный язык во все вложенные
+// пары { ru, en }. Обращаться к словарю ещё раз по experiences.<id>.<поле>
+// нельзя — experiences в JSON это массив, а не объект с ключами по id,
+// то есть такой ключ не разрешается никогда.
 export default function ExperienceCard({ experience }) {
-  const { t } = useLanguage();
-  const keyBase = experience.id ? `experiences.${experience.id}` : null;
-  const dates = keyBase ? t(`${keyBase}.dates`, experience.dates) : experience.dates;
-  const position = keyBase ? t(`${keyBase}.position`, experience.position) : experience.position;
-  const company = keyBase ? t(`${keyBase}.company`, experience.company) : experience.company;
-  const tasks = keyBase ? t(`${keyBase}.tasks`, experience.tasks) : experience.tasks;
-  const rawAchievements = keyBase
-    ? t(`${keyBase}.achievements`, experience.achievements)
-    : experience.achievements;
+  const { dates, position, company, tasks, achievements } = experience;
 
   let achievementsItems = [];
   let achievementsMarker = '•';
 
-  if (rawAchievements && typeof rawAchievements === 'object' && !Array.isArray(rawAchievements)) {
-    if (Array.isArray(rawAchievements.items)) achievementsItems = rawAchievements.items;
-    if (rawAchievements.marker) achievementsMarker = rawAchievements.marker;
+  if (achievements && typeof achievements === 'object' && !Array.isArray(achievements)) {
+    if (Array.isArray(achievements.items)) achievementsItems = achievements.items;
+    if (achievements.marker) achievementsMarker = achievements.marker;
   }
 
   return (

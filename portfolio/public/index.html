@@ -57,9 +57,23 @@
     <link rel="canonical" href="https://annyraspberry.pro/" />
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!-- Google Fonts: Raleway -->
+    <!--
+      Google Fonts: Raleway.
+      Веса перечислены все четыре, которые встречаются в вёрстке: 400
+      (font-normal), 500 (font-medium), 600 (font-semibold), 700 (font-bold).
+      Если убрать из списка вес, который используется, браузер не откажется
+      его рисовать, а синтезирует — механически утолщит 400, и начертание
+      поплывёт. Проверка: найти в src класс font-medium или font-semibold —
+      каждому найденному весу должно быть соответствие в wght@.
+      preconnect на fonts.gstatic.com нужен отдельно от fonts.googleapis.com:
+      по первому адресу приходит CSS, по второму — сами файлы шрифта, и без
+      преднастроенного соединения их загрузка начинается только после
+      разбора CSS.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <!--

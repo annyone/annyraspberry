@@ -38,5 +38,13 @@
   },
   "common": {
     "more": { "ru": "Подробнее", "en": "More" }
+  },
+  "projectCard": {
+    "open": { "ru": "Открыть кейс", "en": "Open case" }
+  },
+  "caseSwitcher": {
+    "aria": { "ru": "Другие кейсы", "en": "Other cases" },
+    "previous": { "ru": "Предыдущий кейс", "en": "Previous case" },
+    "next": { "ru": "Следующий кейс", "en": "Next case" }
   }
 }

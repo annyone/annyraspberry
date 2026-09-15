@@ -10,8 +10,16 @@ export default function LanguageSwitcher() {
   const buttonInactiveClass =
     'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white';
 
+  // Кнопки различаются подписью, а состояние передаётся через aria-pressed:
+  // без него активный язык виден только по цвету, то есть недоступен
+  // скринридеру. Проверка: включить чтение с экрана и пройти по кнопкам —
+  // должно звучать «Русский, нажата» и «Английский, не нажата».
   return (
-    <div className="relative inline-flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1">
+    <div
+      className="relative inline-flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1"
+      role="group"
+      aria-label={t('lang.group')}
+    >
       {/* Анимированный фон для активной кнопки */}
       <div
         className="absolute top-1 bottom-1 bg-white dark:bg-zinc-700 rounded-md shadow-sm transition-all duration-300 ease-out"
@@ -22,16 +30,20 @@ export default function LanguageSwitcher() {
       />
 
       <button
+        type="button"
         onClick={() => setLang('ru')}
         className={`${buttonBaseClass} ${lang === 'ru' ? buttonActiveClass : buttonInactiveClass}`}
-        aria-label={t('lang.switchAria')}
+        aria-label={t('lang.ru')}
+        aria-pressed={lang === 'ru'}
       >
         Ru
       </button>
       <button
+        type="button"
         onClick={() => setLang('en')}
         className={`${buttonBaseClass} ${lang === 'en' ? buttonActiveClass : buttonInactiveClass}`}
-        aria-label={t('lang.switchAria')}
+        aria-label={t('lang.en')}
+        aria-pressed={lang === 'en'}
       >
         En
       </button>

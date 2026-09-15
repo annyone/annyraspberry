@@ -20,7 +20,7 @@ export default function ProjectCard({ project }) {
   return (
     <RouterLink
       to={`/${project.id}`}
-      aria-label={`${t('projectCard.open', 'Open')} ${title}`}
+      aria-label={`${t('projectCard.open')}: ${title}`}
       className="group block"
       style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
     >

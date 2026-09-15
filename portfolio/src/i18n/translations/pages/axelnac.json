@@ -84,7 +84,14 @@
         "ru": "На втором экране пользователь видел окно с логами и панель с опциями. Опции можно было редактировать только после остановки сессии.",
         "en": "On the second screen, the user saw the logs window and the options panel. Options could be edited only after stopping the session."
       },
-      "altBefore": " "
+      "alt1": {
+        "ru": "Первый экран исходного сценария: список файлов логов, поле поиска событий и кнопка запуска сессии",
+        "en": "First screen of the original scenario: the list of log files, the event search field and the session start button"
+      },
+      "alt2": {
+        "ru": "Второй экран исходного сценария: окно с логами и панель опций, недоступная во время сессии",
+        "en": "Second screen of the original scenario: the log window and the options panel, unavailable while the session runs"
+      }
     },
     "after": {
       "title": { "ru": "Обновленный сценарий", "en": "Updated scenario" },
@@ -99,6 +106,18 @@
       "3": {
         "ru": "Кнопки управления сгруппированы по смыслу (управление сессией, управление контентом, настройки) и расположены в нижней части экрана, где пользователям наиболее близко до них добраться при необходимости. Некоторые кнопки заменены на иконки в виду понятности. Настройки отображения скрыты в отдельном окне, так как используются редко. Кнопка «Очистить экран» намеренно находится в стороне, чтобы случайно не стереть полученные данные.",
         "en": "Control buttons are grouped by meaning (session management, content management, settings) and placed at the bottom of the screen, where users can easily reach them if necessary. Some buttons have been replaced with icons for clarity. Display settings are hidden in a separate window since they are used rarely. The 'Clear screen' button is intentionally placed aside to avoid accidentally erasing received data."
+      },
+      "alt1": {
+        "ru": "Обновлённый раздел до запуска сессии: одна страница, все фильтры доступны сразу, панель навигации свёрнута",
+        "en": "The updated section before the session starts: a single page, all filters available at once, the navigation panel collapsed"
+      },
+      "alt2": {
+        "ru": "Запущенная сессия мониторинга: строки уровней error и warning выделены цветом, найденные слова подсвечены, фильтры собраны в чекбоксы",
+        "en": "A running monitoring session: error and warning lines are highlighted in colour, matched words are highlighted, filters are collected into checkboxes"
+      },
+      "alt3": {
+        "ru": "Кнопки управления в нижней части экрана, сгруппированные по смыслу, с кнопкой «Очистить экран» в стороне от остальных",
+        "en": "Control buttons at the bottom of the screen, grouped by meaning, with the Clear screen button set apart from the rest"
       }
     },
     "result": {
