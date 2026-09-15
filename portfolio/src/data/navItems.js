@@ -2,19 +2,44 @@ import React from 'react';
 import { ReactComponent as LinkedInIcon } from '../images/linkedin.svg';
 import { ReactComponent as TelegramIcon } from '../images/telegram.svg';
 
-// Build nav items using translation function t(key) and current lang.
-// lang is optional for backward compatibility; defaults to 'en'.
-export function getNavItems(t, lang = 'en') {
-  // Choose correct CV file based on language.
-  // Files are placed in /public and served from root.
-  const cvFile =
+// Иконки взяты из набора Phosphor Icons (лицензия MIT), вес light.
+// Толщина линии задана не здесь, а внутри самих файлов: в них залитые
+// контуры, а не обводка, поэтому параметра stroke-width нет и сменить вес
+// можно только заменой файлов на другой вес из того же набора.
+//
+// Замеры при размере иконки 28px: thin даёт штрих 0.88px, light — 1.31px,
+// regular — 1.75px. Вертикальный штрих Raleway 400 в шапке — 1.45px при
+// кегле 18px и 1.96px при 20px.
+// Проверка при замене: отрисовать иконку и букву «Н» рядом в одном кегле
+// и сравнить толщину вертикальных линий.
+
+// Резюме описано отдельно от остальных пунктов: в шапке оно рисуется
+// не ссылкой, а контурной кнопкой после переключателя языка
+// (components/Nav.js). Логика имени файла и кодирования адреса осталась
+// здесь одна на всё приложение — она нетривиальная и проверяется тестом
+// в data/assets.test.js.
+export function getCvItem(t, lang = 'en') {
+  // Файл резюме свой на каждый язык, оба лежат в /public и отдаются
+  // от корня сайта.
+  const file =
     lang === 'ru'
       ? 'CV-Malinina-Anna-UI-UX-designer RU.pdf'
       : 'CV-Malinina-Anna-UI-UX-designer EN.pdf';
 
-  // Encode filename to handle spaces in URL.
-  const cvUrl = '/' + encodeURIComponent(cvFile);
+  return {
+    // В имени файла есть пробелы, поэтому адрес кодируется. Расхождение
+    // в одном символе даёт скачивание пустоты без единой ошибки в консоли.
+    url: '/' + encodeURIComponent(file),
+    label: t('nav.downloadCV', 'Download CV'),
+    // Атрибут download открывает диалог сохранения. Имя даётся общее,
+    // без пометки языка: посетитель скачивает «резюме», а не «резюме RU».
+    download: 'CV-Malinina-Anna-UI-UX-designer.pdf',
+  };
+}
 
+// Build nav items using translation function t(key) and current lang.
+// lang is optional for backward compatibility; defaults to 'en'.
+export function getNavItems(t, lang = 'en') {
   return [
     // Ссылки на секции задаются от корня сайта и полем `to`, а не `href`.
     // Просто '#cases' со страницы кейса даёт адрес /logiq#cases: остаёмся
@@ -33,12 +58,6 @@ export function getNavItems(t, lang = 'en') {
     {
       to: '/#articles',
       label: t('nav.articles', 'Articles'),
-    },
-    {
-      url: cvUrl,
-      label: t('nav.downloadCV', 'Download CV'),
-      // download attribute triggers save dialog. Provide a generic filename without locale.
-      download: 'CV-Malinina-Anna-UI-UX-designer.pdf',
     },
     {
       url: 'https://www.linkedin.com/in/annyraspberry/',

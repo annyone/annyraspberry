@@ -106,3 +106,58 @@ test('переключение языка не уводит со страниц�
     screen.getByRole('heading', { name: caseTexts.projects.darts.title.en })
   ).toBeInTheDocument();
 });
+
+// Полоса прочитанного нужна на длинных страницах кейсов и не нужна
+// на остальных: на главной прокрутка ведёт по разделам, а не по одному
+// связному тексту.
+test.each(projects.map(p => p.id))('на странице кейса /%s есть полоса прочитанного', id => {
+  renderAt(`/${id}`);
+  expect(screen.getByTestId('reading-progress')).toBeInTheDocument();
+});
+
+test.each([
+  ['главная', '/'],
+  ['страница «не найдено»', '/takoy-stranicy-net'],
+])('на %s полосы прочитанного нет', (_name, pathname) => {
+  renderAt(pathname);
+  expect(screen.queryByTestId('reading-progress')).not.toBeInTheDocument();
+});
+
+// Резюме вынесено из списка пунктов меню в контурную кнопку после
+// переключателя языка. Проверка смотрит на порядок в разметке: «после
+// свитчера» — это требование к расположению, а не к наличию.
+describe('резюме в шапке', () => {
+  test('нарисовано ссылкой на файл с атрибутом download', () => {
+    renderAt('/');
+    const cv = screen.getAllByRole('link', { name: 'Скачать CV' })[0];
+
+    expect(cv).toHaveAttribute('href', expect.stringContaining('.pdf'));
+    expect(cv).toHaveAttribute('download');
+  });
+
+  test('стоит после переключателя языка', () => {
+    renderAt('/');
+    const cv = screen.getAllByRole('link', { name: 'Скачать CV' })[0];
+    const switcher = screen.getAllByRole('group', { name: 'Язык интерфейса' })[0];
+
+    // compareDocumentPosition сообщает порядок узлов в документе:
+    // DOCUMENT_POSITION_FOLLOWING означает, что кнопка идёт после.
+    const relation = switcher.compareDocumentPosition(cv);
+    expect(relation & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  test('файл резюме меняется вместе с языком', () => {
+    renderAt('/');
+    expect(screen.getAllByRole('link', { name: 'Скачать CV' })[0]).toHaveAttribute(
+      'href',
+      expect.stringContaining('RU')
+    );
+
+    switchTo('Английский');
+
+    expect(screen.getAllByRole('link', { name: 'Download CV' })[0]).toHaveAttribute(
+      'href',
+      expect.stringContaining('EN')
+    );
+  });
+});

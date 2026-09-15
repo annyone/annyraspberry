@@ -1,5 +1,5 @@
 import projects from './projects.json';
-import { getNavItems } from './navItems';
+import { getNavItems, getCvItem } from './navItems';
 import { reportProblems } from '../testing/problems';
 import { existsInPublic, publicFiles } from '../testing/publicFiles';
 
@@ -13,7 +13,16 @@ const manifest = JSON.parse(
 // Меню строится функцией от переводчика и языка. Тексты здесь не нужны,
 // проверяются только адреса, поэтому вместо словаря подставляется
 // функция, возвращающая сам ключ.
-const navItems = [...getNavItems(key => key, 'ru'), ...getNavItems(key => key, 'en')];
+// Резюме больше не входит в getNavItems — в шапке оно рисуется кнопкой.
+// Его нужно добавить сюда руками, иначе проверка ниже перестанет что-либо
+// проверять: ни одного элемента с полем download в списке не останется,
+// цикл отработает вхолостую и тест позеленеет при отсутствующем файле.
+const navItems = [
+  ...getNavItems(key => key, 'ru'),
+  ...getNavItems(key => key, 'en'),
+  getCvItem(key => key, 'ru'),
+  getCvItem(key => key, 'en'),
+];
 
 describe('файлы, на которые ссылаются данные', () => {
   test('обложки и картинки для превью лежат в public', () => {
@@ -66,6 +75,12 @@ describe('файлы, на которые ссылаются данные', () =
 
   test('файлы резюме из меню существуют', () => {
     const problems = [];
+
+    // Страховка от вхолостую отработавшего цикла: файлов резюме два,
+    // по одному на язык. Если их станет ноль, проверка ниже потеряет смысл,
+    // но останется зелёной — поэтому количество проверяется отдельно.
+    const downloads = navItems.filter(item => item.download && item.url);
+    expect(downloads).toHaveLength(2);
 
     for (const item of navItems) {
       if (!item.download || !item.url) continue;

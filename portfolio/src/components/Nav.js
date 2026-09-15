@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Link from './Link';
+import Button from './Button';
+import { ReactComponent as DocumentIcon } from '../images/document.svg';
+import { getCvItem } from '../data/navItems';
 import logoSrc from '../images/logo.svg';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -47,7 +50,11 @@ const NavItem = ({ item, onClick }) => {
 
 export default function Nav({ items = [] }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  // Резюме вынесено из списка пунктов: в шапке оно рисуется кнопкой,
+  // а не ссылкой, и стоит после переключателя языка.
+  const cv = getCvItem(t, lang);
 
   const toggleDrawer = () => setIsDrawerOpen(prev => !prev);
   const closeDrawer = () => setIsDrawerOpen(false);
@@ -89,6 +96,11 @@ export default function Nav({ items = [] }) {
             <div className="ml-8">
               <LanguageSwitcher />
             </div>
+
+            {/* Резюме — контурная кнопка после переключателя */}
+            <Button href={cv.url} download={cv.download} icon={<DocumentIcon />}>
+              {cv.label}
+            </Button>
           </div>
         </div>
       </nav>
@@ -124,6 +136,16 @@ export default function Nav({ items = [] }) {
           <div className="pt-4">
             <LanguageSwitcher />
           </div>
+
+          <Button
+            href={cv.url}
+            download={cv.download}
+            icon={<DocumentIcon />}
+            onClick={closeDrawer}
+            className="self-start"
+          >
+            {cv.label}
+          </Button>
         </nav>
       </div>
     </>

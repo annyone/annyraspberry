@@ -23,7 +23,11 @@ export default function CasePage({ project, description }) {
   const sections = description.sections || [];
 
   return (
-    <Layout title={`${title} — ${t('site.author')}`} mainClassName={description.mainClassName}>
+    <Layout
+      title={`${title} — ${t('site.author')}`}
+      mainClassName={description.mainClassName}
+      showProgress
+    >
       <Section className="pt-12 gap-8">
         <Text variant="h1">{title}</Text>
         <Image

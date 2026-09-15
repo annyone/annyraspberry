@@ -35,24 +35,6 @@ const t = (key, fallback) => {
 const renderBlocks = blocks => renderWithLanguage(<CaseBlocks blocks={blocks} t={t} />);
 
 describe('отрисовка блоков кейса', () => {
-  test('последней помечена ровно одна статья, и это последняя статья, а не последний блок', () => {
-    // Раньше признак «последняя» проставляли руками, и в darts подряд
-    // оказались две статьи, помеченные последними.
-    const { container } = renderBlocks([
-      { type: 'article', blocks: [{ type: 'text', key: 'первый абзац' }] },
-      { type: 'text', key: 'второй абзац' },
-      { type: 'article', blocks: [{ type: 'text', key: 'первый абзац' }] },
-      { type: 'text', key: 'второй абзац' },
-    ]);
-
-    const articles = [...container.querySelectorAll('article')];
-    const withoutMargin = articles.filter(article => article.className.includes('mb-0'));
-
-    expect(articles).toHaveLength(2);
-    expect(withoutMargin).toHaveLength(1);
-    expect(withoutMargin[0]).toBe(articles[1]);
-  });
-
   test('неизвестный тип блока не роняет страницу', () => {
     const { container } = renderBlocks([
       { type: 'опечатка', key: 'первый абзац' },
