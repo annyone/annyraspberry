@@ -1,0 +1,11 @@
+{
+  "jest.virtualFolders": [
+    {
+      "name": "portfolio",
+      "rootPath": "portfolio",
+      "jestCommandLine": "npm test --",
+      "runMode": "on-demand"
+    }
+  ],
+  "testing.automaticallyOpenTestResults": "neverOpen"
+}

@@ -61,6 +61,19 @@ const Image = ({
     setIsLoaded(true);
   };
 
+  // Пульсация включена только до загрузки.
+  //
+  // Держать animate-pulse постоянно нельзя: объявления анимации в каскаде
+  // стоят выше инлайновых стилей, а правило Tailwind описано как
+  // @keyframes pulse { 50% { opacity: .5 } } — недостающие кадры 0% и 100%
+  // берут значение из элемента, то есть из inline opacity. Заглушка с
+  // opacity: 0 продолжала бы бесконечно всплывать до 0.5 и обратно серой
+  // вуалью поверх уже загруженной картинки.
+  //
+  // Проверка: открыть страницу кейса, дождаться загрузки картинок и
+  // посмотреть на них десяток секунд — серого мерцания быть не должно.
+  const skeletonClass = `rounded-lg bg-zinc-200 dark:bg-zinc-700${isLoaded ? '' : ' animate-pulse'}`;
+
   // Стиль для скелетона загрузки
   const skeletonStyle = {
     position: 'absolute',
@@ -76,10 +89,7 @@ const Image = ({
   const imageContent =
     sources.length > 0 ? (
       <picture style={{ width: '100%', display: 'block', position: 'relative' }}>
-        <div
-          style={skeletonStyle}
-          className="rounded-lg bg-zinc-200 dark:bg-zinc-700 animate-pulse"
-        />
+        <div style={skeletonStyle} className={skeletonClass} />
         {sources.map((source, index) => (
           <source key={index} srcSet={source.srcSet} media={source.media} type={source.type} />
         ))}
@@ -96,10 +106,7 @@ const Image = ({
       </picture>
     ) : (
       <div style={{ position: 'relative', width: '100%', display: 'block' }}>
-        <div
-          style={skeletonStyle}
-          className="rounded-lg bg-zinc-200 dark:bg-zinc-700 animate-pulse"
-        />
+        <div style={skeletonStyle} className={skeletonClass} />
         <img
           src={src}
           alt={alt}

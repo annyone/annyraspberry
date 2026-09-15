@@ -34,6 +34,13 @@ export default function ExperienceCard({ experience }) {
                   href={experience.link}
                   label={company}
                   className="inline-block mb-4 xl:mb-8"
+                  // Сайт компании — чужой ресурс, поэтому открывается
+                  // в новой вкладке, как и ссылки на статьи в ArticleCard.
+                  // rel обязателен: без noopener открытая страница получает
+                  // доступ к window.opener и может подменить вкладку,
+                  // из которой её открыли.
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
               ) : (
                 <span className="text-zinc-500 mb-4 xl:mb-8">{company}</span>

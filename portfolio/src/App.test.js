@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, fireEvent } from '@testing-library/react';
 import App from './App';
 import projects from './data/projects.json';
 import caseTexts from './i18n/translations/projects.json';
@@ -71,4 +71,38 @@ test('со страницы кейса пункты меню ведут на с�
     expect(links.length).toBeGreaterThan(0);
     links.forEach(link => expect(link).toHaveAttribute('href', href));
   }
+});
+
+// Переключение языка — единственный сценарий, где проверяется связка
+// «контекст → все компоненты сразу»: заголовок страницы, заголовок вкладки
+// и пункты меню приходят из разных мест, а меняться должны вместе.
+function switchTo(language) {
+  // Переключатель отрисован дважды — в десктопном меню и в мобильной
+  // шторке. Нажимаем первый: состояние общее, кнопки равноправны.
+  fireEvent.click(screen.getAllByRole('button', { name: language })[0]);
+}
+
+test('переключение языка меняет заголовок страницы и заголовок вкладки', () => {
+  renderAt('/logiq');
+  expect(
+    screen.getByRole('heading', { name: caseTexts.projects.logiq.title.ru })
+  ).toBeInTheDocument();
+
+  switchTo('Английский');
+
+  expect(
+    screen.getByRole('heading', { name: caseTexts.projects.logiq.title.en })
+  ).toBeInTheDocument();
+  expect(document.title).toContain(caseTexts.projects.logiq.title.en);
+});
+
+test('переключение языка не уводит со страницы кейса', () => {
+  renderAt('/darts');
+
+  switchTo('Английский');
+
+  expect(window.location.pathname).toBe('/darts');
+  expect(
+    screen.getByRole('heading', { name: caseTexts.projects.darts.title.en })
+  ).toBeInTheDocument();
 });

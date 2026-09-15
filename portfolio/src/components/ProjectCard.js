@@ -1,7 +1,7 @@
 import React from 'react';
 import Text from './Text';
 import { Link as RouterLink } from 'react-router-dom';
-import Image from './Image';
+import Image, { retinaSources } from './Image';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ProjectCard({ project }) {
@@ -46,9 +46,12 @@ export default function ProjectCard({ project }) {
           {/* Image block */}
           {project.thumbnail && (
             <div className="w-full xl:w-[60%] flex items-start justify-center">
+              {/* Второй источник вычисляется из имени файла, а не берётся из
+                  project.thumbnail_2x: у Adidas обложка в .png, поля нет, и
+                  раньше в разметку уходил <source> вообще без srcset. */}
               <Image
                 src={project.thumbnail}
-                sources={[{ srcSet: project.thumbnail_2x, media: '(min-width: 1024px)' }]}
+                sources={retinaSources(project.thumbnail)}
                 alt={title}
               />
             </div>

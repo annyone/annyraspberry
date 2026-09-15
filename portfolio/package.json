@@ -22,6 +22,9 @@
     "build:en": "powershell -Command \"$env:REACT_APP_LANG='en'; npm run build; if (Test-Path ../build-en) { Remove-Item ../build-en -Recurse -Force }; Copy-Item -Path ./build -Destination ../build-en -Recurse -Force\"",
     "build:both": "npm run build:ru && npm run build:en",
     "test": "react-scripts test",
+    "test:once": "react-scripts test --watchAll=false",
+    "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "check": "npm run format:check && npm run test:once && npm run build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "eject": "react-scripts eject"
