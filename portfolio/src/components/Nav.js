@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from './Link';
-import logoSrc from '../images/logo.png';
+import logoSrc from '../images/logo.svg';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 

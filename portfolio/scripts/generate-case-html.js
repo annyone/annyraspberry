@@ -15,9 +15,20 @@ const fs = require('fs');
 const path = require('path');
 
 const ORIGIN = 'https://annyraspberry.pro';
-// Язык мета-тегов. Совпадает с языком public/index.html: превью ссылки
-// формируется один раз на сервере и не зависит от языка посетителя.
-const LANG = 'ru';
+// Язык мета-тегов. Берётся из той же переменной, которой задаётся язык
+// сборки (см. build:ru и build:en в package.json): превью ссылки формируется
+// один раз при сборке и не зависит от языка посетителя. Раньше здесь стояло
+// 'ru' безусловно, и build:en выкладывалась с английским интерфейсом и
+// русскими заголовками превью.
+//
+// Значение, отличное от 'en', считается русским: третьего языка в словарях
+// нет, а text.title[LANG] для неизвестного языка вернул бы undefined, то
+// есть строку "undefined" в заголовке вкладки.
+//
+// Проверка: npm run build:en, открыть build-en/adidas/index.html и
+// посмотреть <title>, og:title и атрибут lang у <html> — всё на английском.
+const LANG = process.env.REACT_APP_LANG === 'en' ? 'en' : 'ru';
+const OG_LOCALE = LANG === 'en' ? 'en_US' : 'ru_RU';
 
 const ROOT = path.join(__dirname, '..');
 const BUILD = path.join(ROOT, 'build');
@@ -66,6 +77,7 @@ function buildPage(template, project, title, description) {
     ['meta', 'property', 'og:url', 'content', url],
     ['meta', 'property', 'og:image', 'content', image],
     ['meta', 'property', 'og:type', 'content', 'article'],
+    ['meta', 'property', 'og:locale', 'content', OG_LOCALE],
     ['meta', 'name', 'twitter:title', 'content', t],
     ['meta', 'name', 'twitter:description', 'content', d],
     ['meta', 'name', 'twitter:url', 'content', url],
@@ -75,6 +87,12 @@ function buildPage(template, project, title, description) {
 
   let html = template;
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeAttr(title)}</title>`);
+
+  // Объявление языка документа. В public/index.html оно записано как ru
+  // и в английской сборке противоречило бы английскому тексту страницы:
+  // по этому атрибуту скринридер выбирает голос и правила произношения,
+  // а поисковик — кому показывать страницу в выдаче.
+  html = html.replace(/<html lang="[^"]*"/, `<html lang="${LANG}"`);
 
   for (const [tag, attr, attrValue, contentAttr, contentValue] of tags) {
     html = upsert(

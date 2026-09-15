@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Запасной шрифт под Raleway, подогнанный по ширине.
+
+   Raleway приезжает с Google Fonts и объявлен через display=swap: до его
+   загрузки текст рисуется системным шрифтом, после — перерисовывается
+   Raleway. Raleway шире Arial на 0.52% (измерено на подписях меню:
+   290.41px против 288.91px при кегле 16px), и в момент подмены меню
+   раздвигалось на ~5px, сдвигая пункты.
+
+   size-adjust растягивает запасной шрифт до ширины Raleway, поэтому
+   строка занимает одно и то же место до и после загрузки.
+
+   Liberation Sans указан третьим: он метрически совпадает с Arial и есть
+   в системах, где Arial не установлен.
+
+   Проверка: перезагрузить страницу с пустым кешем и следить за правым
+   краем меню — смещения быть не должно. */
+@font-face {
+  font-family: 'Raleway Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 100.52%;
+}
+
 html {
   scroll-padding-top: 5rem; /* offset for fixed nav (h-20 = 80px) */
 }
