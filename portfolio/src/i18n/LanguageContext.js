@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useMemo, useState, useEffect } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState, useEffect } from 'react';
+import { playLanguageChange } from './langTransition';
 
 import nav from './translations/nav.json';
 import ui from './translations/ui.json';
@@ -75,7 +76,14 @@ function resolveNode(node, lang) {
 }
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(resolveInitialLang);
+  const [lang, setLangState] = useState(resolveInitialLang);
+
+  // Язык меняется не сразу, а в середине эффекта рассыпания: к этому
+  // моменту старый текст уже растворился, и подмены не видно.
+  // Где эффект не нужен — смена происходит сразу (см. langTransition.js).
+  const setLang = useCallback(next => {
+    playLanguageChange(() => setLangState(next));
+  }, []);
 
   useEffect(() => {
     try {
@@ -116,7 +124,7 @@ export function LanguageProvider({ children }) {
     };
   }, [lang]);
 
-  const value = useMemo(() => ({ lang, setLang, t }), [lang, t]);
+  const value = useMemo(() => ({ lang, setLang, t }), [lang, setLang, t]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

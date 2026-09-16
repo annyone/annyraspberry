@@ -8,3 +8,19 @@ import '@testing-library/jest-dom';
 // на каждый рендер из-за components/ScrollToTop.js. Подменяем заглушкой,
 // чтобы вывод тестов оставался читаемым.
 window.scrollTo = () => {};
+
+// В jsdom анимаций нет, и эффект рассыпания текста при смене языка только
+// отложил бы её на таймерах, из-за чего каждая проверка переключения
+// языка требовала бы подмены времени. Отвечаем так же, как система
+// с включённой настройкой «меньше движения»: язык меняется сразу.
+// Сам эффект проверяется напрямую в i18n/langTransition.test.js.
+window.matchMedia = query => ({
+  matches: query.includes('prefers-reduced-motion'),
+  media: query,
+  addEventListener: () => {},
+  removeEventListener: () => {},
+  addListener: () => {},
+  removeListener: () => {},
+  onchange: null,
+  dispatchEvent: () => false,
+});

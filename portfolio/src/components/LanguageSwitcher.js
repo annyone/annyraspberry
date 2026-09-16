@@ -49,6 +49,10 @@ export default function LanguageSwitcher() {
       type="button"
       onClick={() => setLang(next)}
       aria-label={t(SWITCH_LABEL[next])}
+      // Эффект рассыпания текста при смене языка обходит переключатель
+      // стороной: у него своя анимация — барабан, — и рассыпать его
+      // в точки значит спрятать ровно то, на что посетитель смотрит.
+      data-lang-static="true"
       className={`${BUTTON} hover:text-rose-400`}
     >
       {/* Окно барабана высотой ровно в одну строку: всё, что выше и ниже

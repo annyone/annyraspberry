@@ -227,6 +227,124 @@ html {
   }
 }
 
+/* Рассыпание текста в точки при смене языка.
+
+   Маска — шум, а не сетка: точки стоят вразнобой и на каждом шаге
+   перерисовываются заново, поэтому текст не редеет правильными рядами,
+   а именно рассыпается. Шум рисует feTurbulence внутри SVG, вложенного
+   в CSS адресом data:.
+
+   Пять ступеней плотности, от почти сплошной до почти пустой. Плотность
+   задаётся срезом альфы в feColorMatrix (последнее число), а feFuncA
+   со slope 24 превращает мягкий шум в резкие точки — без него получилось
+   бы размытие, а не крупа. Seed у каждой ступени свой: с одним и тем же
+   точки таяли бы на одних и тех же местах, и движения не было бы видно.
+
+   step-end вместо плавной кривой: маска-картинка всё равно не
+   интерполируется, а ступенчатая смена и даёт мерцание.
+
+   opacity в тех же кадрах — запасной механизм. Где маски нет, текст просто
+   плавно гаснет и проявляется, а не пропадает рывком.
+
+   Классы навешиваются из i18n/langTransition.js — там же сказано, какому
+   тексту и почему. Длительность анимаций должна совпадать с DISSOLVE_MS
+   в том файле: по нему отсчитывается момент подмены текста.
+
+   Проверка: переключить язык и смотреть на абзац — текст должен распасться
+   на скачущую крупу, а не погаснуть ровным полем. */
+:root {
+  --lang-noise-1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='1' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.18'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='24'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --lang-noise-2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='1' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.36'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='24'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --lang-noise-3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='1' seed='27'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.52'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='24'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --lang-noise-4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='1' seed='41'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.68'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='24'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --lang-noise-5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='1' seed='59'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.86'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='24'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.lang-dissolve-out,
+.lang-dissolve-in {
+  mask-size: 180px 180px;
+}
+
+.lang-dissolve-out {
+  animation: lang-dissolve-out 240ms step-end forwards;
+}
+
+.lang-dissolve-in {
+  animation: lang-dissolve-in 240ms step-end backwards;
+}
+
+@keyframes lang-dissolve-out {
+  0% {
+    mask-image: none;
+    opacity: 1;
+  }
+
+  20% {
+    mask-image: var(--lang-noise-1);
+    opacity: 0.9;
+  }
+
+  40% {
+    mask-image: var(--lang-noise-2);
+    opacity: 0.75;
+  }
+
+  60% {
+    mask-image: var(--lang-noise-3);
+    opacity: 0.6;
+  }
+
+  80% {
+    mask-image: var(--lang-noise-4);
+    opacity: 0.4;
+  }
+
+  99% {
+    mask-image: var(--lang-noise-5);
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lang-dissolve-in {
+  0% {
+    opacity: 0;
+  }
+
+  1% {
+    mask-image: var(--lang-noise-5);
+    opacity: 0.2;
+  }
+
+  20% {
+    mask-image: var(--lang-noise-4);
+    opacity: 0.4;
+  }
+
+  40% {
+    mask-image: var(--lang-noise-3);
+    opacity: 0.6;
+  }
+
+  60% {
+    mask-image: var(--lang-noise-2);
+    opacity: 0.75;
+  }
+
+  80% {
+    mask-image: var(--lang-noise-1);
+    opacity: 0.9;
+  }
+
+  100% {
+    mask-image: none;
+    opacity: 1;
+  }
+}
+
 /* Custom base styles (kept minimal) */
 /* Custom base styles (kept minimal) */
 body {
