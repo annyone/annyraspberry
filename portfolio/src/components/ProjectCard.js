@@ -57,7 +57,7 @@ export default function ProjectCard({ project }) {
           style={projectBackground(project.background)}
         />
 
-        <div className="max-w-[1600px] mx-auto px-8 xl:px-12 flex flex-col xl:flex-row gap-8">
+        <div className="page-grid flex flex-col xl:flex-row gap-8">
           {/* Text block */}
           <div className="w-full xl:w-[40%] flex flex-col">
             {/* Тот же набор стилей стоит у заголовка страницы кейса —

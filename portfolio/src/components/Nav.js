@@ -209,9 +209,8 @@ export default function Nav({ sections = [], socials = [] }) {
   // от края видимой области, а не от тела.
   //
   // Телу задаётся именно поле (margin-right), а не отступ: отступ у тела
-  // уже занят — в src/index.css на нём стоит px-8 xl:px-12, и inline-стиль
-  // padding-right перебивал бы его целиком. Содержимое тогда не стояло
-  // на месте, а прыгало на разницу между 32px и шириной полосы прокрутки.
+  // уже может быть занят, и inline-стиль padding-right перебил бы его
+  // целиком. Поле складывается с чем угодно и ничего не перебивает.
   //
   // Эффект слоевой (useLayoutEffect), а не обычный: и запрет прокрутки,
   // и возмещение должны попасть в один кадр отрисовки, иначе прыжок всё
@@ -258,9 +257,7 @@ export default function Nav({ sections = [], socials = [] }) {
         className={`w-full fixed top-0 left-0 right-0 z-50 ${NAV_HEIGHT} ${NAV_TRANSITION}`}
         style={{ paddingRight: scrollbarGap }}
       >
-        <div
-          className={`max-w-[1600px] w-full mx-auto flex items-center ${NAV_HEIGHT} px-8 xl:px-12`}
-        >
+        <div className={`page-grid flex items-center ${NAV_HEIGHT}`}>
           <Link
             to="/"
             icon={<img src={logoSrc} alt="logo" className="select-none !w-12 !h-12" />}
@@ -325,7 +322,7 @@ export default function Nav({ sections = [], socials = [] }) {
           }
           style={{ paddingRight: scrollbarGap }}
         >
-          <div className="mx-auto flex h-full w-full max-w-[1600px] flex-col overflow-y-auto px-8 xl:px-12">
+          <div className="page-grid flex h-full flex-col overflow-y-auto">
             <div className={`${NAV_HEIGHT} shrink-0`} aria-hidden="true" />
 
             <nav

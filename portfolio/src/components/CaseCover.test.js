@@ -19,16 +19,25 @@ const namedBy = (container, name) => container.querySelector(`.${name}`);
 
 describe('обложка страницы кейса', () => {
   test('подложка тянется до краёв окна и до самого его верха', () => {
-    // Боковые отрицательные поля снимают отступы body, верхнее втягивает
-    // подложку под распорку шапки, а такой же padding возвращает
-    // содержимое на место. Шапка прозрачная, поэтому цвет виден и за ней.
+    // Своей ширины подложка не ограничивает вовсе — оттого и доходит
+    // до краёв. Верхнее отрицательное поле втягивает её под распорку
+    // шапки, а такой же padding возвращает содержимое на место; шапка
+    // прозрачная, поэтому цвет виден и за ней.
     const { container } = render();
     const { className } = container.querySelector('div');
 
-    expect(className).toContain('-mx-8');
-    expect(className).toContain('xl:-mx-12');
     expect(className).toContain('-mt-[var(--nav-height)]');
     expect(className).toContain('pt-[var(--nav-height)]');
+    expect(className).not.toContain('max-w-');
+  });
+
+  test('содержимое обложки стоит по общей сетке страницы', () => {
+    // Та же сетка у шапки, карточек кейсов и разделов главной. Пока
+    // обложка отступала от края сама по себе, заголовок под логотипом
+    // с ним не совпадал.
+    const { container } = render();
+
+    expect(container.querySelector('.page-grid')).not.toBeNull();
   });
 
   test('подложка кончается на 16px ниже снимка', () => {
