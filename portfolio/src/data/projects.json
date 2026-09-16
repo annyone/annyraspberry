@@ -3,27 +3,27 @@
     "id": "axelnac",
     "thumbnail": "/images/axelnac/thumbnail.webp",
     "thumbnail_2x": "/images/axelnac/thumbnail-2x.webp",
-    "thumbnailBackground": "linear-gradient(to bottom, #8F49DE, #613e67ff)",
+    "background": "linear-gradient(to bottom, #8F49DE, #613e67ff)",
     "ogImage": "/images/og-image.png"
   },
   {
     "id": "logiq",
     "thumbnail": "/images/logiq/thumbnail.webp",
     "thumbnail_2x": "/images/logiq/thumbnail-2x.webp",
-    "thumbnailBackground": "linear-gradient(to bottom, #1e6bd1, #0245a8)",
+    "background": "linear-gradient(to bottom, #1e6bd1, #0245a8)",
     "ogImage": "/images/og-image.png"
   },
   {
     "id": "darts",
     "thumbnail": "/images/darts/thumbnail.webp",
     "thumbnail_2x": "/images/darts/thumbnail-2x.webp",
-    "thumbnailBackground": "linear-gradient(to bottom, #016630, #002800)",
+    "background": "linear-gradient(to bottom, #016630, #002800)",
     "ogImage": "/images/og-image.png"
   },
   {
     "id": "adidas",
     "thumbnail": "/images/adidas/thumbnail.png",
-    "thumbnailBackground": "linear-gradient(to bottom, #ad00adff, #3301a8ff)",
+    "background": "linear-gradient(to bottom, #ad00adff, #3301a8ff)",
     "ogImage": "/images/og-image.png"
   }
 ]

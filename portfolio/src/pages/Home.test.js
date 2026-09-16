@@ -48,11 +48,14 @@ describe('главная страница', () => {
   });
 
   test('подзаголовки разделов переводятся', () => {
+    // Берётся раздел «обо мне»: у раздела кейсов подзаголовка нет —
+    // он стоял бы первой строкой сразу под обложкой и выглядывал бы
+    // на первый экран, ради пустоты которого обложка и растянута.
     const { unmount } = renderWithLanguage(<Home />, { lang: 'ru' });
-    expect(screen.getByText('кейсы')).toBeInTheDocument();
+    expect(screen.getByText('обо мне')).toBeInTheDocument();
     unmount();
 
     renderWithLanguage(<Home />, { lang: 'en' });
-    expect(screen.getByText('cases')).toBeInTheDocument();
+    expect(screen.getByText('about')).toBeInTheDocument();
   });
 });

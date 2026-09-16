@@ -15,11 +15,9 @@ export default function Home() {
   const localizedArticles = t('articles.items', []);
   const localizedExperiences = t('experiences', []);
   return (
-    <Layout title={t('site.title')}>
-      <Hero />
-
+    <Layout title={t('site.title')} cover={<Hero />}>
       {/* Cases */}
-      <Section id="cases" subtitle={t('home.sections.cases', 'cases')} className="!gap-0">
+      <Section id="cases" className="!gap-0">
         {
           // Use thumbnails and page info from src/data/projects.json
           (projects || []).map(project => (

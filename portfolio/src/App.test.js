@@ -16,6 +16,13 @@ beforeEach(() => {
   window.localStorage.setItem('lang', 'ru');
 });
 
+// Пункты меню лежат в разметке всегда, но у закрытого меню стоит inert:
+// оно целиком убрано из дерева доступности, и getByRole его не видит —
+// ровно как не видит его посетитель. Поэтому до проверок меню открывают.
+function openMenu() {
+  fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+}
+
 test.each(projects.map(p => p.id))('прямой адрес /%s рисует страницу кейса', id => {
   renderAt(`/${id}`);
   const title = caseTexts.projects[id].title.ru;
@@ -60,6 +67,7 @@ test('несуществующий адрес ведёт на страницу �
 
 test('со страницы кейса пункты меню ведут на секции главной', () => {
   renderAt('/logiq');
+  openMenu();
   // Раньше здесь было просто "#cases", то есть /logiq#cases: клик оставлял
   // на кейсе, секции с таким id там нет, прокрутки не происходило
   for (const [name, href] of [
@@ -76,10 +84,11 @@ test('со страницы кейса пункты меню ведут на с�
 // Переключение языка — единственный сценарий, где проверяется связка
 // «контекст → все компоненты сразу»: заголовок страницы, заголовок вкладки
 // и пункты меню приходят из разных мест, а меняться должны вместе.
-function switchTo(language) {
-  // Переключатель отрисован дважды — в десктопном меню и в мобильной
-  // шторке. Нажимаем первый: состояние общее, кнопки равноправны.
-  fireEvent.click(screen.getAllByRole('button', { name: language })[0]);
+function switchTo(label) {
+  // Переключатель — одна кнопка в шапке, рядом с бургером; она доступна
+  // и при закрытом меню. Метка описывает действие, а не текущий язык,
+  // поэтому после нажатия она становится обратной.
+  fireEvent.click(screen.getByRole('button', { name: label }));
 }
 
 test('переключение языка меняет заголовок страницы и заголовок вкладки', () => {
@@ -88,7 +97,7 @@ test('переключение языка меняет заголовок стр
     screen.getByRole('heading', { name: caseTexts.projects.logiq.title.ru })
   ).toBeInTheDocument();
 
-  switchTo('Английский');
+  switchTo('Переключить на английский');
 
   expect(
     screen.getByRole('heading', { name: caseTexts.projects.logiq.title.en })
@@ -99,7 +108,7 @@ test('переключение языка меняет заголовок стр
 test('переключение языка не уводит со страницы кейса', () => {
   renderAt('/darts');
 
-  switchTo('Английский');
+  switchTo('Переключить на английский');
 
   expect(window.location.pathname).toBe('/darts');
   expect(
@@ -123,39 +132,44 @@ test.each([
   expect(screen.queryByTestId('reading-progress')).not.toBeInTheDocument();
 });
 
-// Резюме вынесено из списка пунктов меню в контурную кнопку после
-// переключателя языка. Проверка смотрит на порядок в разметке: «после
-// свитчера» — это требование к расположению, а не к наличию.
-describe('резюме в шапке', () => {
+// Резюме стоит последним среди разделов сайта и выше разделителя,
+// за которым идут ссылки на внешние площадки. Проверка смотрит на
+// порядок в разметке: «после разделов» — это требование к расположению,
+// а не к наличию.
+describe('резюме в меню', () => {
   test('нарисовано ссылкой на файл с атрибутом download', () => {
     renderAt('/');
-    const cv = screen.getAllByRole('link', { name: 'Скачать CV' })[0];
+    openMenu();
+    const cv = screen.getByRole('link', { name: 'Скачать CV' });
 
     expect(cv).toHaveAttribute('href', expect.stringContaining('.pdf'));
     expect(cv).toHaveAttribute('download');
   });
 
-  test('стоит после переключателя языка', () => {
+  test('стоит после разделов сайта и перед ссылками на площадки', () => {
     renderAt('/');
-    const cv = screen.getAllByRole('link', { name: 'Скачать CV' })[0];
-    const switcher = screen.getAllByRole('group', { name: 'Язык интерфейса' })[0];
+    openMenu();
+    const cv = screen.getByRole('link', { name: 'Скачать CV' });
+    const articles = screen.getByRole('link', { name: 'Статьи' });
+    const telegram = screen.getByRole('link', { name: 'Telegram' });
 
     // compareDocumentPosition сообщает порядок узлов в документе:
-    // DOCUMENT_POSITION_FOLLOWING означает, что кнопка идёт после.
-    const relation = switcher.compareDocumentPosition(cv);
-    expect(relation & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    // DOCUMENT_POSITION_FOLLOWING означает, что второй узел идёт после.
+    expect(articles.compareDocumentPosition(cv) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(cv.compareDocumentPosition(telegram) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   test('файл резюме меняется вместе с языком', () => {
     renderAt('/');
-    expect(screen.getAllByRole('link', { name: 'Скачать CV' })[0]).toHaveAttribute(
+    openMenu();
+    expect(screen.getByRole('link', { name: 'Скачать CV' })).toHaveAttribute(
       'href',
       expect.stringContaining('RU')
     );
 
-    switchTo('Английский');
+    switchTo('Переключить на английский');
 
-    expect(screen.getAllByRole('link', { name: 'Download CV' })[0]).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Download CV' })).toHaveAttribute(
       'href',
       expect.stringContaining('EN')
     );

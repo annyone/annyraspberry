@@ -18,7 +18,6 @@ export function retinaSources(src) {
 const Image = ({
   src,
   sources = [], // массив объектов { srcSet, media, type }
-  backgroundColor,
   alt = '',
   className = '',
   shadow = false,
@@ -30,16 +29,6 @@ const Image = ({
   loading = 'lazy',
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // Определяем, является ли background градиентом или картинкой
-  const isGradientOrImage =
-    backgroundColor?.includes('gradient') || backgroundColor?.startsWith('url(');
-
-  const backgroundStyle = backgroundColor
-    ? isGradientOrImage
-      ? { backgroundImage: backgroundColor }
-      : { backgroundColor }
-    : null;
 
   const shadowStyle = { boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)' };
 
@@ -120,27 +109,7 @@ const Image = ({
       </div>
     );
 
-  // Стиль для контейнера с фоном - тоже делаем его плавно появляющимся
-  const containerStyle = backgroundColor
-    ? {
-        ...backgroundStyle,
-        opacity: isLoaded ? 1 : 0,
-        transition: 'opacity 0.5s ease-in-out',
-      }
-    : null;
-
-  if (backgroundColor) {
-    return (
-      <div
-        className={`rounded-lg p-2 lg:p-6 xl:p-8 ${className || 'w-full'}`}
-        style={containerStyle}
-      >
-        {imageContent}
-      </div>
-    );
-  } else {
-    return <div className={`${className || 'w-full h-full'}`}>{imageContent}</div>;
-  }
+  return <div className={className || 'w-full h-full'}>{imageContent}</div>;
 };
 
 export default Image;

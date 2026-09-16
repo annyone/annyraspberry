@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import Nav from './Nav';
 import ReadingProgress from './ReadingProgress';
-import { getNavItems } from '../data/navItems';
+import { getSectionItems, getSocialItems } from '../data/navItems';
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Общая обвязка страницы: шапка, ограниченная по ширине область контента
@@ -10,14 +10,21 @@ import { useLanguage } from '../i18n/LanguageContext';
 //
 // mainClassName нужен, потому что страница darts единственная идёт без
 // нижнего отступа pb-1 — чтобы не копировать разметку ради одного класса.
-export default function Layout({ title, mainClassName = 'pb-1', showProgress = false, children }) {
+export default function Layout({
+  title,
+  cover,
+  mainClassName = 'pb-1',
+  showProgress = false,
+  children,
+}) {
   const { t, lang } = useLanguage();
 
-  // getNavItems собирает шесть объектов и два элемента иконок. Без useMemo
-  // это происходит при каждой перерисовке любой страницы, хотя результат
-  // зависит только от языка. Условие пересборки: изменился lang (вместе с
-  // ним меняется и t — оно пересоздаётся в LanguageProvider при смене языка).
-  const navItems = useMemo(() => getNavItems(t, lang), [t, lang]);
+  // Пункты меню собираются заново на каждой перерисовке любой страницы,
+  // хотя результат зависит только от языка, — отсюда useMemo. Условие
+  // пересборки: изменился lang (вместе с ним меняется и t — оно
+  // пересоздаётся в LanguageProvider при смене языка).
+  const sections = useMemo(() => getSectionItems(t, lang), [t, lang]);
+  const socials = useMemo(() => getSocialItems(t, lang), [t, lang]);
 
   // Заголовок вкладки задаём в одном месте, а не хуком в каждой странице.
   // Строка зависит от языка, поэтому эффект повторяется при его смене.
@@ -31,7 +38,14 @@ export default function Layout({ title, mainClassName = 'pb-1', showProgress = f
           у main анимация появления с transform, и position: fixed внутри
           него отсчитывался бы от области контента, а не от окна. */}
       {showProgress && <ReadingProgress />}
-      <Nav items={navItems} />
+      <Nav sections={sections} socials={socials} />
+      {/* Обложка стоит ВНЕ main намеренно: main ограничен по ширине
+          (max-w-[1600px]) и центрирован, а обложка занимает весь экран.
+          Внутри main её пришлось бы растягивать через 100vw, а это ширина
+          окна ВМЕСТЕ с полосой прокрутки — обложка вылезала бы за правый
+          край на её ширину. Здесь же боковые отступы body снимаются
+          отрицательными полями, и никакой vw не нужен. */}
+      {cover}
       <main className={`max-w-[1600px] w-full mx-auto ${mainClassName}`.trim()}>{children}</main>
     </div>
   );

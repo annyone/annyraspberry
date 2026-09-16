@@ -1,23 +1,7 @@
-import React from 'react';
-import { ReactComponent as LinkedInIcon } from '../images/linkedin.svg';
-import { ReactComponent as TelegramIcon } from '../images/telegram.svg';
-
-// Иконки взяты из набора Phosphor Icons (лицензия MIT), вес light.
-// Толщина линии задана не здесь, а внутри самих файлов: в них залитые
-// контуры, а не обводка, поэтому параметра stroke-width нет и сменить вес
-// можно только заменой файлов на другой вес из того же набора.
-//
-// Замеры при размере иконки 28px: thin даёт штрих 0.88px, light — 1.31px,
-// regular — 1.75px. Вертикальный штрих Raleway 400 в шапке — 1.45px при
-// кегле 18px и 1.96px при 20px.
-// Проверка при замене: отрисовать иконку и букву «Н» рядом в одном кегле
-// и сравнить толщину вертикальных линий.
-
-// Резюме описано отдельно от остальных пунктов: в шапке оно рисуется
-// не ссылкой, а контурной кнопкой после переключателя языка
-// (components/Nav.js). Логика имени файла и кодирования адреса осталась
-// здесь одна на всё приложение — она нетривиальная и проверяется тестом
-// в data/assets.test.js.
+// Резюме описано отдельно от остальных пунктов: оно не ведёт по сайту,
+// а скачивает файл, и в меню набрано розовым (components/Nav.js). Логика
+// имени файла и кодирования адреса осталась здесь одна на всё приложение —
+// она нетривиальная и проверяется тестом в data/assets.test.js.
 export function getCvItem(t, lang = 'en') {
   // Файл резюме свой на каждый язык, оба лежат в /public и отдаются
   // от корня сайта.
@@ -37,16 +21,16 @@ export function getCvItem(t, lang = 'en') {
   };
 }
 
-// Build nav items using translation function t(key) and current lang.
-// lang is optional for backward compatibility; defaults to 'en'.
-export function getNavItems(t, lang = 'en') {
+// Крупные пункты меню — разделы главной страницы.
+//
+// Ссылки на секции задаются от корня сайта и полем `to`, а не `href`.
+// Просто '#cases' со страницы кейса даёт адрес /logiq#cases: остаёмся
+// на кейсе, секции с таким id там нет, никуда не прокручиваемся.
+// Поле `to` заставляет Link отрендерить RouterLink, поэтому переход
+// на главную идёт без перезагрузки страницы, а прокрутку к якорю
+// выполняет components/ScrollToTop.js.
+export function getSectionItems(t) {
   return [
-    // Ссылки на секции задаются от корня сайта и полем `to`, а не `href`.
-    // Просто '#cases' со страницы кейса даёт адрес /logiq#cases: остаёмся
-    // на кейсе, секции с таким id там нет, никуда не прокручиваемся.
-    // Поле `to` заставляет Link отрендерить RouterLink, поэтому переход
-    // на главную идёт без перезагрузки страницы, а прокрутку к якорю
-    // выполняет components/ScrollToTop.js.
     {
       to: '/#cases',
       label: t('nav.cases', 'Cases'),
@@ -59,21 +43,39 @@ export function getNavItems(t, lang = 'en') {
       to: '/#articles',
       label: t('nav.articles', 'Articles'),
     },
+  ];
+}
+
+// Ссылки на внешние площадки. Подпись видимая, поэтому aria-label здесь
+// не нужен: он перекрыл бы текст ссылки, и программа чтения с экрана
+// прочитала бы его вместо того, что видит зрячий посетитель.
+//
+// Своего значка у площадки нет: в меню все они набраны крупной подписью
+// со значком внешней ссылки в конце (components/Nav.js). Файлы значков
+// LinkedIn и Telegram остались в src/images на случай возврата.
+export function getSocialItems(t) {
+  return [
     {
       url: 'https://www.linkedin.com/in/annyraspberry/',
-      icon: <LinkedInIcon />,
+      label: t('nav.linkedin', 'LinkedIn'),
       target: '_blank',
       rel: 'noopener noreferrer',
-      'aria-label': t('nav.linkedin', 'LinkedIn'),
     },
     {
       url: 'https://t.me/annyraspberry',
-      icon: <TelegramIcon />,
+      label: t('nav.telegram', 'Telegram'),
       target: '_blank',
       rel: 'noopener noreferrer',
-      'aria-label': t('nav.telegram', 'Telegram'),
     },
   ];
+}
+
+// Полный список пунктов одним массивом. Меню разложено на две части
+// (getSectionItems и getSocialItems) и этой функцией не пользуется —
+// она осталась для проверок, которым нужны все адреса разом
+// (data/assets.test.js).
+export function getNavItems(t, lang = 'en') {
+  return [...getSectionItems(t, lang), ...getSocialItems(t, lang)];
 }
 
 export default getNavItems;

@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
 import Text from '../components/Text';
-import Image, { retinaSources } from '../components/Image';
+import CaseCover from '../components/CaseCover';
 import CaseBlocks from '../components/CaseBlocks';
 import CaseSwitcher from '../components/CaseSwitcher';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -26,17 +26,10 @@ export default function CasePage({ project, description }) {
     <Layout
       title={`${title} — ${t('site.author')}`}
       mainClassName={description.mainClassName}
+      cover={<CaseCover project={project} title={title} />}
       showProgress
     >
-      <Section className="pt-12 gap-8">
-        <Text variant="h1">{title}</Text>
-        <Image
-          src={project.thumbnail}
-          sources={retinaSources(project.thumbnail)}
-          backgroundColor={project.thumbnailBackground}
-          alt={title}
-          loading="eager"
-        />
+      <Section className="pt-12">
         <Text variant="h4">{ct('subtitle')}</Text>
       </Section>
 
