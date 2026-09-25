@@ -31,7 +31,7 @@ export const variants = {
   },
   p: {
     tag: 'p',
-    className: 'text-base md:text-lg/7 xl:text-xl/9',
+    className: 'text-base md:text-lg/7 xl:text-xl/8',
   },
 };
 

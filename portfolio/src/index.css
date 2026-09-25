@@ -350,6 +350,6 @@ html {
 body {
   @apply font-raleway bg-white text-zinc-800 text-base dark:bg-zinc-900 dark:text-zinc-300;
   @apply md:text-lg/7;
-  @apply xl:text-xl/9;
+  @apply xl:text-xl/8;
   overflow-x: hidden;
 }

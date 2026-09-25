@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-const box = 'size-10 shrink-0 rounded-lg';
+const box = 'size-7 shrink-0 self-center rounded-md';
 
-// Логотип компании — квадратная плашка 40×40.
+// Логотип компании — квадрат 28×28 без рамки.
 //
-// Файл логотипа должен сам быть плашкой: квадрат с фоном, заполненный
-// до краёв (см. public/images/companies). Прозрачный значок без фона
-// прилипнет к краям рамки — такой файл сначала кладут на квадрат
-// с отступами, как сделано для axelpro.svg.
+// Файл вписывается в квадрат целиком, с сохранением пропорций
+// (object-contain): подойдёт и плашка с фоном, и прозрачный значок.
 //
 // Нет файла или он не загрузился — вместо него первая буква названия
 // на серой плашке, чтобы колонка логотипов не прерывалась пустым местом.
@@ -22,7 +20,7 @@ export default function CompanyLogo({ src, name = '' }) {
       <img
         src={src}
         alt=""
-        className={`${box} object-cover ring-1 ring-black/5 dark:ring-white/10`}
+        className={`${box} object-contain`}
         loading="lazy"
         decoding="async"
         onError={() => setFailed(true)}
@@ -33,7 +31,7 @@ export default function CompanyLogo({ src, name = '' }) {
   return (
     <span
       aria-hidden="true"
-      className={`${box} flex items-center justify-center bg-zinc-100 text-lg font-medium text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400`}
+      className={`${box} flex items-center justify-center bg-zinc-100 text-sm font-medium leading-none text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400`}
     >
       {name.trim().charAt(0).toUpperCase()}
     </span>

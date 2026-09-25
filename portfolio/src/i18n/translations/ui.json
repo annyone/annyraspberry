@@ -90,6 +90,7 @@
       ]
     },
     "since": { "ru": "с", "en": "since" },
+    "tools": { "ru": "Инструменты", "en": "Tools" },
     "years": {
       "ru": { "one": "год", "few": "года", "many": "лет", "other": "года" },
       "en": { "one": "year", "few": "years", "many": "years", "other": "years" }

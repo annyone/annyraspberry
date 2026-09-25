@@ -18,6 +18,7 @@ const base = {
       start: '2026-01',
       end: null,
       description: 'Описание задач',
+      tools: ['Figma', 'Jira'],
     },
     {
       id: 'axelpro',
@@ -50,7 +51,8 @@ describe('роль в опыте работы', () => {
   test('достижения рисуются с тире в качестве маркера', () => {
     const { container } = renderWithLanguage(<ExperienceRole experience={base} now={now} />);
 
-    expect(container.querySelectorAll('li')).toHaveLength(2);
+    // Теги инструментов — тоже li, поэтому считаются только пункты списка без подписи.
+    expect(container.querySelectorAll('ul:not([aria-label]) > li')).toHaveLength(2);
     expect(screen.getAllByText('—')).toHaveLength(2);
   });
 
@@ -62,7 +64,7 @@ describe('роль в опыте работы', () => {
     const { container } = renderWithLanguage(<ExperienceRole experience={bare} now={now} />);
 
     expect(container.querySelector('article').children).toHaveLength(2);
-    expect(screen.getByText('2 года')).toBeInTheDocument();
+    expect(screen.getByText('1,5 года')).toBeInTheDocument();
   });
 
   test('логотип — картинка, без него — первая буква названия', () => {
@@ -90,5 +92,17 @@ describe('роль в опыте работы', () => {
     expect(screen.getByText('4 years')).toBeInTheDocument();
     expect(screen.getByText('since January 2026')).toBeInTheDocument();
     expect(screen.getByText('June 2022 — January 2026')).toBeInTheDocument();
+  });
+
+  test('инструменты — список тегов в конце карточки, только там, где они заданы', () => {
+    const { container } = renderWithLanguage(<ExperienceRole experience={base} now={now} />);
+    const [withTools, withoutTools] = container.querySelectorAll('article');
+
+    const tags = screen.getByRole('list', { name: 'Инструменты' });
+    expect(withTools.contains(tags)).toBe(true);
+    expect([...tags.querySelectorAll('li')].map(li => li.textContent)).toEqual(['Figma', 'Jira']);
+    // Теги — последний блок карточки, после описания.
+    expect(tags.parentElement.lastElementChild).toBe(tags);
+    expect(withoutTools.querySelector('ul[aria-label]')).toBeNull();
   });
 });

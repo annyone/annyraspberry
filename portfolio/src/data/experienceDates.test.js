@@ -23,17 +23,21 @@ describe('даты опыта', () => {
     expect(formatPeriod(open, labels('en'))).toBe('since January 2026');
   });
 
-  test('стаж роли — от раннего начала до позднего конца, с округлением', () => {
+  test('стаж роли — от раннего начала до позднего конца, вниз до полугода', () => {
     const design = [
       { start: '2026-01', end: null },
-      { start: '2024-06', end: '2026-01' },
-      { start: '2022-06', end: '2023-07' },
+      { start: '2024-07', end: '2026-01' },
+      { start: '2022-02', end: '2023-07' },
     ];
-    // 2022-06 … 2026-09 — 51 месяц, 4,25 года.
-    expect(roleYears(design, now)).toBe(4);
-    // 22 месяца округляются до двух лет, 3 месяца — до одного, а не до нуля.
-    expect(roleYears([{ start: '2014-06', end: '2016-04' }], now)).toBe(2);
-    expect(roleYears([{ start: '2026-06', end: null }], now)).toBe(1);
+    // 2022-02 … 2026-09 — 55 месяцев, 4,58 года → 4,5, а не 5.
+    expect(roleYears(design, now)).toBe(4.5);
+    // Текущая роль растёт сама: к февралю 2027 — ровно 5 лет.
+    expect(roleYears(design, new Date(2027, 0, 31))).toBe(4.5);
+    expect(roleYears(design, new Date(2027, 1, 1))).toBe(5);
+    // 22 месяца — 1,83 года → 1,5; 3 месяца — до 0,5, а не до нуля.
+    expect(roleYears([{ start: '2014-06', end: '2016-04' }], now)).toBe(1.5);
+    expect(roleYears([{ start: '2016-04', end: '2024-06' }], now)).toBe(8);
+    expect(roleYears([{ start: '2026-06', end: null }], now)).toBe(0.5);
     expect(roleYears([], now)).toBe(0);
   });
 
@@ -45,6 +49,9 @@ describe('даты опыта', () => {
     expect(formatYears(4, 'ru', ru)).toBe('4 года');
     expect(formatYears(8, 'ru', ru)).toBe('8 лет');
     expect(formatYears(21, 'ru', ru)).toBe('21 год');
+    expect(formatYears(0.5, 'ru', ru)).toBe('0,5 года');
+    expect(formatYears(4.5, 'ru', ru)).toBe('4,5 года');
+    expect(formatYears(4.5, 'en', en)).toBe('4.5 years');
     expect(formatYears(1, 'en', en)).toBe('1 year');
     expect(formatYears(4, 'en', en)).toBe('4 years');
   });

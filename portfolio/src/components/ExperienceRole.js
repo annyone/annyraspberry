@@ -19,9 +19,12 @@ export default function ExperienceRole({ experience, now }) {
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 xl:mb-10">
-        <Text variant="h3">{role}</Text>
+        <Text variant="h2">{role}</Text>
+        {/* Размер шрифта не задан намеренно: стаж, как и период работы
+            в ExperienceJob, берёт кегль основного текста от body, поэтому
+            на любой ширине экрана они одного размера. */}
         {years > 0 && (
-          <span className="text-zinc-500 lining-nums md:text-lg">
+          <span className="text-zinc-500 lining-nums">
             {formatYears(years, lang, t('experience.years', {}))}
           </span>
         )}

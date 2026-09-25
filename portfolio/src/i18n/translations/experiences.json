@@ -20,7 +20,8 @@
           "description": {
             "ru": "Ideco NGFW — многофункциональный межсетевой экран с веб-интерфейсом. Реализую новые сценарии и улучшаю существующие, поддерживаю и улучшаю дизайн-систему, презентую свои решения внутри команды, провожу ревью макетов в команде дизайна и дизайн-ревью фичей после разработки.",
             "en": "Ideco NGFW — a multifunctional firewall with a web interface. I implement new scenarios and improve existing ones, maintain and enhance the design system, present my solutions internally, and conduct mockup reviews and design reviews of features after development."
-          }
+          },
+          "tools": ["Figma", "Claude Code", "Jira", "Outline", "Bitbucket", "VS Code", "MCP"]
         },
         {
           "id": "axelpro",
@@ -30,7 +31,7 @@
           },
           "logo": "/images/companies/axelpro.svg",
           "link": "https://axel.pro",
-          "start": "2024-06",
+          "start": "2024-07",
           "end": "2026-01",
           "description": {
             "ru": "LogIQ — web приложение для мониторинга и аналитики логов системы, работы с инцидентами безопасности. Реализую новые сценарии и улучшаю существующие, поддерживаю и разрабатываю дизайн-систему, презентую свои решения внутри команды, провожу дизайн-ревью фичей после разработки.",
@@ -57,7 +58,8 @@
               "ru": "Создала плагин для Figma для быстрого поиска частых ошибок на макетах",
               "en": "Built a Figma plugin for quickly finding common mistakes in mockups"
             }
-          ]
+          ],
+          "tools": ["Figma", "ChatGPT", "Jira", "Notion", "Confluence"]
         },
         {
           "id": "freelance",
@@ -65,7 +67,7 @@
             "ru": "Фриланс",
             "en": "Freelance"
           },
-          "start": "2022-06",
+          "start": "2022-02",
           "end": "2023-07",
           "description": {
             "ru": "Разработала систему для проведения турниров с нуля — web-приложение, которое в основном используется на desktop устройствах, частично на мобильных. Провела интервью и сбор требований, спроектировала пользовательские сценарии и интерфейс, провела презентацию решений клиенту.",

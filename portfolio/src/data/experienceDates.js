@@ -22,11 +22,17 @@ function endOf(job, now) {
   return job.end ? parseMonth(job.end) : { year: now.getFullYear(), month: now.getMonth() + 1 };
 }
 
-// Стаж в роли — полных лет от самого раннего начала до самого позднего
-// конца среди мест работы этой роли, с округлением до ближайшего целого.
-// Паузы между местами работы внутри роли не вычитаются.
-// Пример: дизайнер с 2022-06 по 2026-09 — 51 месяц, 4,25 года → «4 года».
-// Меньше года округляется вверх до одного: «0 лет» в шапке роли
+// Стаж в роли — время от самого раннего начала до самого позднего конца
+// среди мест работы этой роли, округлённое ВНИЗ до половины года:
+// 4, 4,5, 5 и так далее. Паузы между местами работы не вычитаются.
+//
+// У текущей роли (end: null) конец — сегодняшний месяц, и число растёт
+// само: пересчёт идёт при каждом открытии страницы, править данные
+// раз в полгода не нужно.
+//
+// Пример: дизайнер с 2022-02 по 2026-09 — 55 месяцев, 4,58 года → «4,5 года»;
+// 4,5 года станет «5 лет» только в феврале 2027.
+// Меньше полугода округляется вверх до 0,5: «0 лет» в шапке роли
 // выглядит как ошибка.
 export function roleYears(jobs, now = new Date()) {
   if (!Array.isArray(jobs) || jobs.length === 0) return 0;
@@ -35,15 +41,18 @@ export function roleYears(jobs, now = new Date()) {
   const ends = jobs.map(job => toMonthIndex(endOf(job, now)));
   const months = Math.max(...ends) - Math.min(...starts);
 
-  return Math.max(1, Math.round(months / 12));
+  return Math.max(0.5, Math.floor(months / 6) / 2);
 }
 
-// Подпись стажа с правильной формой слова: 1 год, 2 года, 5 лет.
+// Подпись стажа с правильной формой слова: 1 год, 1,5 года, 2 года, 5 лет.
+// Дробная часть пишется по правилам языка: «4,5» в русском, «4.5» в английском.
 // forms — объект { one, few, many, other } из словаря (ui.json → experience.years),
-// ключи совпадают с категориями Intl.PluralRules.
+// ключи совпадают с категориями Intl.PluralRules; для дробных чисел
+// в русском это other — «года».
 export function formatYears(years, lang, forms) {
   const category = new Intl.PluralRules(lang).select(years);
-  return `${years} ${forms[category] ?? forms.other}`;
+  const number = new Intl.NumberFormat(lang).format(years);
+  return `${number} ${forms[category] ?? forms.other}`;
 }
 
 // Период работы: «июнь 2024 — январь 2026» или «с января 2026».
