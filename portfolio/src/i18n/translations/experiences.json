@@ -34,8 +34,8 @@
           "start": "2024-07",
           "end": "2026-01",
           "description": {
-            "ru": "LogIQ — web приложение для мониторинга и аналитики логов системы, работы с инцидентами безопасности. Реализую новые сценарии и улучшаю существующие, поддерживаю и разрабатываю дизайн-систему, презентую свои решения внутри команды, провожу дизайн-ревью фичей после разработки.",
-            "en": "LogIQ — a web app for monitoring and analysing system logs and handling security incidents. I implement new scenarios, improve existing ones, maintain and develop the design system, present my solutions within the team, and conduct design reviews after development."
+            "ru": "LogIQ — web приложение для мониторинга и аналитики логов системы, работы с инцидентами безопасности. Реализовывала новые сценарии и улучшала существующие, поддерживала и развивала дизайн-систему, презентовала свои решения внутри команды, проводила дизайн-ревью фичей после разработки.",
+            "en": "LogIQ — a web app for monitoring and analysing system logs and handling security incidents. I implemented new scenarios, improved existing ones, maintained and developed the design system, presented my solutions within the team, and conducted design reviews after development."
           },
           "achievements": [
             {
@@ -90,7 +90,8 @@
               "ru": "Интерфейс стал современнее",
               "en": "The interface became more modern"
             }
-          ]
+          ],
+          "tools": ["Figma", "Notion", "Linear", "Miro"]
         }
       ]
     },
@@ -110,7 +111,26 @@
           "logo": "/images/companies/mts.svg",
           "link": "https://www.mts.ru/",
           "start": "2016-04",
-          "end": "2024-06"
+          "end": "2024-06",
+          "description": {
+            "ru": "Прошла путь от тестировщика до лида QA. Отвечала за качество внутренних систем оператора, с которыми каждый день работают сотрудники: CRM, счета, тарификация, учёт оборудования.",
+            "en": "Grew from tester to QA lead. Was responsible for the quality of the operator's internal systems that employees use every day: CRM, billing, tariffing and equipment tracking."
+          },
+          "achievements": [
+            {
+              "ru": "Перестроила базу знаний QA вокруг того, что мешало команде: 80% коллег отметили, что нужную информацию стало проще найти",
+              "en": "Rebuilt the QA knowledge base around what was getting in the team's way: 80% of colleagues said it became easier to find what they need"
+            },
+            {
+              "ru": "Перепроектировала интерфейс внутренней утилиты учёта времени — основной сценарий стал последовательным",
+              "en": "Redesigned the interface of an internal time-tracking tool — the main flow became consistent"
+            },
+            {
+              "ru": "Помогала новичкам войти в работу: участвовала в создании внутренних курсов и вела онбординг QA-специалистов",
+              "en": "Helped newcomers get up to speed: took part in creating internal courses and ran onboarding for QA specialists"
+            }
+          ],
+          "tools": ["TFS", "TestOps", "Confluence", "Oracle PL/SQL", "Postman", "SOAP"]
         }
       ]
     },
@@ -124,11 +144,32 @@
         {
           "id": "uspeh",
           "company": {
-            "ru": "Успех",
-            "en": "Uspekh"
+            "ru": "Интернет-провайдер «Успех»",
+            "en": "Uspekh Internet Provider"
           },
+          "logo": "/images/companies/uspeh.svg",
+          "link": "https://arriva.net.ru/",
           "start": "2014-06",
-          "end": "2016-04"
+          "end": "2016-04",
+          "description": {
+            "ru": "Развивала CRM и биллинг интернет-провайдера. Вела фичи целиком — от проектирования интерфейса до кода и проверки. Выясняла потребности у пользователей системы и самостоятельно разбиралась в коде.",
+            "en": "Developed the CRM and billing system of an internet provider. Owned features end to end — from interface design to code and testing. Found out what the system's users needed and figured out the codebase on my own."
+          },
+          "achievements": [
+            {
+              "ru": "Спроектировала и разработала систему заявок на выезд техника: от экранов до бизнес-логики",
+              "en": "Designed and built a system for technician visit requests: from screens to business logic"
+            },
+            {
+              "ru": "Формализовала процесс тестирования: завела багтрекер, внедрила impact-анализ и тест-планы",
+              "en": "Formalized the testing process: set up a bug tracker, introduced impact analysis and test plans"
+            },
+            {
+              "ru": "Перевела интерфейсы CRM на шаблоны — новые экраны стали собираться быстрее, а старые проще поддерживать",
+              "en": "Moved the CRM interfaces to templates — new screens got faster to build and old ones easier to maintain"
+            }
+          ],
+          "tools": ["HTML", "CSS", "Git", "Bootstrap"]
         }
       ]
     }
