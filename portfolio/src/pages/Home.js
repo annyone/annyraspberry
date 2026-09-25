@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import Section from '../components/Section';
 import Hero from '../components/Hero';
 import ProjectCard from '../components/ProjectCard';
-import ExperienceCard from '../components/ExperienceCard';
+import ExperienceRole from '../components/ExperienceRole';
 import ArticleCard from '../components/ArticleCard';
 import { useLanguage } from '../i18n/LanguageContext';
 import projects from '../data/projects.json';
@@ -27,10 +27,14 @@ export default function Home() {
       </Section>
 
       {/* About */}
-      <Section id="about" subtitle={t('home.sections.about', 'about')}>
+      <Section
+        id="about"
+        subtitle={t('home.sections.about', 'about')}
+        className="!gap-16 xl:!gap-20"
+      >
         {Array.isArray(localizedExperiences) &&
           localizedExperiences.map((experience, index) => (
-            <ExperienceCard key={experience.id || index} experience={experience} />
+            <ExperienceRole key={experience.id || index} experience={experience} />
           ))}
       </Section>
 

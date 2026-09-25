@@ -31,15 +31,18 @@ describe('главная страница', () => {
     }
   });
 
-  test('отрисованы все записи опыта и все статьи', () => {
-    // Карточки опыта рисовались правильно почти случайно: пять вызовов
-    // t() внутри ExperienceCard не разрешались никогда, и спасало только
-    // запасное значение. Проверка на количество ловит обрыв этой связки.
+  test('отрисованы все роли, места работы и все статьи', () => {
+    // Проверка на количество ловит обрыв связки «словарь → компонент»:
+    // при опечатке в ключе список опыта молча отрисуется пустым.
     renderWithLanguage(<Home />);
 
     for (const experience of experiences.experiences) {
-      const position = experience.position.ru ?? experience.position;
-      expect(screen.getAllByRole('heading', { name: position }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('heading', { name: experience.role.ru }).length).toBeGreaterThan(
+        0
+      );
+      for (const job of experience.jobs) {
+        expect(screen.getByRole('heading', { name: job.company.ru })).toBeInTheDocument();
+      }
     }
 
     for (const article of articles.articles.items) {

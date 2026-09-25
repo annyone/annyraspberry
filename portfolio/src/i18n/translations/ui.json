@@ -28,6 +28,73 @@
       "articles": { "ru": "статьи", "en": "articles" }
     }
   },
+  "experience": {
+    "months": {
+      "ru": [
+        "январь",
+        "февраль",
+        "март",
+        "апрель",
+        "май",
+        "июнь",
+        "июль",
+        "август",
+        "сентябрь",
+        "октябрь",
+        "ноябрь",
+        "декабрь"
+      ],
+      "en": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    },
+    "monthsSince": {
+      "ru": [
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря"
+      ],
+      "en": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    },
+    "since": { "ru": "с", "en": "since" },
+    "years": {
+      "ru": { "one": "год", "few": "года", "many": "лет", "other": "года" },
+      "en": { "one": "year", "few": "years", "many": "years", "other": "years" }
+    }
+  },
   "notFound": {
     "title": { "ru": "Страница не найдена", "en": "Page not found" },
     "text": {
