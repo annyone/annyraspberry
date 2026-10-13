@@ -136,11 +136,15 @@ test.each([
 // за которым идут ссылки на внешние площадки. Проверка смотрит на
 // порядок в разметке: «после разделов» — это требование к расположению,
 // а не к наличию.
+// Ссылки ищутся внутри меню, а не по всей странице: те же резюме
+// и площадки стоят ещё и в подвале (components/Footer.js).
+const menu = () => within(screen.getByTestId('main-menu'));
+
 describe('резюме в меню', () => {
   test('нарисовано ссылкой на файл с атрибутом download', () => {
     renderAt('/');
     openMenu();
-    const cv = screen.getByRole('link', { name: 'Скачать CV' });
+    const cv = menu().getByRole('link', { name: 'Скачать CV' });
 
     expect(cv).toHaveAttribute('href', expect.stringContaining('.pdf'));
     expect(cv).toHaveAttribute('download');
@@ -149,9 +153,9 @@ describe('резюме в меню', () => {
   test('стоит после разделов сайта и перед ссылками на площадки', () => {
     renderAt('/');
     openMenu();
-    const cv = screen.getByRole('link', { name: 'Скачать CV' });
-    const articles = screen.getByRole('link', { name: 'Статьи' });
-    const telegram = screen.getByRole('link', { name: 'Telegram' });
+    const cv = menu().getByRole('link', { name: 'Скачать CV' });
+    const articles = menu().getByRole('link', { name: 'Статьи' });
+    const telegram = menu().getByRole('link', { name: 'Telegram' });
 
     // compareDocumentPosition сообщает порядок узлов в документе:
     // DOCUMENT_POSITION_FOLLOWING означает, что второй узел идёт после.
@@ -162,14 +166,14 @@ describe('резюме в меню', () => {
   test('файл резюме меняется вместе с языком', () => {
     renderAt('/');
     openMenu();
-    expect(screen.getByRole('link', { name: 'Скачать CV' })).toHaveAttribute(
+    expect(menu().getByRole('link', { name: 'Скачать CV' })).toHaveAttribute(
       'href',
       expect.stringContaining('RU')
     );
 
     switchTo('Переключить на английский');
 
-    expect(screen.getByRole('link', { name: 'Download CV' })).toHaveAttribute(
+    expect(menu().getByRole('link', { name: 'Download CV' })).toHaveAttribute(
       'href',
       expect.stringContaining('EN')
     );

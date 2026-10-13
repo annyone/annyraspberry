@@ -108,8 +108,17 @@ describe('шапка и меню', () => {
     expect(menu()).toHaveAttribute('inert');
     expect(menu()).toHaveAttribute('aria-hidden', 'true');
     expect(menu().className).toContain('pointer-events-none');
-    expect(content().className).toContain('opacity-0');
     expect(radius()).toBe(0);
+  });
+
+  test('текст меню обрезается тем же кругом, что и заливка', () => {
+    // Текст лежит внутри слоя с кругом и своей анимации прозрачности
+    // не имеет: иначе он появлялся бы по своему расписанию, отдельно
+    // от раскрытия круга.
+    renderNav();
+
+    expect(backdrop()).toContainElement(content());
+    expect(content().className).not.toMatch(/opacity-/);
   });
 
   test('по клику меню раскрывается, по второму клику закрывается', () => {
@@ -122,7 +131,6 @@ describe('шапка и меню', () => {
     // Подпись кнопки меняется на «Закрыть меню» — это и есть крестик.
     expect(cross()).toHaveAttribute('aria-expanded', 'true');
     expect(menu()).not.toHaveAttribute('inert');
-    expect(content().className).toContain('opacity-100');
     expect(radius()).toBeGreaterThan(0);
 
     userEvent.click(cross());

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import Link from './Link';
 import LanguageSwitcher from './LanguageSwitcher';
 import LocalTime from './LocalTime';
+import MenuItem from './MenuItem';
 import { getCvItem } from '../data/navItems';
 import { NAV_TRANSITION } from '../data/viewTransitions';
 import logoSrc from '../images/logo.svg';
@@ -87,48 +87,6 @@ const BurgerButton = React.forwardRef(function BurgerButton(
     </button>
   );
 });
-
-// Кегль и поведение при наведении общие у всех крупных пунктов меню,
-// различается только цвет.
-const MENU_ITEM =
-  'inline-flex items-center gap-[0.3em] ' +
-  'text-4xl md:text-5xl xl:text-4xl leading-tight transition-colors duration-150';
-
-// Розовым набран один пункт — резюме: оно не ведёт по сайту, а скачивает
-// файл. Приглушённым серым — ссылки на внешние площадки, тем же zinc-500,
-// которым в проекте набраны второстепенные подписи (components/Link.js).
-const MENU_TONE = {
-  default: 'text-zinc-800 dark:text-zinc-100 hover:text-rose-400',
-  accent: 'text-rose-500 hover:text-rose-400',
-  muted: 'text-zinc-500 hover:text-rose-400',
-};
-
-// Крупный пункт меню. Отдельный элемент, а не components/Link.js: там
-// подпись набрана размером от body, а здесь пункт идёт кеглем заголовка.
-//
-// Поле `to` даёт переход внутри сайта через react-router, `href` — обычную
-// ссылку, в том числе на файл для скачивания или на внешнюю площадку.
-function MenuItem({ to, href, download, label, tone = 'default', onClick, ...rest }) {
-  const className = `${MENU_ITEM} ${MENU_TONE[tone]}`;
-
-  // Значок скрыт от программ чтения с экрана: они и так сообщают, что
-  // ссылка открывается в новой вкладке, а второй раз это лишний шум.
-  const content = <>{label}</>;
-
-  if (to) {
-    return (
-      <RouterLink to={to} onClick={onClick} className={className} {...rest}>
-        {content}
-      </RouterLink>
-    );
-  }
-
-  return (
-    <a href={href} download={download} onClick={onClick} className={className} {...rest}>
-      {content}
-    </a>
-  );
-}
 
 export default function Nav({ sections = [], socials = [] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -293,73 +251,75 @@ export default function Nav({ sections = [], socials = [] }) {
         aria-hidden={isOpen ? undefined : 'true'}
         className={'fixed inset-0 z-40 overflow-hidden ' + (isOpen ? '' : 'pointer-events-none')}
       >
-        {/* Круг раскрытия — отдельный слой, в котором нет ничего, кроме
-            заливки. Пока круг рос вместе с содержимым, браузер на каждом
-            кадре заново рисовал и заголовки кеглем 60px, и значки —
-            развёртка шла рывками, особенно обратная. Отдельным слоем
-            перерисовывается одна заливка, а содержимое поверх только
-            проявляется прозрачностью, а это composition без перерисовки. */}
-        <span
-          aria-hidden="true"
+        {/* Круг раскрытия обрезает и заливку, и текст меню разом: текст
+            виден ровно там, куда круг уже дошёл, и уходит вместе с ним при
+            закрытии. Раньше круг обрезал одну заливку, а текст проявлялся
+            прозрачностью по своему расписанию (с задержкой 150ms на 300ms),
+            и это читалось как две отдельные анимации: на медленном кадре
+            текст висел над страницей, когда круг ещё не раскрылся.
+
+            Почему текст при этом не перерисовывается на каждом кадре:
+            у слоя с текстом стоит will-change: transform, браузер
+            растеризует его один раз в отдельный слой, а круг применяет
+            к нему как маску. На каждом кадре перерисовывается только
+            маска — круг. Без этого раньше, пока круг рос вместе
+            с содержимым, заголовки кеглем 60px перерисовывались на каждом
+            кадре, и развёртка шла рывками.
+
+            Проверка: открыть меню и смотреть на пункт «Кейсы» — он должен
+            открываться краем круга, а не появляться целиком до или после. */}
+        <div
           data-testid="menu-backdrop"
           className={
             'absolute inset-0 bg-white dark:bg-zinc-900 will-change-[clip-path] ' +
             'transition-[clip-path] duration-500 ease-in-out motion-reduce:transition-none'
           }
           style={{ clipPath: `circle(${isOpen ? circle.r : 0}px at ${circle.x}px ${circle.y}px)` }}
-        />
-
-        {/* Содержимое проявляется с задержкой: к этому моменту круг уже
-            закрывает большую часть окна, и текст не висит на просвет над
-            страницей. Закрывается наоборот — сначала гаснет текст, потом
-            сходится круг, поэтому задержка ставится только на открытие. */}
-        <div
-          data-testid="menu-content"
-          className={
-            'relative h-full w-full transition-opacity duration-300 ease-out ' +
-            'motion-reduce:transition-none ' +
-            (isOpen ? 'opacity-100 delay-150' : 'opacity-0')
-          }
-          style={{ paddingRight: scrollbarGap }}
         >
-          <div className="page-grid flex h-full flex-col overflow-y-auto">
-            <div className={`${NAV_HEIGHT} shrink-0`} aria-hidden="true" />
+          <div
+            data-testid="menu-content"
+            className="relative h-full w-full will-change-transform"
+            style={{ paddingRight: scrollbarGap }}
+          >
+            <div className="page-grid flex h-full flex-col overflow-y-auto">
+              <div className={`${NAV_HEIGHT} shrink-0`} aria-hidden="true" />
 
-            <nav
-              className="flex flex-col items-start gap-6 py-6"
-              aria-label={t('nav.menu', 'Menu')}
-            >
-              {sections.map(item => (
-                <MenuItem key={item.to} to={item.to} label={item.label} onClick={close} />
-              ))}
+              <nav
+                className="flex flex-col items-start gap-6 py-6"
+                aria-label={t('nav.menu', 'Menu')}
+              >
+                {sections.map(item => (
+                  <MenuItem key={item.to} to={item.to} label={item.label} onClick={close} />
+                ))}
 
-              <MenuItem
-                href={cv.url}
-                download={cv.download}
-                label={cv.label}
-                tone="accent"
-                onClick={close}
-              />
-
-              {socials.map(item => (
                 <MenuItem
-                  key={item.url}
-                  href={item.url}
-                  label={item.label}
-                  tone="muted"
-                  target={item.target}
-                  rel={item.rel}
+                  href={cv.url}
+                  download={cv.download}
+                  label={cv.label}
+                  tone="accent"
                   onClick={close}
                 />
-              ))}
-            </nav>
 
-            {/* Подпись прибита к низу: mt-auto съедает весь свободный остаток
+                {socials.map(item => (
+                  <MenuItem
+                    key={item.url}
+                    href={item.url}
+                    label={item.label}
+                    tone="muted"
+                    target={item.target}
+                    rel={item.rel}
+                    onClick={close}
+                  />
+                ))}
+              </nav>
+
+              {/* Подпись прибита к низу: mt-auto съедает весь свободный остаток
                 колонки. На низком окне остатка нет, колонка прокручивается,
                 и подпись оказывается в конце прокрутки, а не поверх пунктов. */}
-            <div className="mt-auto flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2 py-8 text-xl">
-              <span>{t('nav.location.city')}</span>
-              <LocalTime />
+              <div className="mt-auto flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2 py-8 text-xl">
+                <span>{t('nav.location.city')}</span>
+                <LocalTime />
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import Nav from './Nav';
 import ReadingProgress from './ReadingProgress';
+import Footer from './Footer';
 import { getSectionItems, getSocialItems } from '../data/navItems';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -47,6 +48,9 @@ export default function Layout({
           в .page-grid, как и main. */}
       {cover}
       <main className={`page-grid ${mainClassName}`.trim()}>{children}</main>
+      {/* Подвал тоже вне main и по той же причине, что обложка: его
+          подложка идёт во всю ширину окна. */}
+      <Footer socials={socials} />
     </div>
   );
 }

@@ -19,6 +19,9 @@ import { caseTransitionNames } from '../data/viewTransitions';
 // <main>: он ограничен по ширине, и внутри него подложку пришлось бы
 // растягивать через 100vw — а это ширина окна ВМЕСТЕ с полосой прокрутки,
 // и правый край уезжал бы за экран.
+//
+// Нижние углы подложки скруглены, а под снимком оставлено 40–64px цвета:
+// при 16px снимок упирался в край подложки, и обложка выглядела тесной.
 export default function CaseCover({ project, title }) {
   // Имена стоят всегда, без условия: кейс на странице один, спорить
   // за имя не с кем. Вне перехода они ни на что не влияют.
@@ -26,10 +29,13 @@ export default function CaseCover({ project, title }) {
 
   return (
     <div
-      className={`-mt-[var(--nav-height)] pt-[var(--nav-height)] ${names.background}`}
+      className={`-mt-[var(--nav-height)] pt-[var(--nav-height)] rounded-b-[2rem] xl:rounded-b-[3rem] ${names.background}`}
       style={projectBackground(project.background)}
     >
-      <div className="page-grid">
+      {/* Нижний отступ стоит здесь, а не у снимка: снимок при переходе
+          с главной переезжает как один элемент, и отступ внутри него
+          менял бы пропорции рамки — картинка сплющивалась бы в полёте. */}
+      <div className="page-grid pb-10 lg:pb-14 xl:pb-16">
         {/* Цвет подписи задан белым, а не взят из темы: подложка тёмная
             при любой теме, и обычный тёмный заголовок на ней пропадал. */}
         {/* Набор стилей тот же, что у карточки этого кейса на главной,
@@ -39,11 +45,9 @@ export default function CaseCover({ project, title }) {
           {title}
         </Text>
 
-        {/* Отступ снизу 16px: подложка кончается чуть ниже снимка, и его
-            нижняя граница остаётся видна на цвете. По бокам своего отступа
-            у снимка нет — он стоит по той же сетке, что заголовок над ним
-            и текст под обложкой. */}
-        <div className={`mt-8 pb-4 ${names.thumbnail}`}>
+        {/* По бокам своего отступа у снимка нет — он стоит по той же
+            сетке, что заголовок над ним и текст под обложкой. */}
+        <div className={`mt-8 ${names.thumbnail}`}>
           <Image
             src={project.thumbnail}
             sources={retinaSources(project.thumbnail)}

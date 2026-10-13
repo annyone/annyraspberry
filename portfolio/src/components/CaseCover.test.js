@@ -40,18 +40,19 @@ describe('обложка страницы кейса', () => {
     expect(container.querySelector('.page-grid')).not.toBeNull();
   });
 
-  test('подложка кончается на 16px ниже снимка', () => {
-    // Нижняя граница снимка должна остаться видна на цвете — ради этого
-    // отступ и оставлен, а не сведён к нулю.
+  test('под снимком остаётся полоса цвета, и задана она не самому снимку', () => {
+    // Отступ у снимка менял бы пропорции его рамки, и при переходе
+    // с главной картинка сплющивалась бы в полёте.
     const { container } = render();
 
-    expect(namedBy(container, CASE_TRANSITION.thumbnail).className).toContain('pb-4');
+    expect(container.querySelector('.page-grid').className).toContain('pb-10');
+    expect(namedBy(container, CASE_TRANSITION.thumbnail).className).not.toMatch(/pb-/);
   });
 
-  test('у подложки нет скругления', () => {
+  test('нижние углы подложки скруглены', () => {
     const { container } = render();
 
-    expect(container.querySelector('div').className).not.toContain('rounded');
+    expect(container.querySelector('div').className).toContain('rounded-b-');
   });
 
   test('заголовок набран тем же кеглем, что карточка кейса на главной', () => {
