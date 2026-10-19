@@ -212,7 +212,7 @@ export default function Nav({ sections = [], socials = [] }) {
           z-50 выше меню (z-40), чтобы логотип, переключатель языка
           и крестик оставались нажимаемыми поверх раскрытого меню. */}
       <nav
-        className={`w-full fixed top-0 left-0 right-0 z-50 ${NAV_HEIGHT} ${NAV_TRANSITION}`}
+        className={`pointer-events-none w-full fixed top-0 left-0 right-0 z-50 ${NAV_HEIGHT} ${NAV_TRANSITION}`}
         style={{ paddingRight: scrollbarGap }}
       >
         <div className={`page-grid flex items-center ${NAV_HEIGHT}`}>
@@ -220,11 +220,11 @@ export default function Nav({ sections = [], socials = [] }) {
             to="/"
             icon={<img src={logoSrc} alt="logo" className="select-none !w-12 !h-12" />}
             aria-label={t('nav.home', 'Home')}
-            className="flex items-center h-full group"
+            className="pointer-events-auto flex items-center h-12 group"
             onClick={close}
           />
 
-          <div className="ml-auto flex items-center gap-4 md:gap-6">
+          <div className="pointer-events-auto ml-auto flex items-center gap-4 md:gap-6">
             <LanguageSwitcher />
             <BurgerButton
               ref={burgerRef}
