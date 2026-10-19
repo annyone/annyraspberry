@@ -1,6 +1,7 @@
 import React from 'react';
 import photo from '../images/photo.jpg';
 import Image from './Image';
+import Text from './Text';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Hero() {
@@ -18,12 +19,17 @@ export default function Hero() {
           className="h-[180px] w-[180px] shrink-0"
           loading="eager"
         />
-        <h1
-          id="home-intro"
-          className="min-w-0 flex-1 text-xl font-normal leading-[1.4] md:text-2xl md:leading-[1.4] lg:text-3xl lg:leading-[1.35] xl:text-4xl xl:leading-[1.3]"
-        >
-          {t('hero.intro')}
-        </h1>
+        <div className="min-w-0 flex-1">
+          <h1
+            id="home-intro"
+            className="text-xl font-normal leading-[1.4] md:text-2xl md:leading-[1.4] lg:text-3xl lg:leading-[1.35] xl:text-4xl xl:leading-[1.3]"
+          >
+            {t('hero.heading')}
+          </h1>
+          <Text variant="p" className="mt-4">
+            {t('hero.description')}
+          </Text>
+        </div>
       </div>
     </section>
   );

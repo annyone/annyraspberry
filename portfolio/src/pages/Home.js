@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
 import Hero from '../components/Hero';
-import ProjectCard from '../components/ProjectCard';
+import ProjectShowcase from '../components/ProjectShowcase';
 import ExperienceRole from '../components/ExperienceRole';
 import ArticleCard from '../components/ArticleCard';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -18,12 +18,7 @@ export default function Home() {
     <Layout title={t('site.title')} cover={<Hero />}>
       {/* Cases */}
       <Section id="cases" className="!gap-0">
-        {
-          // Use thumbnails and page info from src/data/projects.json
-          (projects || []).map(project => (
-            <ProjectCard key={project.id} project={project} />
-          ))
-        }
+        <ProjectShowcase projects={projects || []} />
       </Section>
 
       {/* About */}

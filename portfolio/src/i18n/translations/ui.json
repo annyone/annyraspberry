@@ -3,10 +3,40 @@
     "title": { "ru": "Малинина Анна — UI/UX дизайнер", "en": "Anna Malinina — UI/UX designer" },
     "author": { "ru": "Малинина Анна", "en": "Anna Malinina" }
   },
+  "showcase": {
+    "featured": { "ru": "Избранный проект", "en": "Featured project" },
+    "preview": {
+      "ru": "Статичное превью · анимация интерфейса готовится",
+      "en": "Static preview · interface animation coming soon"
+    },
+    "soon": { "ru": "Кейс готовится", "en": "Case study coming soon" },
+    "plugin": {
+      "title": { "ru": "Плагин для Figma", "en": "Figma plugin" },
+      "description": {
+        "ru": "Поиск частых ошибок в макетах. Здесь появится короткий рассказ о задаче и решении.",
+        "en": "Finding common mistakes in designs. A short story about the problem and solution will appear here."
+      }
+    },
+    "editorial": {
+      "title": { "ru": "Редполитика", "en": "Editorial guidelines" },
+      "description": {
+        "ru": "Здесь появятся принципы работы с текстами и примеры до и после.",
+        "en": "Writing principles and before-and-after examples will appear here."
+      }
+    }
+  },
   "hero": {
+    "heading": {
+      "ru": "Привет! Я — Аня, продуктовый дизайнер в B2B.",
+      "en": "Hi! I’m Anya, a B2B product designer."
+    },
+    "description": {
+      "ru": "Превращаю сложные сценарии в понятные рабочие интерфейсы. Разрабатываю дизайн-системы, оптимизирую рабочие процессы. Опираюсь на опыт разработки и тестирования.",
+      "en": "I turn complex workflows into clear, practical interfaces. I build design systems and improve work processes, drawing on my experience in development and testing."
+    },
     "intro": {
-      "ru": "Я — Аня, продуктовый дизайнер. Создаю понятные интерфейсы для сложных продуктов. В работе опираюсь на опыт в дизайне, разработке и тестировании.",
-      "en": "I’m Anya, a product designer. I create clear interfaces for complex products, drawing on my experience in design, development, and testing."
+      "ru": "Привет! Я — Аня, продуктовый дизайнер в B2B. Превращаю сложные сценарии в понятные рабочие интерфейсы. Разрабатываю дизайн-системы, оптимизирую рабочие процессы. Опираюсь на опыт разработки и тестирования.",
+      "en": "Hi! I’m Anya, a B2B product designer. I turn complex workflows into clear, practical interfaces. I build design systems and improve work processes, drawing on my experience in development and testing."
     },
     "photoAlt": { "ru": "Аня", "en": "Anya" },
     "greeting": { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },

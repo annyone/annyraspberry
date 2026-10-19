@@ -3,6 +3,7 @@ import Text from './Text';
 import Image, { retinaSources } from './Image';
 import { projectBackground } from '../data/projectBackground';
 import { caseTransitionNames } from '../data/viewTransitions';
+import { useCaseTransitionBackground } from '../data/useCaseTransitionBackground';
 
 // Обложка страницы кейса: цветная подложка во всю ширину окна, на ней
 // заголовок и снимок экрана. Цвет тот же, что у карточки этого кейса
@@ -23,6 +24,7 @@ import { caseTransitionNames } from '../data/viewTransitions';
 // Нижние углы подложки скруглены, а под снимком оставлено 40–64px цвета:
 // при 16px снимок упирался в край подложки, и обложка выглядела тесной.
 export default function CaseCover({ project, title }) {
+  useCaseTransitionBackground(project);
   // Имена стоят всегда, без условия: кейс на странице один, спорить
   // за имя не с кем. Вне перехода они ни на что не влияют.
   const names = caseTransitionNames();
@@ -35,13 +37,13 @@ export default function CaseCover({ project, title }) {
       {/* Нижний отступ стоит здесь, а не у снимка: снимок при переходе
           с главной переезжает как один элемент, и отступ внутри него
           менял бы пропорции рамки — картинка сплющивалась бы в полёте. */}
-      <div className="page-grid pb-10 lg:pb-14 xl:pb-16">
+      <div className="page-grid pt-8 pb-10 lg:pb-14 xl:pb-16">
         {/* Цвет подписи задан белым, а не взят из темы: подложка тёмная
             при любой теме, и обычный тёмный заголовок на ней пропадал. */}
         {/* Набор стилей тот же, что у карточки этого кейса на главной,
             а тег — h1: это главный заголовок страницы. Вид и место
             в структуре документа здесь расходятся, отсюда `as`. */}
-        <Text variant="h2" as="h1" className={`pt-8 text-white ${names.title}`}>
+        <Text variant="h2" as="h1" className={`case-project-title text-white ${names.title}`}>
           {title}
         </Text>
 
