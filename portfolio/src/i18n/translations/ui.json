@@ -4,6 +4,10 @@
     "author": { "ru": "Малинина Анна", "en": "Anna Malinina" }
   },
   "hero": {
+    "intro": {
+      "ru": "Я — Аня, продуктовый дизайнер. Создаю понятные интерфейсы для сложных продуктов. В работе опираюсь на опыт в дизайне, разработке и тестировании.",
+      "en": "I’m Anya, a product designer. I create clear interfaces for complex products, drawing on my experience in design, development, and testing."
+    },
     "photoAlt": { "ru": "Аня", "en": "Anya" },
     "greeting": { "ru": "Привет! 🤚 Я — Аня", "en": "Hi! 🤚 I'm Anya" },
     "subtitle": {

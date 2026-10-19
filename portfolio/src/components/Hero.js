@@ -1,53 +1,30 @@
 import React from 'react';
 import photo from '../images/photo.jpg';
-import Text from '../components/Text';
-import Image from '../components/Image';
+import Image from './Image';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    // Обложка занимает весь первый экран, чтобы цветные карточки кейсов
-    // не выглядывали снизу.
-    //
-    // justify-center: при высоте в целый экран содержимое иначе прижалось
-    // бы к верхней кромке, а под ним осталась бы пустая треть.
-    //
-    // Боковые отступы даёт .page-grid — та же сетка, по которой стоят шапка,
-    // карточки кейсов и разделы главной. Пока обложка отступала от края
-    // своими 140px, её текст не совпадал с логотипом над ним.
-    <section className="page-grid flex min-h-cover flex-col justify-center py-[40px] md:py-[80px] xl:py-[140px]">
-      <div className="flex flex-col xl:flex-row items-start text-left">
-        {/* Заглушку на время загрузки и плавное появление рисует Image —
-            здесь задаётся только размер. Раньше та же логика была написана
-            в Hero второй раз, и именно её копия растягивала серый блок
-            на весь экран. loading="eager": фотография видна без прокрутки. */}
-        <div className="w-40 h-40 flex-shrink-0 xl:mr-12 mb-6 xl:mb-0">
-          <Image
-            src={photo}
-            alt={t('hero.photoAlt', 'Anya')}
-            className="w-40 h-40"
-            loading="eager"
-          />
-        </div>
-        <div className="w-full">
-          <Text variant="hero" className="mb-4 lg:mb-6 xl:mb-8">
-            {t('hero.greeting', "Hi! 🤚 I'm Anya")}
-          </Text>
-          <Text variant="hero">
-            {t('hero.subtitle.part1', 'UI/UX designer with 11 years in IT:')}
-            <span className="hidden lg:inline">
-              <br />
-            </span>
-            {` ${t('hero.subtitle.part2', 'product design, development, testing')}`}
-          </Text>
-        </div>
+    <section
+      className="page-grid pt-10 pb-16 md:pt-14 md:pb-24 xl:pt-16 xl:pb-28"
+      aria-labelledby="home-intro"
+    >
+      <div className="flex flex-col items-start gap-6 xl:flex-row xl:gap-12">
+        <Image
+          src={photo}
+          alt={t('hero.photoAlt', 'Anya')}
+          className="h-[180px] w-[180px] shrink-0"
+          loading="eager"
+        />
+        <h1
+          id="home-intro"
+          className="min-w-0 flex-1 text-xl font-normal leading-[1.4] md:text-2xl md:leading-[1.4] lg:text-3xl lg:leading-[1.35] xl:text-4xl xl:leading-[1.3]"
+        >
+          {t('hero.intro')}
+        </h1>
       </div>
-      <Text variant="display" className="mt-8 lg:mt-12 xl:mt-16">
-        {t('hero.tagline.part1', 'I create intuitive interfaces')} <br />
-        {t('hero.tagline.part2', 'for complex products 😎')}
-      </Text>
     </section>
   );
 }
