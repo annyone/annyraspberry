@@ -1,3 +1,9 @@
+@property --aurora-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: transparent;
+}
+
 .project-showcase,
 .project-showcase__mixed,
 .project-showcase__compact,
@@ -8,6 +14,9 @@
 }
 
 .project-tile {
+  --halo-opacity: 0.28;
+  --halo-blur: clamp(32px, 4cqw, 56px);
+  --cover-shadow: 0 0 0 1px rgb(24 24 27 / 10%), 0 8px 24px rgb(24 24 27 / 8%);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -15,7 +24,7 @@
   min-width: 0;
   border-radius: 24px;
   overflow: visible;
-  color: white;
+  color: inherit;
   cursor: pointer;
 }
 
@@ -26,6 +35,7 @@
 
 .project-tile__body {
   position: relative;
+  container-type: inline-size;
   isolation: isolate;
   display: flex;
   flex-direction: column;
@@ -35,46 +45,198 @@
   gap: 20px;
 }
 
+/* Маска ограничивает свечение и приглушает углы. Волнистый контур
+   создают движущиеся полупрозрачные пятна внутри неё. */
 .project-tile__background {
+  --halo-feather: clamp(56px, 7cqw, 112px);
+  position: absolute;
+  inset: 0 calc(var(--halo-feather) * -0.6);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  --halo-fade-stops:
+    transparent 0px, #00000008 calc(var(--halo-feather) * 0.2),
+    #00000040 calc(var(--halo-feather) * 0.4), #000000a6 calc(var(--halo-feather) * 0.65),
+    #000000eb calc(var(--halo-feather) * 0.85), black var(--halo-feather),
+    black calc(100% - var(--halo-feather)), #000000eb calc(100% - var(--halo-feather) * 0.85),
+    #000000a6 calc(100% - var(--halo-feather) * 0.65),
+    #00000040 calc(100% - var(--halo-feather) * 0.4),
+    #00000008 calc(100% - var(--halo-feather) * 0.2), transparent 100%;
+  mask-image:
+    radial-gradient(ellipse 26% 30% at 0% 0%, transparent 12%, #00000040 50%, black 100%),
+    radial-gradient(ellipse 26% 30% at 100% 0%, transparent 12%, #00000040 50%, black 100%),
+    radial-gradient(ellipse 26% 30% at 0% 100%, transparent 12%, #00000040 50%, black 100%),
+    radial-gradient(ellipse 26% 30% at 100% 100%, transparent 12%, #00000040 50%, black 100%),
+    linear-gradient(to right, var(--halo-fade-stops)),
+    linear-gradient(to bottom, var(--halo-fade-stops));
+  mask-composite: intersect;
+  transition: opacity 550ms ease;
+}
+
+.project-tile__flow {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  border-radius: 24px;
-  transition: inset 280ms cubic-bezier(0.2, 0, 0.2, 1);
+  transform: translate(var(--pointer-x, 0px), var(--pointer-y, 0px));
+  transition: transform 700ms ease-out;
+}
+
+.project-tile__light {
+  --aurora-color: var(--glow-a);
+  position: absolute;
+  inset: -4%;
+  filter: blur(var(--halo-blur));
+  background-image:
+    radial-gradient(
+      ellipse calc(23% * var(--lobe-width, 1)) calc(30% * var(--lobe-height, 1)) at 22% 20%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 78%
+    ),
+    radial-gradient(
+      ellipse calc(25% * var(--lobe-width, 1)) calc(28% * var(--lobe-height, 1)) at 85% 45%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse calc(23% * var(--lobe-width, 1)) calc(29% * var(--lobe-height, 1)) at 40% 82%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    );
+  opacity: 0.75;
+  transform-origin: 40% 55%;
+  animation:
+    aurora-flow 14s ease-in-out infinite alternate,
+    aurora-color 12s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.project-tile__light--two {
+  background-image:
+    radial-gradient(
+      ellipse calc(22% * var(--lobe-width, 1)) calc(30% * var(--lobe-height, 1)) at 52% 18%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse calc(25% * var(--lobe-width, 1)) calc(26% * var(--lobe-height, 1)) at 14% 54%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse calc(24% * var(--lobe-width, 1)) calc(29% * var(--lobe-height, 1)) at 78% 76%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    );
+  transform-origin: 65% 40%;
+  animation-duration: 19s, 16s;
+  animation-delay:
+    -8s,
+    -5s;
+  animation-direction: alternate-reverse, reverse;
+}
+
+.project-tile__light--three {
+  background-image:
+    radial-gradient(
+      ellipse calc(22% * var(--lobe-width, 1)) calc(28% * var(--lobe-height, 1)) at 78% 24%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse calc(23% * var(--lobe-width, 1)) calc(27% * var(--lobe-height, 1)) at 22% 77%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse calc(22% * var(--lobe-width, 1)) calc(28% * var(--lobe-height, 1)) at 61% 84%,
+      var(--aurora-color) var(--lobe-core, 25%),
+      transparent 80%
+    );
+  transform-origin: 50% 65%;
+  animation-duration: 23s, 20s;
+  animation-delay:
+    -15s,
+    -13s;
+}
+
+/* На узких карточках вытягиваем пятна, чтобы они не выглядели кругами. */
+@container (max-width: 900px) {
+  .project-tile__light {
+    --lobe-width: 1.5;
+    --lobe-height: 0.8;
+    --lobe-core: 0%;
+    --halo-blur: clamp(40px, 7cqw, 64px);
+  }
+}
+
+.project-tile:focus-visible .project-tile__background {
+  opacity: var(--halo-opacity);
+}
+
+.project-tile:focus-visible .project-tile__light {
+  animation-play-state: running;
+}
+
+@keyframes aurora-flow {
+  0% {
+    transform: translate(-3%, 2%) scale(0.86, 1.04);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(4%, -3%) scale(1.12, 0.91);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-2%, 3%) scale(0.96, 1.12);
+    opacity: 0.7;
+  }
+}
+
+@keyframes aurora-color {
+  0%,
+  100% {
+    --aurora-color: var(--glow-a);
+  }
+  33% {
+    --aurora-color: var(--glow-b);
+  }
+  66% {
+    --aurora-color: var(--glow-c);
+  }
 }
 
 .project-tile__heading {
   position: relative;
-}
-
-.project-tile__eyebrow,
-.project-tile__note {
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.project-tile__eyebrow {
-  margin-bottom: 12px;
-}
-.project-tile__note {
-  margin-top: -12px;
+  padding-top: clamp(12px, 3cqw, 48px);
 }
 
 .project-tile__visual {
   margin-top: auto;
+  padding-bottom: 4%;
 }
 
 .project-tile__visual > div {
   height: auto;
+  border-radius: 8px;
+  box-shadow: var(--cover-shadow);
 }
 
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-tile:hover {
+@media (prefers-color-scheme: dark) {
+  .project-tile {
+    --halo-opacity: 0.35;
+    --cover-shadow: 0 0 0 1px rgb(255 255 255 / 8%), 0 8px 24px rgb(0 0 0 / 16%);
+  }
+}
+
+@media (hover: hover) {
+  .project-tile[data-pointer-hover='true'] {
     z-index: 1;
   }
-  .project-tile:hover .project-tile__background {
-    inset: -10px;
+  .project-tile[data-pointer-hover='true'] .project-tile__background {
+    opacity: var(--halo-opacity);
+  }
+  .project-tile[data-pointer-hover='true'] .project-tile__light {
+    animation-play-state: running;
   }
 }
 
@@ -103,19 +265,6 @@
   font-size: 24px;
   line-height: 1.25;
   font-weight: 500;
-}
-.compact-project p {
-  margin-top: 10px;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.compact-project__status {
-  margin-top: auto;
-  font-size: 13px;
-  line-height: 1.5;
-  border: 1px solid #29243140;
-  border-radius: 999px;
-  padding: 4px 10px;
 }
 
 @media (min-width: 768px) {
@@ -150,13 +299,17 @@
   .project-tile--featured .project-tile__body {
     padding: 32px;
   }
-  .project-tile--featured .project-tile__visual {
-    width: 100%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .project-tile__flow,
   .project-tile__background {
     transition: none;
+  }
+  .project-tile__flow {
+    transform: none;
+  }
+  .project-tile__light {
+    animation: none;
   }
 }
