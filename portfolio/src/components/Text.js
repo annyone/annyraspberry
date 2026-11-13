@@ -1,14 +1,6 @@
 import React from 'react';
 
 export const variants = {
-  display: {
-    tag: 'h1',
-    className: 'text-3xl lg:text-4xl xl:text-5xl !leading-tight',
-  },
-  hero: {
-    tag: 'h2',
-    className: 'text-lg lg:text-xl xl:text-2xl font-normal',
-  },
   h1: {
     tag: 'h1',
     className: 'text-4xl font-bold',

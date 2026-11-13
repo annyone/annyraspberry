@@ -5,7 +5,7 @@
 import '@testing-library/jest-dom';
 
 // jsdom не умеет прокручивать окно и печатает «Not implemented: window.scrollTo»
-// на каждый рендер из-за components/ScrollToTop.js. Подменяем заглушкой,
+// на каждый рендер из-за components/ScrollToAnchor.js. Подменяем заглушкой,
 // чтобы вывод тестов оставался читаемым.
 window.scrollTo = () => {};
 

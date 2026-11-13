@@ -15,10 +15,11 @@ import { useLanguage } from '../i18n/LanguageContext';
 // столько же, сколько по бокам.
 const NAV_HEIGHT = 'h-[var(--nav-height)]';
 
-// Длительность развёртки круга в миллисекундах. Должна совпадать
-// с duration-500 у слоя заливки: по ней снимается блокировка прокрутки
-// после закрытия. Разойдутся — прокрутка вернётся либо раньше, чем
-// сойдётся круг (виден рывок), либо заметно позже клика.
+// Длительность развёртки круга в миллисекундах. По ней же снимается
+// блокировка прокрутки после закрытия, поэтому переходу слоя заливки она
+// задаётся отсюда, а не классом duration-*: разойдись два числа, прокрутка
+// вернулась бы либо раньше, чем сойдётся круг (виден рывок), либо заметно
+// позже клика.
 const REVEAL_MS = 500;
 
 // Радиус круга раскрытия до того, как измерено окно. В браузере
@@ -100,6 +101,8 @@ export default function Nav({ sections = [], socials = [] }) {
   // при закрытии блокировка держится, пока круг не сойдётся.
   const [isLocked, setIsLocked] = useState(false);
   const burgerRef = useRef(null);
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
   const { t, lang } = useLanguage();
 
   // Резюме вынесено из списка пунктов: оно рисуется кнопкой, а не ссылкой,
@@ -127,7 +130,35 @@ export default function Nav({ sections = [], socials = [] }) {
     if (!isOpen) return undefined;
 
     const onKeyDown = event => {
-      if (event.key === 'Escape') setIsOpen(false);
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        burgerRef.current?.focus();
+        return;
+      }
+
+      // Tab ходит по кругу внутри шапки и меню: страница под раскрытым
+      // меню не видна, и фокус, ушедший в неё, пропадал бы из виду.
+      if (event.key !== 'Tab') return;
+
+      const focusable = [headerRef.current, menuRef.current].flatMap(root =>
+        root ? Array.from(root.querySelectorAll('a[href], button')) : []
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const current = document.activeElement;
+
+      if (!focusable.includes(current)) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && current === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && current === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener('keydown', onKeyDown);
 
@@ -183,18 +214,35 @@ export default function Nav({ sections = [], socials = [] }) {
       return undefined;
     }
 
-    // Ширина полосы прокрутки — это то, на сколько видимая область окна
-    // шире области, отведённой под содержимое. У полос, нарисованных
-    // поверх содержимого (macOS, мобильные браузеры), разница нулевая,
-    // и возмещать нечего.
-    const gap = window.innerWidth - document.documentElement.clientWidth;
-    setScrollbarGap(gap);
-
     const { body } = document;
     const previousOverflow = body.style.overflow;
     const previousMargin = body.style.marginRight;
 
+    // Ширина полосы прокрутки — это то, на сколько область под содержимое
+    // расширилась после запрета прокрутки. Она измеряется, а не считается
+    // как innerWidth − clientWidth: оба этих числа целые, а полоса при
+    // масштабе экрана 150% занимает 15,33px. Возмещение в 15px оставляло
+    // треть пикселя разницы, и содержимое, стоящее по центру окна (на
+    // экранах шире 1600px), сдвигалось на долю пикселя: текст под меню
+    // вздрагивал в момент снятия блокировки. На узких экранах содержимое
+    // прижато к левому краю, поэтому там сдвига не было.
+    //
+    // Нулевая разница — полоса нарисована поверх содержимого (macOS,
+    // мобильные браузеры) или место под неё закреплено правилом
+    // scrollbar-gutter в src/index.css: возмещать нечего.
+    //
+    // Проверка: окно шире 1700px, масштаб экрана 150%, открыть и закрыть
+    // меню на главной — заголовки карточек не должны сдвигаться.
+    const root = document.documentElement;
+    const widthBefore = root.getBoundingClientRect().width;
     body.style.overflow = 'hidden';
+    const measured = root.getBoundingClientRect().width - widthBefore;
+
+    // Там, где вёрстка не считается (jsdom в тестах), оба замера нулевые;
+    // остаётся разница целых чисел.
+    const gap = widthBefore > 0 ? Math.max(0, measured) : window.innerWidth - root.clientWidth;
+    setScrollbarGap(gap);
+
     if (gap > 0) body.style.marginRight = `${gap}px`;
 
     return () => {
@@ -212,6 +260,7 @@ export default function Nav({ sections = [], socials = [] }) {
           z-50 выше меню (z-40), чтобы логотип, переключатель языка
           и крестик оставались нажимаемыми поверх раскрытого меню. */}
       <nav
+        ref={headerRef}
         className={`pointer-events-none w-full fixed top-0 left-0 right-0 z-50 ${NAV_HEIGHT} ${NAV_TRANSITION}`}
         style={{ paddingRight: scrollbarGap }}
       >
@@ -222,6 +271,9 @@ export default function Nav({ sections = [], socials = [] }) {
             aria-label={t('nav.home', 'Home')}
             className="pointer-events-auto flex items-center h-12 group"
             onClick={close}
+            // При раскрытом меню перехода с анимацией нет: снимок страницы
+            // застал бы меню раскрытым, и оно закрывалось бы дважды.
+            viewTransition={!isOpen}
           />
 
           <div className="pointer-events-auto ml-auto flex items-center gap-4 md:gap-6">
@@ -246,8 +298,9 @@ export default function Nav({ sections = [], socials = [] }) {
           под Tab, на нём стоят pointer-events-none и inert. */}
       <div
         id="main-menu"
+        ref={menuRef}
         data-testid="main-menu"
-        inert={isOpen ? undefined : 'true'}
+        inert={!isOpen}
         aria-hidden={isOpen ? undefined : 'true'}
         className={'fixed inset-0 z-40 overflow-hidden ' + (isOpen ? '' : 'pointer-events-none')}
       >
@@ -272,9 +325,12 @@ export default function Nav({ sections = [], socials = [] }) {
           data-testid="menu-backdrop"
           className={
             'absolute inset-0 bg-white dark:bg-zinc-900 will-change-[clip-path] ' +
-            'transition-[clip-path] duration-500 ease-in-out motion-reduce:transition-none'
+            'transition-[clip-path] ease-in-out motion-reduce:transition-none'
           }
-          style={{ clipPath: `circle(${isOpen ? circle.r : 0}px at ${circle.x}px ${circle.y}px)` }}
+          style={{
+            clipPath: `circle(${isOpen ? circle.r : 0}px at ${circle.x}px ${circle.y}px)`,
+            transitionDuration: `${REVEAL_MS}ms`,
+          }}
         >
           <div
             data-testid="menu-content"
@@ -315,8 +371,10 @@ export default function Nav({ sections = [], socials = [] }) {
 
               {/* Подпись прибита к низу: mt-auto съедает весь свободный остаток
                 колонки. На низком окне остатка нет, колонка прокручивается,
-                и подпись оказывается в конце прокрутки, а не поверх пунктов. */}
-              <div className="mt-auto flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2 py-8 text-xl">
+                и подпись оказывается в конце прокрутки, а не поверх пунктов.
+                Цвет, кегль и нижний отступ — те же, что у такой же подписи
+                в подвале (components/Footer.js). */}
+              <div className="mt-auto flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2 pt-8 pb-8 text-zinc-500 xl:pb-12">
                 <span>{t('nav.location.city')}</span>
                 <LocalTime />
               </div>

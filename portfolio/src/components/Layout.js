@@ -8,24 +8,15 @@ import { useLanguage } from '../i18n/LanguageContext';
 // Общая обвязка страницы: шапка, ограниченная по ширине область контента
 // и заголовок вкладки. До появления этого компонента те же семь строк
 // разметки были дословно повторены в Home и в каждой странице кейса.
-//
-// mainClassName нужен, потому что страница darts единственная идёт без
-// нижнего отступа pb-1 — чтобы не копировать разметку ради одного класса.
-export default function Layout({
-  title,
-  cover,
-  mainClassName = 'pb-1',
-  showProgress = false,
-  children,
-}) {
-  const { t, lang } = useLanguage();
+export default function Layout({ title, cover, showProgress = false, children }) {
+  const { t } = useLanguage();
 
   // Пункты меню собираются заново на каждой перерисовке любой страницы,
   // хотя результат зависит только от языка, — отсюда useMemo. Условие
-  // пересборки: изменился lang (вместе с ним меняется и t — оно
-  // пересоздаётся в LanguageProvider при смене языка).
-  const sections = useMemo(() => getSectionItems(t, lang), [t, lang]);
-  const socials = useMemo(() => getSocialItems(t, lang), [t, lang]);
+  // пересборки: изменился t — оно пересоздаётся в LanguageProvider при
+  // смене языка.
+  const sections = useMemo(() => getSectionItems(t), [t]);
+  const socials = useMemo(() => getSocialItems(t), [t]);
 
   // Заголовок вкладки задаём в одном месте, а не хуком в каждой странице.
   // Строка зависит от языка, поэтому эффект повторяется при его смене.
@@ -47,7 +38,7 @@ export default function Layout({
           Отступы содержимого при этом те же: обложка заворачивает его
           в .page-grid, как и main. */}
       {cover}
-      <main className={`page-grid ${mainClassName}`.trim()}>{children}</main>
+      <main className="page-grid pb-1">{children}</main>
       {/* Подвал тоже вне main и по той же причине, что обложка: его
           подложка идёт во всю ширину окна. */}
       <Footer socials={socials} />

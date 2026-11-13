@@ -28,7 +28,7 @@ export function getCvItem(t, lang = 'en') {
 // на кейсе, секции с таким id там нет, никуда не прокручиваемся.
 // Поле `to` заставляет Link отрендерить RouterLink, поэтому переход
 // на главную идёт без перезагрузки страницы, а прокрутку к якорю
-// выполняет components/ScrollToTop.js.
+// выполняет components/ScrollToAnchor.js.
 export function getSectionItems(t) {
   return [
     {
@@ -51,8 +51,7 @@ export function getSectionItems(t) {
 // прочитала бы его вместо того, что видит зрячий посетитель.
 //
 // Своего значка у площадки нет: в меню все они набраны крупной подписью
-// со значком внешней ссылки в конце (components/Nav.js). Файлы значков
-// LinkedIn и Telegram остались в src/images на случай возврата.
+// (components/MenuItem.js).
 export function getSocialItems(t) {
   return [
     {
@@ -69,13 +68,3 @@ export function getSocialItems(t) {
     },
   ];
 }
-
-// Полный список пунктов одним массивом. Меню разложено на две части
-// (getSectionItems и getSocialItems) и этой функцией не пользуется —
-// она осталась для проверок, которым нужны все адреса разом
-// (data/assets.test.js).
-export function getNavItems(t, lang = 'en') {
-  return [...getSectionItems(t, lang), ...getSocialItems(t, lang)];
-}
-
-export default getNavItems;

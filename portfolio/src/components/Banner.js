@@ -1,9 +1,10 @@
 import React from 'react';
+import Card from './Card';
 import Text from './Text';
 
 export default function Banner({ emoji = 'ℹ️', title, text, className = '' }) {
   return (
-    <div className={`flex gap-4 bg-zinc-50/75 p-6 rounded-xl dark:bg-zinc-800/60 ${className}`}>
+    <Card className={`flex gap-4 p-6 ${className}`}>
       <Text variant="p">{emoji}</Text>
       <div>
         {title && (
@@ -17,6 +18,6 @@ export default function Banner({ emoji = 'ℹ️', title, text, className = '' }
           </Text>
         )}
       </div>
-    </div>
+    </Card>
   );
 }

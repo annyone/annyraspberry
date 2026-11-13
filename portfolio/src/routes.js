@@ -22,5 +22,3 @@ export const caseDescriptions = {
   darts,
   adidas,
 };
-
-export default caseDescriptions;

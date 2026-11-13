@@ -26,9 +26,8 @@ const SWITCH_LABEL = { ru: 'lang.switchToRussian', en: 'lang.switchToEnglish' };
 // (высота 0.72em) хватает с запасом сверху и снизу.
 const ROW = 'h-[1.25em] leading-[1.25em]';
 
-// Кегль намеренно не задан: он наследуется от body — ровно так же, как
-// у пунктов меню. С жёстким text-base переключатель оставался 16px там,
-// где соседние подписи вырастали до 18px и 20px, и выглядел мельче их.
+// Кегль text-xl (20px) один на любой ширине экрана: переключатель стоит
+// в шапке рядом с бургером, и расти вместе с текстом страницы ему незачем.
 const BUTTON =
   'px-1 py-1.5 text-zinc-800 transition-colors duration-200 dark:text-zinc-300 text-xl';
 

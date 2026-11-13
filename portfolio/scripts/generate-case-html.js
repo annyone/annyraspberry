@@ -64,7 +64,10 @@ function upsert(html, pattern, tag) {
 }
 
 function buildPage(template, project, title, description) {
-  const url = `${ORIGIN}/${project.id}`;
+  // Адрес со слешем на конце: кейс лежит на диске как <id>/index.html,
+  // и сервер отвечает на /<id> перенаправлением на /<id>/. Канонический
+  // адрес без слеша указывал бы на страницу, которая сама перенаправляет.
+  const url = `${ORIGIN}/${project.id}/`;
   const image = `${ORIGIN}${project.ogImage}`;
   const t = escapeAttr(title);
   const d = escapeAttr(description);
@@ -76,12 +79,15 @@ function buildPage(template, project, title, description) {
     ['meta', 'property', 'og:description', 'content', d],
     ['meta', 'property', 'og:url', 'content', url],
     ['meta', 'property', 'og:image', 'content', image],
+    ['meta', 'property', 'og:image:type', 'content', 'image/jpeg'],
+    ['meta', 'property', 'og:image:alt', 'content', t],
     ['meta', 'property', 'og:type', 'content', 'article'],
     ['meta', 'property', 'og:locale', 'content', OG_LOCALE],
     ['meta', 'name', 'twitter:title', 'content', t],
     ['meta', 'name', 'twitter:description', 'content', d],
     ['meta', 'name', 'twitter:url', 'content', url],
     ['meta', 'name', 'twitter:image', 'content', image],
+    ['meta', 'name', 'twitter:image:alt', 'content', t],
     ['link', 'rel', 'canonical', 'href', url],
   ];
 
@@ -117,7 +123,7 @@ function buildPage(template, project, title, description) {
  * поисковым роботам не помогает.
  */
 function buildSitemap() {
-  const urls = ['/', ...projects.map(project => `/${project.id}`)];
+  const urls = ['/', ...projects.map(project => `/${project.id}/`)];
   const body = urls.map(url => `  <url>\n    <loc>${ORIGIN}${url}</loc>\n  </url>`).join('\n');
 
   const xml =

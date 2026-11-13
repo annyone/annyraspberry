@@ -22,6 +22,7 @@ function NeighbourLink({ project, label, arrow, align = '' }) {
   return (
     <RouterLink
       to={`/${project.id}`}
+      viewTransition
       aria-label={`${label}: ${title}`}
       className={`group flex flex-col gap-1 sm:max-w-[45%] ${align}`.trim()}
     >

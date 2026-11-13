@@ -15,30 +15,29 @@
 
       ym(105074916, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true });
     </script>
-    <!-- prettier-ignore -->
-    <noscript>
-      <div><img src="https://mc.yandex.ru/watch/105074916" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
     <!-- /Yandex.Metrika counter -->
 
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/images/logo.svg" />
-    <title>Малинина Анна — UI/UX дизайнер</title>
+    <title>Малинина Анна — продуктовый дизайнер</title>
     <meta
       name="description"
-      content="UI/UX дизайнер с 11-летним опытом в IT. Создаю интуитивно понятные интерфейсы для сложных продуктов."
+      content="Продуктовый дизайнер в B2B. Превращаю сложные сценарии в понятные рабочие интерфейсы, разрабатываю дизайн-системы."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <!-- Цвет панели браузера совпадает с фоном страницы: bg-white и
+         dark:bg-zinc-900 у body в src/index.css. -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#18181b" media="(prefers-color-scheme: dark)" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://annyraspberry.pro/" />
-    <meta property="og:site_name" content="Малинина Анна — UI/UX дизайнер" />
-    <meta property="og:title" content="Малинина Анна — UI/UX дизайнер" />
+    <meta property="og:site_name" content="Малинина Анна — продуктовый дизайнер" />
+    <meta property="og:title" content="Малинина Анна — продуктовый дизайнер" />
     <meta
       property="og:description"
-      content="UI/UX дизайнер с 11-летним опытом в IT. Создаю интуитивно понятные интерфейсы для сложных продуктов."
+      content="Продуктовый дизайнер в B2B. Превращаю сложные сценарии в понятные рабочие интерфейсы, разрабатываю дизайн-системы."
     />
     <meta property="og:image" content="https://annyraspberry.pro/images/og-image.png" />
     <meta property="og:image:type" content="image/png" />
@@ -50,10 +49,10 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://annyraspberry.pro/" />
-    <meta name="twitter:title" content="Малинина Анна — UI/UX дизайнер" />
+    <meta name="twitter:title" content="Малинина Анна — продуктовый дизайнер" />
     <meta
       name="twitter:description"
-      content="UI/UX дизайнер с 11-летним опытом в IT. Создаю интуитивно понятные интерфейсы для сложных продуктов."
+      content="Продуктовый дизайнер в B2B. Превращаю сложные сценарии в понятные рабочие интерфейсы, разрабатываю дизайн-системы."
     />
     <meta name="twitter:image" content="https://annyraspberry.pro/images/og-image.png" />
     <meta name="twitter:image:alt" content="Логотип Малининой Анны — малина" />
@@ -88,6 +87,13 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Запасной счётчик Метрики для браузеров без JavaScript. Стоит в body:
+         внутри head тег div недопустим, разборщик закрывал на нём head, и
+         мета-теги ниже оказывались в body, где их не читают. -->
+    <!-- prettier-ignore -->
+    <noscript>
+      <div><img src="https://mc.yandex.ru/watch/105074916" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>

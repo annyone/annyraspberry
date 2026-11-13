@@ -1,5 +1,5 @@
 import projects from './projects.json';
-import { getNavItems, getCvItem } from './navItems';
+import { getSectionItems, getSocialItems, getCvItem } from './navItems';
 import { reportProblems } from '../testing/problems';
 import { existsInPublic, publicFiles } from '../testing/publicFiles';
 
@@ -13,13 +13,13 @@ const manifest = JSON.parse(
 // Меню строится функцией от переводчика и языка. Тексты здесь не нужны,
 // проверяются только адреса, поэтому вместо словаря подставляется
 // функция, возвращающая сам ключ.
-// Резюме больше не входит в getNavItems — в шапке оно рисуется кнопкой.
-// Его нужно добавить сюда руками, иначе проверка ниже перестанет что-либо
+// Резюме описано отдельной функцией — в меню оно набрано своим цветом.
+// Без него проверка ниже перестанет что-либо
 // проверять: ни одного элемента с полем download в списке не останется,
 // цикл отработает вхолостую и тест позеленеет при отсутствующем файле.
 const navItems = [
-  ...getNavItems(key => key, 'ru'),
-  ...getNavItems(key => key, 'en'),
+  ...getSectionItems(key => key),
+  ...getSocialItems(key => key),
   getCvItem(key => key, 'ru'),
   getCvItem(key => key, 'en'),
 ];
@@ -29,7 +29,7 @@ describe('файлы, на которые ссылаются данные', () =
     const problems = [];
 
     for (const project of projects) {
-      for (const field of ['thumbnail', 'thumbnail_2x', 'ogImage']) {
+      for (const field of ['thumbnail', 'ogImage']) {
         const value = project[field];
         if (value === undefined) continue;
         if (existsInPublic(value)) continue;
@@ -93,7 +93,7 @@ describe('файлы, на которые ссылаются данные', () =
       title: 'Файлы резюме не найдены в public.',
       problems,
       howToFix:
-        'сверить имена файлов в public с теми, что собирает getNavItems (data/navItems.js). ' +
+        'сверить имена файлов в public с теми, что собирает getCvItem (data/navItems.js). ' +
         'В именах есть пробелы, адрес собирается через encodeURIComponent — расхождение ' +
         'в одном символе даёт скачивание пустоты без единой ошибки в консоли.',
     });

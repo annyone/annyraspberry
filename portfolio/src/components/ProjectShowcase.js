@@ -8,21 +8,16 @@ import { useCaseTransitionBackground } from '../data/useCaseTransitionBackground
 import { arrangeProjects, homeProjects } from '../data/homeProjects';
 import './ProjectShowcase.css';
 
-const palettes = {
-  axelnac: ['#a36bfa', '#f29cdd', '#6055e8'],
-  logiq: ['#388bfa', '#76e4ed', '#7466ef'],
-  darts: ['#26a973', '#b7e77b', '#40c9c0'],
-  adidas: ['#d34ce9', '#9290ff', '#f693c9'],
-};
-
 function ProjectTile({ project, featured = false }) {
   const { t } = useLanguage();
   const to = `/${project.id}`;
   const isTransitioning = useViewTransitionState(to);
   const names = caseTransitionNames(isTransitioning);
-  useCaseTransitionBackground(project, isTransitioning);
+  useCaseTransitionBackground(project, { active: isTransitioning, source: 'tile' });
   const title = t(`projects.${project.id}.title`);
-  const colors = palettes[project.id] || palettes.axelnac;
+  // Три цвета свечения под плиткой — поле glow в data/projects.json,
+  // рядом с фоном обложки того же кейса.
+  const [glowA, glowB, glowC] = project.glow || [];
 
   return (
     <Link
@@ -30,7 +25,7 @@ function ProjectTile({ project, featured = false }) {
       viewTransition
       className={`project-tile${featured ? ' project-tile--featured' : ''}`}
       aria-label={`${t('projectCard.open')}: ${title}`}
-      style={{ '--glow-a': colors[0], '--glow-b': colors[1], '--glow-c': colors[2] }}
+      style={{ '--glow-a': glowA, '--glow-b': glowB, '--glow-c': glowC }}
     >
       <article className="project-tile__body">
         <span aria-hidden="true" className={`project-tile__background ${names.background}`}>

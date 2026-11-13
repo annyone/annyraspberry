@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router-dom';
 
 // Высота фиксированной шапки в пикселях. Прокрутка к секции делается
 // с этим отступом, иначе шапка накрывает первые строки секции.
@@ -25,14 +25,24 @@ function navHeightPx() {
 // только якорь: его ScrollRestoration не знает — для него /#about и / это
 // одна и та же запись истории.
 //
-// Следим и за hash, а не только за pathname: при повторном клике по пункту
-// меню «Обо мне» уже на главной pathname не меняется, и без этого прокрутка
-// сработала бы только в первый раз.
+// Зависимость — key записи истории, а не pathname с hash: при повторном
+// клике по пункту меню «Обо мне» уже на /#about адрес не меняется, а key
+// меняется, и прокрутка срабатывает каждый раз.
+//
+// Переходы «Назад» и «Вперёд» (тип POP) пропускаются: положение на них
+// восстанавливает ScrollRestoration. Плавная прокрутка к якорю поверх
+// восстановленного места уводила посетителя от карточки, с которой он
+// ушёл в кейс. Первая загрузка страницы — тоже POP, там к якорю без
+// анимации прокручивает сам ScrollRestoration.
+//
+// Проверка: открыть /#about, прокрутить к кейсам, зайти в кейс и нажать
+// «Назад» — страница должна встать на ту же карточку, а не на «обо мне».
 export default function ScrollToAnchor() {
-  const { pathname, hash } = useLocation();
+  const { key, hash } = useLocation();
+  const navigationType = useNavigationType();
 
   useEffect(() => {
-    if (!hash) return;
+    if (!hash || navigationType === 'POP') return;
 
     // Элемент появляется в разметке в том же кадре, что и смена адреса,
     // но при переходе с кейса на главную сначала монтируется другая
@@ -43,7 +53,7 @@ export default function ScrollToAnchor() {
 
     const top = target.getBoundingClientRect().top + window.scrollY - navHeightPx();
     window.scrollTo({ top, behavior: 'smooth' });
-  }, [pathname, hash]);
+  }, [key, hash, navigationType]);
 
   return null;
 }

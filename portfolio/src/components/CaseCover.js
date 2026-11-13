@@ -31,7 +31,7 @@ export default function CaseCover({ project, title }) {
 
   return (
     <div
-      className={`-mt-[var(--nav-height)] pt-[var(--nav-height)] rounded-b-[2rem] xl:rounded-b-[3rem] ${names.background}`}
+      className={`-mt-[var(--nav-height)] pt-[var(--nav-height)] rounded-b-[var(--case-cover-radius)] ${names.background}`}
       style={projectBackground(project.background)}
     >
       {/* Нижний отступ стоит здесь, а не у снимка: снимок при переходе

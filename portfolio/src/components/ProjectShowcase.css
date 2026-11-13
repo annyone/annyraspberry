@@ -15,14 +15,13 @@
 
 .project-tile {
   --halo-opacity: 0.28;
-  --halo-blur: clamp(32px, 4cqw, 56px);
   --cover-shadow: 0 0 0 1px rgb(24 24 27 / 10%), 0 8px 24px rgb(24 24 27 / 8%);
   position: relative;
   display: flex;
   flex-direction: column;
   align-self: stretch;
   min-width: 0;
-  border-radius: 24px;
+  border-radius: var(--tile-radius);
   overflow: visible;
   color: inherit;
   cursor: pointer;
@@ -45,8 +44,20 @@
   gap: 20px;
 }
 
-/* Маска ограничивает свечение и приглушает углы. Волнистый контур
-   создают движущиеся полупрозрачные пятна внутри неё. */
+/* Свечение под плиткой при наведении: овальные пятна, которые растут,
+   сжимаются, смещаются и меняют цвет. Маска растушёвывает свечение
+   по краям, а волнистый контур создают сами пятна.
+
+   Все размеры — пятен, размытия, растушёвки, сдвига — считаются от ширины
+   плитки (единицы cqw и проценты). Поэтому большая плитка показывает тот
+   же рисунок, что маленькая, только крупнее. Раньше у плиток шире 900px
+   были свои параметры — пятна уже, с плотной серединой, а размытие
+   упиралось в потолок 56px, — и на большой плитке эффект выглядел иначе:
+   бледнее и без заметного движения.
+
+   Проверка: навести указатель на большую плитку, затем на маленькую —
+   рисунок и характер движения должны быть одни, различаться может
+   только масштаб. */
 .project-tile__background {
   --halo-feather: clamp(56px, 7cqw, 112px);
   position: absolute;
@@ -63,11 +74,11 @@
     #000000a6 calc(100% - var(--halo-feather) * 0.65),
     #00000040 calc(100% - var(--halo-feather) * 0.4),
     #00000008 calc(100% - var(--halo-feather) * 0.2), transparent 100%;
+  /* Растушёвка только по четырём сторонам. Отдельной маски на углах нет:
+     она срезала угол свечения по диагонали, и на маленькой плитке этот
+     срез читался как скошенный край. Угол и так гаснет сам — в нём
+     перемножаются растушёвки двух сторон. */
   mask-image:
-    radial-gradient(ellipse 26% 30% at 0% 0%, transparent 12%, #00000040 50%, black 100%),
-    radial-gradient(ellipse 26% 30% at 100% 0%, transparent 12%, #00000040 50%, black 100%),
-    radial-gradient(ellipse 26% 30% at 0% 100%, transparent 12%, #00000040 50%, black 100%),
-    radial-gradient(ellipse 26% 30% at 100% 100%, transparent 12%, #00000040 50%, black 100%),
     linear-gradient(to right, var(--halo-fade-stops)),
     linear-gradient(to bottom, var(--halo-fade-stops));
   mask-composite: intersect;
@@ -81,8 +92,44 @@
   transition: transform 700ms ease-out;
 }
 
+/* Подложка под пятнами: мягкое приглушённое свечение по всей плитке.
+   Сами пятна оставляют между собой промежутки, и там, где промежуток
+   выпадал на край картинки, цвет проваливался до фона страницы. Подложка
+   держит в этих местах половину яркости, поэтому вокруг картинки свечение
+   не прерывается, а пятна поверх неё по-прежнему видны: они ярче, движутся
+   и задают волнистый внешний край.
+
+   Подложка намеренно вдвое слабее пятен и размыта: в полную силу она
+   превращала свечение в ровный прямоугольник, за которым пятен не видно.
+   Её цвет идёт по тому же кругу из трёх цветов кейса, но медленнее.
+
+   Проверка: навести указатель на маленькую плитку и смотреть на полосу
+   между заголовком и картинкой — тёмных разрывов в ней быть не должно. */
+.project-tile__flow::before {
+  --aurora-color: var(--glow-a);
+  content: '';
+  position: absolute;
+  /* Подложка меньше области свечения и сильно скруглена: она обнимает
+     картинку и гаснет раньше, чем начинается растушёвка маски. Во всю
+     область она давала бы ровный прямоугольник с прямыми углами. */
+  inset: 5cqw calc(var(--halo-feather) * 0.6) 1cqw;
+  border-radius: 12cqw;
+  background-color: var(--aurora-color);
+  filter: blur(clamp(20px, 4.5cqw, 64px));
+  opacity: 0.5;
+  animation: aurora-color 26s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+/* Пятна вытянуты по горизонтали (--lobe-width, --lobe-height) и сходят
+   в прозрачность от самого центра (--lobe-core: 0%): так соседние пятна
+   перекрываются и перетекают друг в друга, а не стоят кругами. */
 .project-tile__light {
   --aurora-color: var(--glow-a);
+  --lobe-width: 1.5;
+  --lobe-height: 0.8;
+  --lobe-core: 0%;
+  --halo-blur: clamp(40px, 7cqw, 110px);
   position: absolute;
   inset: -4%;
   filter: blur(var(--halo-blur));
@@ -159,13 +206,28 @@
     -13s;
 }
 
-/* На узких карточках вытягиваем пятна, чтобы они не выглядели кругами. */
+/* Маленькая плитка: свечение мягче.
+
+   При одних и тех же долях от ширины маленькая плитка выглядела жёстче
+   и насыщеннее большой: растушёвка и размытие в пикселях у неё вдвое
+   меньше, а яркость та же, и край свечения читался как граница. Поэтому
+   здесь край растушёван шире, пятна и подложка размыты сильнее, а всё
+   свечение приглушено на треть.
+
+   Проверка: навести указатель на маленькую плитку, затем на большую —
+   по яркости и мягкости края они должны восприниматься одинаково. */
 @container (max-width: 900px) {
+  .project-tile__background {
+    --halo-feather: clamp(64px, 11cqw, 112px);
+  }
+  .project-tile__flow {
+    opacity: 0.65;
+  }
+  .project-tile__flow::before {
+    filter: blur(clamp(32px, 8cqw, 72px));
+  }
   .project-tile__light {
-    --lobe-width: 1.5;
-    --lobe-height: 0.8;
-    --lobe-core: 0%;
-    --halo-blur: clamp(40px, 7cqw, 64px);
+    --halo-blur: clamp(48px, 9.5cqw, 110px);
   }
 }
 
@@ -173,7 +235,8 @@
   opacity: var(--halo-opacity);
 }
 
-.project-tile:focus-visible .project-tile__light {
+.project-tile:focus-visible .project-tile__light,
+.project-tile:focus-visible .project-tile__flow::before {
   animation-play-state: running;
 }
 
@@ -235,7 +298,8 @@
   .project-tile[data-pointer-hover='true'] .project-tile__background {
     opacity: var(--halo-opacity);
   }
-  .project-tile[data-pointer-hover='true'] .project-tile__light {
+  .project-tile[data-pointer-hover='true'] .project-tile__light,
+  .project-tile[data-pointer-hover='true'] .project-tile__flow::before {
     animation-play-state: running;
   }
 }
@@ -246,7 +310,7 @@
   align-items: flex-start;
   gap: 20px;
   padding: 28px;
-  border-radius: 24px;
+  border-radius: var(--tile-radius);
   color: #292431;
 }
 
@@ -309,7 +373,8 @@
   .project-tile__flow {
     transform: none;
   }
-  .project-tile__light {
+  .project-tile__light,
+  .project-tile__flow::before {
     animation: none;
   }
 }

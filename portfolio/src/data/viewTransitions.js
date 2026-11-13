@@ -31,8 +31,6 @@ export function caseTransitionNames(active = true) {
   return active ? CASE_TRANSITION : NONE;
 }
 
-export default caseTransitionNames;
-
 // Шапка сайта.
 //
 // Своего переезда у неё нет — она одинакова по обе стороны перехода.

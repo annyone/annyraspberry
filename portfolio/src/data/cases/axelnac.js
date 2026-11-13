@@ -8,7 +8,6 @@ const axelnac = {
   sections: [
     {
       title: 'tasks.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'banners',
@@ -19,17 +18,14 @@ const axelnac = {
     },
     {
       title: 'done.title',
-      className: 'gap-4',
       blocks: [{ type: 'list', key: 'done.items' }],
     },
     {
       title: 'problems.title',
-      className: 'gap-4',
       blocks: [{ type: 'list', key: 'problems.items' }],
     },
     {
       title: 'before.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -49,7 +45,6 @@ const axelnac = {
     },
     {
       title: 'after.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -90,7 +85,6 @@ const axelnac = {
     },
     {
       title: 'result.title',
-      className: 'gap-4',
       blocks: [{ type: 'text', key: 'result.1' }],
     },
   ],

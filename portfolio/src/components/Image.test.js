@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
-import Image, { retinaSources } from './Image';
+import Image, { RETINA_MEDIA, retinaSources } from './Image';
 
-// На этом контракте стоят CasePage, CaseBlocks и ProjectCard: они больше
+// На этом контракте стоят CaseCover, CaseBlocks и ProjectShowcase: они больше
 // не хранят адрес ретина-версии в данных, а выводят его из имени файла.
 describe('retinaSources', () => {
-  test('для .webp даёт пару -2x с порогом 1024px', () => {
+  test('для .webp даёт пару -2x с условием на ширину и плотность экрана', () => {
     expect(retinaSources('/images/darts/scale.webp')).toEqual([
-      { srcSet: '/images/darts/scale-2x.webp', media: '(min-width: 1024px)' },
+      { srcSet: '/images/darts/scale-2x.webp', media: RETINA_MEDIA },
     ]);
   });
 

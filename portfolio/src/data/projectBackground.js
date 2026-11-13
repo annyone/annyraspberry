@@ -16,5 +16,3 @@ export function projectBackground(value) {
 
   return isImage ? { backgroundImage: value } : { backgroundColor: value };
 }
-
-export default projectBackground;

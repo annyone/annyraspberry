@@ -1,5 +1,11 @@
-import React, { useMemo } from 'react';
-import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router-dom';
+import React, { useEffect, useMemo, useRef } from 'react';
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  ScrollRestoration,
+  useLocation,
+} from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import ScrollToAnchor from './components/ScrollToAnchor';
@@ -9,10 +15,37 @@ import { caseDescriptions } from './routes';
 import './App.css';
 import { LanguageProvider } from './i18n/LanguageContext';
 
+// Номер счётчика Яндекс.Метрики. Тот же, что в public/index.html.
+const METRIKA_ID = 105074916;
+
+// Просмотр страницы при переходе внутри сайта. Счётчик сам считает только
+// загрузку документа, а переходы роутера документ не перезагружают: без
+// этого в отчётах была бы одна страница входа на весь визит.
+//
+// Первая отрисовка пропускается — её уже посчитал код в index.html.
+// Заголовок вкладки к этому моменту обновлён: его ставит эффект в Layout,
+// а эффекты вложенных компонентов выполняются раньше внешних.
+function useMetrikaHits() {
+  const { pathname } = useLocation();
+  const isFirst = useRef(true);
+
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+    if (typeof window.ym === 'function') {
+      window.ym(METRIKA_ID, 'hit', window.location.href, { title: document.title });
+    }
+  }, [pathname]);
+}
+
 // Общая обвязка всех маршрутов. Нужна ради двух вещей, которые работают
 // только внутри дерева маршрутов: восстановления прокрутки и прокрутки
 // к якорю.
 function RouterRoot() {
+  useMetrikaHits();
+
   return (
     <>
       {/* Кладёт положение прокрутки в sessionStorage при уходе со страницы

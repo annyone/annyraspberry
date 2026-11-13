@@ -2,28 +2,29 @@
   {
     "id": "axelnac",
     "thumbnail": "/images/axelnac/thumbnail.webp",
-    "thumbnail_2x": "/images/axelnac/thumbnail-2x.webp",
     "background": "linear-gradient(to bottom, #8F49DE, #613e67ff)",
-    "ogImage": "/images/og-image.png"
+    "ogImage": "/images/axelnac/og.jpg",
+    "glow": ["#a36bfa", "#f29cdd", "#6055e8"]
   },
   {
     "id": "logiq",
     "thumbnail": "/images/logiq/thumbnail.webp",
-    "thumbnail_2x": "/images/logiq/thumbnail-2x.webp",
     "background": "linear-gradient(to bottom, #1e6bd1, #0245a8)",
-    "ogImage": "/images/og-image.png"
+    "ogImage": "/images/logiq/og.jpg",
+    "glow": ["#388bfa", "#76e4ed", "#7466ef"]
   },
   {
     "id": "darts",
     "thumbnail": "/images/darts/thumbnail.webp",
-    "thumbnail_2x": "/images/darts/thumbnail-2x.webp",
     "background": "linear-gradient(to bottom, #016630, #002800)",
-    "ogImage": "/images/og-image.png"
+    "ogImage": "/images/darts/og.jpg",
+    "glow": ["#26a973", "#b7e77b", "#40c9c0"]
   },
   {
     "id": "adidas",
-    "thumbnail": "/images/adidas/thumbnail.png",
+    "thumbnail": "/images/adidas/thumbnail.webp",
     "background": "linear-gradient(to bottom, #ad00adff, #3301a8ff)",
-    "ogImage": "/images/og-image.png"
+    "ogImage": "/images/adidas/og.jpg",
+    "glow": ["#d34ce9", "#9290ff", "#f693c9"]
   }
 ]

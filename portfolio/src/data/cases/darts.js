@@ -1,11 +1,8 @@
 // Описание страницы кейса «Дартс». Пояснения к формату — в data/cases/axelnac.js.
 const darts = {
-  // Единственный кейс без нижнего отступа у <main>.
-  mainClassName: '',
   sections: [
     {
       title: 'task.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'task.text1' },
         { type: 'text', key: 'task.text2' },
@@ -13,12 +10,10 @@ const darts = {
     },
     {
       title: 'participation.title',
-      className: 'gap-4',
       blocks: [{ type: 'list', key: 'participation.items' }],
     },
     {
       title: 'scenarios.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -28,7 +23,7 @@ const darts = {
             { type: 'text', key: 'scenarios.player.text2' },
             {
               type: 'image',
-              src: '/images/darts/10.gif',
+              src: '/images/darts/10.webp',
               alt: 'scenarios.player.alt',
               shadow: true,
             },
@@ -52,7 +47,6 @@ const darts = {
     },
     {
       title: 'scalability.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'scalability.text' },
         { type: 'image', src: '/images/darts/scale.webp', alt: 'scalability.alt' },
@@ -60,7 +54,6 @@ const darts = {
     },
     {
       title: 'stages.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'stages.text' },
         {
@@ -114,7 +107,6 @@ const darts = {
     },
     {
       title: 'informativeness.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'informativeness.text' },
         { type: 'image', src: '/images/darts/stages.webp', alt: 'informativeness.alt' },
@@ -122,7 +114,6 @@ const darts = {
     },
     {
       title: 'familiarity.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'familiarity.text' },
         { type: 'image', src: '/images/darts/calc.webp', alt: 'familiarity.alt' },
@@ -130,7 +121,6 @@ const darts = {
     },
     {
       title: 'result.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'result.text1' },
         { type: 'list', key: 'result.items' },

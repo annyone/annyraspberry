@@ -111,5 +111,3 @@ export function playLanguageChange(applyChange, view = window) {
     }, DISSOLVE_MS);
   }, DISSOLVE_MS);
 }
-
-export default playLanguageChange;

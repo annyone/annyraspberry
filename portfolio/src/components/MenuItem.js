@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import AnyLink from './AnyLink';
 
 // Кегль и поведение при наведении общие у всех крупных пунктов меню,
 // различается только цвет.
@@ -23,34 +23,12 @@ const MENU_TONE = {
 // и площадки стоят ещё и в подвале (components/Footer.js) и должны
 // выглядеть там точно так же, как в меню.
 //
-// Поле `to` даёт переход внутри сайта через react-router, `href` — обычную
-// ссылку, в том числе на файл для скачивания или на внешнюю площадку.
-export default function MenuItem({
-  to,
-  href,
-  download,
-  label,
-  tone = 'default',
-  onClick,
-  ...rest
-}) {
-  const className = `${MENU_ITEM} ${MENU_TONE[tone]}`;
-
-  // Значок скрыт от программ чтения с экрана: они и так сообщают, что
-  // ссылка открывается в новой вкладке, а второй раз это лишний шум.
-  const content = <>{label}</>;
-
-  if (to) {
-    return (
-      <RouterLink to={to} onClick={onClick} className={className} {...rest}>
-        {content}
-      </RouterLink>
-    );
-  }
-
+// Куда ведёт пункт — внутрь сайта (`to`) или на файл и внешнюю площадку
+// (`href`) — решает AnyLink.
+export default function MenuItem({ label, tone = 'default', ...props }) {
   return (
-    <a href={href} download={download} onClick={onClick} className={className} {...rest}>
-      {content}
-    </a>
+    <AnyLink className={`${MENU_ITEM} ${MENU_TONE[tone]}`} {...props}>
+      {label}
+    </AnyLink>
   );
 }

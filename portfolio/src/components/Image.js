@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import imageSizes from '../data/imageSizes.json';
 
-// Второй источник картинки для экранов с двойной плотностью.
+// Когда нужен файл двойного размера: на широком экране с плотностью от 1,5
+// и на очень широком окне с любой плотностью. Одного условия по ширине
+// мало: раньше оно стояло как (min-width: 1024px), и обычный монитор
+// качал 3840 пикселей в плитку шириной 420. Одного условия по плотности
+// тоже мало: телефон с плотностью 3 тянул бы 3840 пикселей по мобильной
+// сети в картинку шириной 300.
+export const RETINA_MEDIA =
+  '(min-width: 1024px) and (min-resolution: 1.5dppx), (min-width: 1600px)';
+
+// Второй источник картинки — файл двойного размера.
 //
-// Соглашение об именовании: рядом с X.webp лежит X-2x.webp. Проверено по
-// public/images — пара есть у каждого .webp без единого исключения, и ни
-// у одного .png или .gif её нет. Отсюда правило: для .webp возвращаем
-// второй источник, для остальных расширений — пустой список, иначе
-// в разметку попадёт <source> без srcset.
-//
-// Порог (min-width: 1024px) до этого был записан руками в 22 местах
-// страниц кейсов; здесь он один.
+// Соглашение об именовании: рядом с X.webp лежит X-2x.webp. Пара есть
+// у каждого .webp в public/images — это проверяет data/assets.test.js
+// и data/cases/cases.test.js. Для остальных расширений возвращаем пустой
+// список, иначе в разметку попадёт <source> с адресом, которого нет.
 export function retinaSources(src) {
   if (typeof src !== 'string' || !src.endsWith('.webp')) return [];
-  return [{ srcSet: src.replace(/\.webp$/, '-2x.webp'), media: '(min-width: 1024px)' }];
+  return [{ srcSet: src.replace(/\.webp$/, '-2x.webp'), media: RETINA_MEDIA }];
 }
+
+const FADE = 'opacity 0.5s ease-in-out';
 
 const Image = ({
   src,
@@ -28,9 +36,18 @@ const Image = ({
   // картинка видна без прокрутки при открытии страницы.
   loading = 'lazy',
 }) => {
+  // Картинка считается загруженной и при ошибке: иначе заглушка
+  // пульсировала бы на месте отсутствующего файла бесконечно.
   const [isLoaded, setIsLoaded] = useState(false);
+  const markLoaded = () => setIsLoaded(true);
 
-  const shadowStyle = { boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)' };
+  // Размеры файла из data/imageSizes.json. Сами по себе они картинку не
+  // растягивают (ширина и высота заданы стилем ниже), но по ним браузер
+  // знает пропорции до загрузки и сразу отводит место нужной высоты —
+  // текст под картинкой не прыгает, а заглушка видна в полный размер.
+  // Для файла вне списка (фотография на главной) атрибутов нет: ей размер
+  // задаёт тот, кто её ставит.
+  const [width, height] = imageSizes[src] || [];
 
   const imageStyle = {
     width: '100%',
@@ -38,16 +55,17 @@ const Image = ({
     height: 'auto',
     display: 'block',
     opacity: isLoaded ? 1 : 0,
-    transition: 'opacity 0.5s ease-in-out',
-    ...(shadow && shadowStyle),
+    transition: FADE,
+    ...(shadow && { boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)' }),
   };
 
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
-
-  const handleImageError = () => {
-    setIsLoaded(true);
+  // Заглушка лежит поверх места под картинку, пока та не загрузилась.
+  const skeletonStyle = {
+    position: 'absolute',
+    inset: 0,
+    opacity: isLoaded ? 0 : 1,
+    transition: FADE,
+    pointerEvents: 'none',
   };
 
   // Пульсация включена только до загрузки.
@@ -63,53 +81,32 @@ const Image = ({
   // посмотреть на них десяток секунд — серого мерцания быть не должно.
   const skeletonClass = `rounded-lg bg-zinc-200 dark:bg-zinc-700${isLoaded ? '' : ' animate-pulse'}`;
 
-  // Стиль для скелетона загрузки
-  const skeletonStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    opacity: isLoaded ? 0 : 1,
-    transition: 'opacity 0.5s ease-in-out',
-    pointerEvents: 'none',
-  };
-
-  const imageContent =
-    sources.length > 0 ? (
-      <picture style={{ width: '100%', display: 'block', position: 'relative' }}>
+  return (
+    <div className={className || 'w-full h-full'}>
+      {/* Заглушка стоит рядом с <picture>, а не внутри: по спецификации
+          внутри <picture> допустимы только <source> и <img>. */}
+      <div style={{ position: 'relative', width: '100%' }}>
         <div style={skeletonStyle} className={skeletonClass} />
-        {sources.map((source, index) => (
-          <source key={index} srcSet={source.srcSet} media={source.media} type={source.type} />
-        ))}
-        <img
-          src={src}
-          alt={alt}
-          className="rounded-lg"
-          style={imageStyle}
-          loading={loading}
-          decoding="async"
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
-      </picture>
-    ) : (
-      <div style={{ position: 'relative', width: '100%', display: 'block' }}>
-        <div style={skeletonStyle} className={skeletonClass} />
-        <img
-          src={src}
-          alt={alt}
-          className="rounded-lg"
-          style={imageStyle}
-          loading={loading}
-          decoding="async"
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
+        <picture style={{ display: 'block', width: '100%' }}>
+          {sources.map((source, index) => (
+            <source key={index} srcSet={source.srcSet} media={source.media} type={source.type} />
+          ))}
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="rounded-lg"
+            style={imageStyle}
+            loading={loading}
+            decoding="async"
+            onLoad={markLoaded}
+            onError={markLoaded}
+          />
+        </picture>
       </div>
-    );
-
-  return <div className={className || 'w-full h-full'}>{imageContent}</div>;
+    </div>
+  );
 };
 
 export default Image;

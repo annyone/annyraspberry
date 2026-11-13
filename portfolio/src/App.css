@@ -1,4 +1,5 @@
-/* Minimal placeholder App styles; most styling is done with Tailwind classes */
+/* Высота на весь экран и появление страницы. Остальное оформление —
+   классами Tailwind и в src/index.css. */
 html,
 body,
 #root {

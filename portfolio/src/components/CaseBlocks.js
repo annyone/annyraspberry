@@ -74,6 +74,7 @@ function CaseBlock({ block, t, last = false }) {
           <iframe
             title={t(block.title)}
             src={block.src}
+            loading="lazy"
             allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
             frameBorder="0"
             allowFullScreen

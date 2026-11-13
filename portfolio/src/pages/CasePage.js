@@ -25,7 +25,6 @@ export default function CasePage({ project, description }) {
   return (
     <Layout
       title={`${title} — ${t('site.author')}`}
-      mainClassName={description.mainClassName}
       cover={<CaseCover project={project} title={title} />}
       showProgress
     >

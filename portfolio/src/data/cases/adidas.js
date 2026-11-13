@@ -3,12 +3,10 @@ const adidas = {
   sections: [
     {
       title: 'task.title',
-      className: 'gap-4',
       blocks: [{ type: 'text', key: 'task.text' }],
     },
     {
       title: 'concept.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -32,14 +30,13 @@ const adidas = {
     },
     {
       title: 'result.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
           title: 'result.landing.title',
           blocks: [
             { type: 'text', key: 'result.landing.text' },
-            { type: 'image', src: '/images/adidas/1.png', alt: 'result.landing.alt' },
+            { type: 'image', src: '/images/adidas/1.webp', alt: 'result.landing.alt' },
           ],
         },
         {
@@ -47,7 +44,7 @@ const adidas = {
           title: 'result.outfit.title',
           blocks: [
             { type: 'text', key: 'result.outfit.text' },
-            { type: 'image', src: '/images/adidas/2.png', alt: 'result.landing.alt' },
+            { type: 'image', src: '/images/adidas/2.webp', alt: 'result.outfit.alt' },
           ],
         },
         {
@@ -55,7 +52,7 @@ const adidas = {
           title: 'result.specs.title',
           blocks: [
             { type: 'text', key: 'result.specs.text' },
-            { type: 'image', src: '/images/adidas/3.png', alt: 'result.landing.alt' },
+            { type: 'image', src: '/images/adidas/3.webp', alt: 'result.specs.alt' },
           ],
         },
         {
@@ -74,7 +71,6 @@ const adidas = {
     },
     {
       title: 'feedback.title',
-      className: 'gap-4',
       blocks: [
         { type: 'feedback', key: 'feedback.text1' },
         { type: 'feedback', key: 'feedback.text2' },

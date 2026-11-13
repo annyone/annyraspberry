@@ -13,11 +13,12 @@ export default function NotFound() {
 
   return (
     <Layout title={`${title} — ${t('site.author')}`}>
-      <Section className="pt-12 gap-4" last>
+      <Section className="pt-12" last>
         <Text variant="h1">{title}</Text>
         <Text variant="p">{t('notFound.text')}</Text>
         <Link
           to="/"
+          viewTransition
           className="text-rose-500 hover:-translate-y-0.5 inline-block transition-transform duration-150"
         >
           ← {t('notFound.back')}

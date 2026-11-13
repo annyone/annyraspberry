@@ -11,17 +11,32 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio/package-lock.json
+
+      # npm ci ставит ровно те версии, что записаны в package-lock.json.
       - name: Install dependencies
         working-directory: ./portfolio
-        run: npm install
+        run: npm ci
 
+      # Упавший тест останавливает выкладку: хук pre-push можно обойти
+      # или не включить на новой машине, а этот шаг — нет.
+      - name: Run tests
+        working-directory: ./portfolio
+        run: npm run test:once
+
+      # Карты исходников на сайт не выкладываются: посетителю они не нужны.
       - name: Build project
         working-directory: ./portfolio
         run: npm run build
         env:
-          CI: false
+          GENERATE_SOURCEMAP: false
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

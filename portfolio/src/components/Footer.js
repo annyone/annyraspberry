@@ -22,7 +22,7 @@ export default function Footer({ socials = [] }) {
   return (
     <footer
       id="contacts"
-      className="mt-10 lg:mt-16 xl:mt-20 rounded-t-[2rem] xl:rounded-t-[3rem] bg-zinc-100 dark:bg-zinc-800/60"
+      className="mt-10 lg:mt-16 xl:mt-20 rounded-t-[var(--case-cover-radius)] bg-zinc-100 dark:bg-zinc-800/60"
     >
       <div className="page-grid pt-12 pb-8 lg:pt-16 xl:pt-24 xl:pb-12">
         {/* Пункты те же, что в меню, и в том же порядке: сначала резюме,

@@ -2,7 +2,9 @@ import React from 'react';
 import Text from './Text';
 
 export default function Section({ children, subtitle, title, last, id, className = '', ...props }) {
-  const base = 'grid grid-cols-1 gap-14';
+  // Расстояние между блоками по умолчанию — 16px. Главная задаёт своё
+  // через className с восклицательным знаком (!gap-16 и подобные).
+  const base = 'grid grid-cols-1 gap-4';
 
   // id висит на <section>, а не на внутреннем <div> с сеткой: подзаголовок
   // раздела отрисован выше этого div, и при переходе по /#cases он оказался

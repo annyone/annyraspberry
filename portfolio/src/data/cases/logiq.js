@@ -3,7 +3,6 @@ const logiq = {
   sections: [
     {
       title: 'tasks.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'banners',
@@ -18,12 +17,10 @@ const logiq = {
     },
     {
       title: 'what.title',
-      className: 'gap-4',
       blocks: [{ type: 'list', key: 'what.items' }],
     },
     {
       title: 'before.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -39,9 +36,8 @@ const logiq = {
             { type: 'text', key: 'before.constructor2' },
             {
               type: 'image',
-              src: '/images/logiq/2.png',
-              alt: 'before.altBefore',
-              className: '!pb-0',
+              src: '/images/logiq/2.webp',
+              alt: 'before.altConstructor',
               shadow: true,
             },
           ],
@@ -50,7 +46,6 @@ const logiq = {
     },
     {
       title: 'after.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
@@ -67,7 +62,7 @@ const logiq = {
             {
               type: 'image',
               src: '/images/logiq/layout.webp',
-              alt: 'after.altAfter',
+              alt: 'after.altLayout',
               shadow: true,
             },
           ],
@@ -89,8 +84,8 @@ const logiq = {
                 },
                 {
                   type: 'image',
-                  src: '/images/logiq/12.gif',
-                  alt: 'after.altAfter',
+                  src: '/images/logiq/12.webp',
+                  alt: 'after.modes.alt',
                   className: 'w-full lg:w-[65%]',
                   shadow: true,
                 },
@@ -102,14 +97,18 @@ const logiq = {
     },
     {
       title: 'constructor.title',
-      className: 'gap-4',
       blocks: [
         {
           type: 'article',
           blocks: [
             { type: 'text', key: 'constructor.main1' },
             { type: 'text', key: 'constructor.main2' },
-            { type: 'image', src: '/images/logiq/board.webp', alt: 'after.altAfter', shadow: true },
+            {
+              type: 'image',
+              src: '/images/logiq/board.webp',
+              alt: 'constructor.altBoard',
+              shadow: true,
+            },
           ],
         },
         {
@@ -117,7 +116,7 @@ const logiq = {
           title: 'constructor.fields.title',
           blocks: [
             { type: 'text', key: 'constructor.fields.text' },
-            { type: 'image', src: '/images/logiq/fields.webp', alt: 'after.altAfter' },
+            { type: 'image', src: '/images/logiq/fields.webp', alt: 'constructor.fields.alt' },
           ],
         },
         {
@@ -129,9 +128,9 @@ const logiq = {
               blocks: [
                 {
                   type: 'image',
-                  src: '/images/logiq/6.gif',
-                  alt: 'after.altAfter',
-                  className: 'w-full lg:w-1/2 !pb-0',
+                  src: '/images/logiq/6.webp',
+                  alt: 'constructor.search.alt',
+                  className: 'w-full lg:w-1/2',
                   shadow: true,
                 },
                 {
@@ -148,14 +147,13 @@ const logiq = {
           title: 'constructor.sorting.title',
           blocks: [
             { type: 'text', key: 'constructor.sorting.text' },
-            { type: 'image', src: '/images/logiq/sorting.webp', alt: 'after.altAfter' },
+            { type: 'image', src: '/images/logiq/sorting.webp', alt: 'constructor.sorting.alt' },
           ],
         },
       ],
     },
     {
       title: 'result.title',
-      className: 'gap-4',
       blocks: [
         { type: 'text', key: 'result.text' },
         { type: 'feedback', key: 'result.feedback1' },

@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import AnyLink from './AnyLink';
 
 // Стили для base и hover состояний
 const baseStyles = 'inline-flex items-center text-zinc-500 transition-transform duration-150';
 const hoverStyles = 'hover:-translate-y-0.5 hover:text-rose-500';
 const iconClass = 'h-7 w-7';
 
-export default function Link({ to, href, label, icon, className = '', ...props }) {
+// Ссылка с подписью размером от body и необязательным значком. Куда она
+// ведёт — внутрь сайта (`to`) или наружу (`href`) — решает AnyLink.
+export default function Link({ label, icon, className = '', ...props }) {
   // Клонируем иконку с нужными классами - SVG наследует цвет через currentColor
   const iconEl = icon
     ? React.cloneElement(icon, {
@@ -14,28 +16,10 @@ export default function Link({ to, href, label, icon, className = '', ...props }
       })
     : null;
 
-  const content = (
-    <>
+  return (
+    <AnyLink className={`group ${baseStyles} ${hoverStyles} ${className}`.trim()} {...props}>
       {iconEl && <span className={label ? 'mr-2' : ''}>{iconEl}</span>}
       {label}
-    </>
-  );
-
-  const classes = `group ${baseStyles} ${hoverStyles} ${className}`.trim();
-
-  // Внутренняя ссылка (React Router)
-  if (to) {
-    return (
-      <RouterLink to={to} className={classes} {...props}>
-        {content}
-      </RouterLink>
-    );
-  }
-
-  // Внешняя ссылка
-  return (
-    <a href={href} className={classes} {...props}>
-      {content}
-    </a>
+    </AnyLink>
   );
 }

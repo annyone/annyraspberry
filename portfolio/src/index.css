@@ -35,12 +35,12 @@
 
    Значение одно на всех, кто от него зависит: сама шапка, распорка под
    ней, отступ в раскрытом меню (components/Nav.js), прокрутка к якорю
-   (components/ScrollToTop.js), высота обложки и scroll-padding ниже.
+   (components/ScrollToAnchor.js), высота обложки и scroll-padding ниже.
    Пока число стояло в пяти местах, правка отступа означала правку пяти
    файлов, и любой пропущенный давал либо наезд шапки на текст, либо
    щель под ней.
 
-   Задано в пикселях, а не в rem: ScrollToTop читает его из JS, и в rem
+   Задано в пикселях, а не в rem: ScrollToAnchor читает его из JS, и в rem
    пришлось бы переводить через размер шрифта корня.
 
    Проверка: сверить отступ над логотипом с отступом слева от него —
@@ -55,25 +55,13 @@
   }
 }
 
+/* scrollbar-gutter закрепляет место под полосу прокрутки. Раскрытое меню
+   запрещает прокрутку страницы (components/Nav.js); без этого правила
+   полоса при запрете исчезала, окно становилось шире, и вся страница
+   перекомпоновывалась дважды — при открытии и при закрытии меню. */
 html {
   scroll-padding-top: var(--nav-height);
-}
-
-/* Высота обложки: весь экран за вычетом шапки.
-
-   Два правила, а не одно: svh — «малая» высота окна, та, что остаётся,
-   когда в мобильном браузере видна адресная строка. По vh низ обложки
-   уходил бы под адресную строку, и первый цветной кейс выглядывал бы
-   ровно в том случае, ради которого всё и делается. Первое правило —
-   запасное для браузеров, которые про svh не знают.
-
-   Проверка: открыть главную на телефоне сразу после загрузки, не
-   прокручивая, — цветных карточек в кадре быть не должно. */
-@layer utilities {
-  .min-h-cover {
-    min-height: calc(100vh - var(--nav-height));
-    min-height: calc(100svh - var(--nav-height));
-  }
+  scrollbar-gutter: stable;
 }
 
 /* Переход между главной и страницей кейса.
@@ -128,8 +116,8 @@ h2.case-project-title {
 }
 
 ::view-transition-group(*) {
-  animation-duration: 440ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-duration: var(--case-duration);
+  animation-timing-function: var(--case-easing);
 }
 
 /* Шапка поверх всего, что переезжает.
@@ -201,7 +189,11 @@ h2.case-project-title {
    положение по-прежнему анимирует браузер на родительском group.
    Заголовок и скриншот остаются отдельными участниками перехода. */
 :root {
+  --case-duration: 440ms;
+  --case-easing: cubic-bezier(0.4, 0, 0.2, 1);
   --case-cover-radius: 2rem;
+  /* Радиус плитки кейса на главной (components/ProjectShowcase.css). */
+  --tile-radius: 24px;
 }
 
 @media (min-width: 1280px) {
@@ -220,21 +212,46 @@ h2.case-project-title {
   height: 100%;
   background: var(--case-transition-fill);
   border-radius: 0 0 var(--case-cover-radius) var(--case-cover-radius);
-  animation: case-background-corners 440ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-/* Во время анимации DOM уже содержит страницу назначения. */
-html:has(.project-showcase)::view-transition-image-pair(case-background) {
-  border-radius: 24px;
+/* Переход между плиткой на главной и страницей кейса. Метку
+   data-case-transition ставит data/useCaseTransitionBackground.js.
+
+   Подложка не только растёт и меняет скругление, но и проявляется:
+   у плитки на главной своего фона нет, и без этого цветной прямоугольник
+   возникал под ней в первом же кадре, а при возврате исчезал в последнем —
+   рывком. Теперь он набирает плотность, пока растёт, и тает, пока
+   сжимается обратно.
+
+   Между двумя страницами кейсов (метка 'cover') анимации нет: подложка
+   стоит на месте по обе стороны перехода.
+
+   Проверка: открыть кейс с главной и вернуться «Назад» — цветной фон
+   не должен ни появляться, ни пропадать разом. */
+html[data-case-transition='tile']::view-transition-image-pair(case-background) {
+  animation: case-background-from-tile var(--case-duration) var(--case-easing) both;
+}
+
+/* Возврат на главную: тот же набор кадров задом наперёд. Определяется по
+   разметке — во время анимации DOM уже содержит страницу назначения. */
+html[data-case-transition='tile']:has(.project-showcase)::view-transition-image-pair(
+    case-background
+  ) {
+  border-radius: var(--tile-radius);
   animation-direction: reverse;
 }
 
-@keyframes case-background-corners {
+@keyframes case-background-from-tile {
   from {
-    border-radius: 24px;
+    border-radius: var(--tile-radius);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
   }
   to {
     border-radius: 0 0 var(--case-cover-radius) var(--case-cover-radius);
+    opacity: 1;
   }
 }
 
@@ -397,7 +414,6 @@ html:has(.project-showcase)::view-transition-image-pair(case-background) {
   }
 }
 
-/* Custom base styles (kept minimal) */
 /* Custom base styles (kept minimal) */
 body {
   @apply font-raleway bg-white text-zinc-800 text-base dark:bg-zinc-900 dark:text-zinc-300;

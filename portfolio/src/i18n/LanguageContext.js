@@ -27,7 +27,12 @@ const LanguageContext = createContext({
 });
 
 function resolveInitialLang() {
-  const saved = typeof window !== 'undefined' ? window.localStorage.getItem('lang') : null;
+  // Обращение к localStorage бросает исключение, если хранилище запрещено
+  // настройками браузера, — тогда язык определяется так, будто выбора не было.
+  let saved = null;
+  try {
+    saved = window.localStorage.getItem('lang');
+  } catch {}
   if (saved === 'ru' || saved === 'en') return saved;
   const envLang = process.env.REACT_APP_LANG;
   if (envLang === 'ru' || envLang === 'en') return envLang;
@@ -81,15 +86,16 @@ export function LanguageProvider({ children }) {
   // Язык меняется не сразу, а в середине эффекта рассыпания: к этому
   // моменту старый текст уже растворился, и подмены не видно.
   // Где эффект не нужен — смена происходит сразу (см. langTransition.js).
+  //
+  // В localStorage попадает только явный выбор посетителя. Раньше язык
+  // записывался при первом же открытии, и определённый по браузеру язык
+  // закреплялся навсегда: сменив язык системы, посетитель видел старый.
   const setLang = useCallback(next => {
+    try {
+      window.localStorage.setItem('lang', next);
+    } catch {}
     playLanguageChange(() => setLangState(next));
   }, []);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('lang', lang);
-    } catch {}
-  }, [lang]);
 
   // Атрибут <html lang> должен совпадать с языком текста на странице:
   // по нему скринридер выбирает голос и правила произношения, а браузер —
